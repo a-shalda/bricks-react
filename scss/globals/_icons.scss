@@ -1,0 +1,66 @@
+.icon-style {
+  filter: invert(31%) sepia(17%) saturate(0%) hue-rotate(268deg) brightness(96%) contrast(89%);
+  width: 1.5rem;
+  transition: color 200ms;
+
+  @media(hover: hover) {
+    &:hover {
+      filter: invert(17%) sepia(76%) saturate(2166%) hue-rotate(341deg) brightness(108%) contrast(100%);
+      cursor: pointer;
+    }
+  }
+}
+
+.icon-style--search--header {
+  filter: invert(31%) sepia(17%) saturate(0%) hue-rotate(268deg) brightness(96%) contrast(89%);
+  width: 1.32rem;
+  transition: color 200ms;
+
+  @media(hover: hover) {
+    &:hover {
+      filter: invert(17%) sepia(76%) saturate(2166%) hue-rotate(341deg) brightness(108%) contrast(100%);
+      cursor: pointer;
+    }
+  }
+}
+
+.icon-style-search {
+  width: 1rem;
+  filter: invert(31%) sepia(17%) saturate(0%) hue-rotate(268deg) brightness(96%) contrast(89%);
+}
+
+.stock {
+  width: 1rem;
+  filter: invert(17%) sepia(76%) saturate(2166%) hue-rotate(341deg) brightness(108%) contrast(100%);
+}
+
+
+.icon--footer {
+  transition: color 200ms;
+  filter: invert(31%) sepia(17%) saturate(0%) hue-rotate(268deg) brightness(96%) contrast(89%);
+  width: 1.5rem;
+  transition: color 200ms;
+  cursor: pointer;
+
+  @media(hover: hover) {
+    &:hover {
+      filter: invert(76%) sepia(0%) saturate(0%) hue-rotate(200deg) brightness(84%) contrast(91%);
+      cursor: pointer;
+    }
+  }
+}
+
+.icon--footer--call {
+  transition: color 200ms;
+  filter: invert(31%) sepia(17%) saturate(0%) hue-rotate(268deg) brightness(96%) contrast(89%);
+  width: 1.8rem;
+  transition: color 200ms;
+  cursor: pointer;
+
+  @media(hover: hover) {
+    &:hover {
+      filter: invert(76%) sepia(0%) saturate(0%) hue-rotate(200deg) brightness(84%) contrast(91%);
+      cursor: pointer;
+    }
+  }
+}

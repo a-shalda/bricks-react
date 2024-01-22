@@ -1,0 +1,650 @@
+@use '../util/breakpoints' as *;
+@use '../globals/typography' as *;
+@use '../util/fonts' as *;
+@use '../globals/colors' as *;
+
+.cart {
+
+  &__checkout {
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 3.5rem; //to the nav bar
+    z-index: 1;
+    background-color: white;
+    border-bottom: 1px solid var(--light-gray-color);
+    margin-bottom: 1.5rem;
+
+    &__subtotal {
+      padding-top: 1.2rem;
+      padding-bottom: 0.7rem;
+      letter-spacing: 0.05rem;
+      text-align: center;
+      width: 91%;
+      max-width: 23rem;
+      color: gray;
+      font-size: 1rem;
+      font-family: $font;
+
+      &__bold {
+        font-weight: 700;
+        letter-spacing: 0.09rem;
+        color: var(--gray-color);
+      }
+    }
+
+    &__proceed {
+      letter-spacing: 0.05rem;
+      width: 91%;
+      max-width: 23rem;
+      margin-bottom: 1rem;
+  
+      background-color: #a43434;
+      border: none;
+      color: white;
+      padding-block: 0.3rem;
+      padding-inline: 1rem;
+      font-size: 1.2rem;
+      border-radius: 0.4rem;
+      transition: background-color 0.3s;
+      min-height: 2.875rem; //Height of the price box
+  
+      @include breakpoint (tiny) {
+        margin-inline: auto;
+      }
+  
+      &:hover {
+        background-color: hsla(0, 68%, 42%, 0.885);
+        color: white;
+        cursor: pointer;
+      }
+    }
+
+    &__continue {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: 0.09rem;
+      width: 91%;
+      max-width: 23rem;
+      margin-bottom: 1rem;
+      background-color: var(--gray-color);
+      border: none;
+      color: white;
+      padding-block: 0.3rem;
+      padding-inline: 1rem;
+      font-size: 1.2rem;
+      border-radius: 0.4rem;
+      transition: background-color 0.3s;
+      min-height: 2.875rem; //Height of the price box
+  
+      @include breakpoint (tiny) {
+        margin-inline: auto;
+      }
+  
+      &:hover {
+        background-color: gray;
+        color: white;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__cont {
+    display: grid;
+    gap: 1rem;
+
+    @include breakpoint (medium) {
+      grid-template-columns: 1fr 1fr;
+      column-gap: 0.3rem;
+    }
+
+    @include breakpoint (large) {
+      grid-template-columns: 1fr 1fr 1fr;
+      column-gap: 0.3rem;
+      row-gap: 1rem;
+    }
+
+    @include breakpoint (xlarge) {
+      gap: 1rem;
+      grid-template-columns: 1fr 1fr 1fr;
+      padding-inline: 8rem;
+    }
+    
+    &__product {
+      position: relative;
+      margin-inline: auto;
+      max-width: 23rem;
+      min-width: 18rem;
+      border-radius: 0.5rem;
+      transition: opacity 500ms, visibility 500ms;
+      padding: 1rem;
+      box-shadow: 0 1px 12px 1px rgba(0, 0, 0, 0.451);
+      letter-spacing: 0.02rem;
+      opacity: 1;
+      visibility: visible;
+
+      &__image {
+        display: block;
+
+        &__img {
+          border-radius: 0.5rem;
+          max-width: 21.875rem;
+          width: 100%;
+
+          &:hover {
+            opacity: 0.95;
+          }
+        }
+
+        &__img-checkout {
+          border-radius: 0.5rem;
+          max-width: 21.875rem;
+          width: 100%;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+
+      &__price {
+        display: flex;
+        padding-block: 1rem;
+        gap: 1rem;
+
+        margin-left: -1rem;
+        margin-right: -1rem;
+      
+        &__left {
+          display: flex;
+          width: 50%;
+          justify-content: center;
+          align-items: center;
+          padding-left: 0.5rem;
+          background-color: var(--gray-color);
+          border-top-right-radius: 0.5rem;
+          border-bottom-right-radius: 0.5rem;
+
+          &__box {
+            line-height: 2.5rem;
+            color: $white-color;
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 0.1rem;
+          }
+        }
+
+        &__right {
+          display: flex;
+          width: 50%;
+          justify-content: center;
+          align-items: center;
+          
+          &__box {
+            line-height: 2.5rem;
+            font-size: 1.2rem;
+            color: var(--gray-color);
+            font-weight: 400;
+          }
+        }
+      }
+
+      &__vendor {
+        display: flex;
+        padding-inline: 0.5rem;
+        user-select: none;
+        color: white;
+        height: 0;
+      }
+
+      &__title {
+
+        &__name {
+          padding-block: 1rem;
+          padding-inline: 0.5rem;
+          letter-spacing: 0.04rem;
+          font-weight: 500;
+    
+          &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+          }
+        }
+
+        &__name-checkout {
+          padding-block: 1rem;
+          padding-inline: 0.5rem;
+          letter-spacing: 0.04rem;
+          font-weight: 500;
+    
+          &:hover {
+            cursor:auto;
+            text-decoration: none;
+          }
+        }
+    
+      }
+
+      &__quantity {
+        padding-bottom: 4rem;
+        padding-inline: 0.5rem;
+        padding-top: 0.5rem;
+
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+
+
+        &__modify {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: -0.3rem;
+        }
+
+
+        &__sub-del {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding-top: 1rem;
+          position: absolute;
+          bottom: 1.5rem;
+          left: 1.5rem;
+          right: 1.5rem;
+        }
+
+        &__subtotal {
+          font-weight: 500;
+          letter-spacing: 0.03rem;
+        }
+
+        &__delete {
+          width: 6rem;
+          height: 2rem;
+          background-color: white;
+          border: 1px solid var(--light-gray-color);
+          color: gray;
+          align-self: center;
+        
+          border-radius: 0.4rem;
+          font-size: 1rem;
+          transition: background-color 0.1s, color 0.1s, border 0.1s;
+          user-select: none;
+          touch-action: manipulation;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          @media(hover: hover) {
+            &:hover {
+              cursor: pointer;
+              background-color: var(--light-gray-color);
+              border: 1px solid var(--light-gray-color);
+              color: var(--gray-color);
+            }
+
+            &:active {
+              background-color: var(--gray-color);
+              color: white;
+              border: 1px solid var(--gray-color);
+            }
+          }
+        }
+
+        &__buttons {
+          display: flex;
+
+          &__minus {
+            width: 3rem;
+            height: 2rem;
+            background-color: white;
+            border: 1px solid var(--light-gray-color);
+            color: gray;
+          
+            border-top-left-radius: 0.4rem;
+            border-bottom-left-radius: 0.4rem;
+            font-size: 1rem;
+            transition: background-color 0.2s, color 0.2s, border 0.2s;
+            user-select: none;
+            touch-action: manipulation;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          
+            @media(hover: hover) {
+              &:hover {
+                cursor: pointer;
+                background-color: var(--light-gray-color);
+                border: 1px solid var(--light-gray-color);
+                color: var(--gray-color);
+              }
+
+              &:active {
+                background-color: var(--gray-color);
+                color: white;
+                border: 1px solid var(--gray-color);
+              }
+            }
+          }
+  
+          &__plus{
+            margin-left: -1px;
+            width: 3rem;
+            height: 2rem;
+            background-color: white;
+            border: 1px solid var(--light-gray-color);
+            color: gray;
+            border-top-right-radius: 0.4rem;
+            border-bottom-right-radius: 0.4rem;
+            font-size: 1rem;
+            transition: background-color 0.2s, color 0.2s, border 0.2s;
+            user-select: none;
+            touch-action: manipulation;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          
+            @media(hover: hover) {
+              &:hover {
+                cursor: pointer;
+                background-color: var(--light-gray-color);
+                border: 1px solid var(--light-gray-color);
+                color: var(--gray-color);
+              }
+
+              &:active {
+                background-color: var(--gray-color);
+                color: white;
+                border: 1px solid var(--gray-color);
+              }
+            }
+
+            &__active {
+              background-color: var(--gray-color);
+              color: white;
+              border: 1px solid var(--gray-color);
+            }
+          }
+
+          &__active {
+            background-color: var(--gray-color);
+            color: white;
+            border: 1px solid var(--gray-color);
+          }
+        }
+      }
+    }
+  }
+
+  &__modal {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 200ms, visibility 200ms;
+
+    position: fixed; 
+    z-index: 3;
+    padding: 1rem;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.9); 
+
+    &__box {
+      display: flex;
+      align-items: center;
+      height: 100%;
+
+      &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: 80em;
+        position: relative;
+
+        height: auto;
+        border-radius: 0.5rem;
+        margin: auto;
+        background-color: white;
+        padding: 1rem;
+
+        &__title {
+          font-weight: 700;
+          letter-spacing: 0.09rem;
+          color: var(--gray-color);
+          font-size: 1.1rem;
+          padding-top: 1rem;
+        }
+
+        &__close {
+          display: none;
+          position: absolute;
+          top: 0.5rem;
+          right: 2rem;
+          color: gray;
+          font-size: 3rem;
+          font-weight: bold;
+          transition: 0.3s;
+          user-select: none;
+  
+          @include breakpoint(tiny) {
+            display: block;
+          }
+  
+          @media (hover: hover) {
+            &:hover {
+              cursor: pointer;
+              opacity: 0.6;
+            }
+          }
+        }
+
+        &__subtotal {
+          padding-block: 1rem;
+          word-spacing: 0.1rem;
+          font-size: 1rem;
+        }
+
+        &__form {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding-top: 1rem;
+          gap: 1rem;
+          width: 100%;
+          max-width: 23rem;
+          color: gray;
+
+          &__input {
+            font-size: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--light-gray-color);
+            padding-left: 1rem;
+            color: var(--gray-color);
+            width: 100%;
+            min-height: 2.875rem;
+          
+            &:focus {
+              outline: 1px solid var(--medium-gray-color);
+            }
+          }
+
+          &__submit {
+            letter-spacing: 0.05rem;
+            width: 100%;
+        
+            background-color: #a43434;
+            border: none;
+            color: white;
+            padding-block: 0.3rem;
+            padding-inline: 1rem;
+            font-size: 1.2rem;
+            border-radius: 0.4rem;
+            transition: background-color 0.3s;
+            min-height: 2.875rem; //Height of the price box
+            font-weight: 400;
+        
+            @include breakpoint (tiny) {
+              margin-inline: auto;
+            }
+        
+            &:hover {
+              background-color: hsla(0, 68%, 42%, 0.885);
+              cursor: pointer;
+            }
+          }
+        }
+
+        &__placed {
+          height: 10rem;
+          max-width: 23rem;
+          padding: 1rem;
+
+          &__message {
+            text-align: center;
+          }
+
+          &__button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 0.09rem;
+            width: 91%;
+            max-width: 23rem;
+            margin-block: 1rem;
+            margin-inline: auto;
+
+            background-color: rgb(95, 95, 95);
+            border: none;
+            color: white;
+            padding-block: 0.3rem;
+            padding-inline: 1rem;
+            font-size: 1.2rem;
+            border-radius: 0.4rem;
+            transition: background-color 0.3s;
+            min-height: 2.875rem; //Height of the price box
+        
+            &:hover {
+              background-color: gray;
+              color: white;
+              cursor: pointer;
+            }
+          }
+        }
+
+        &__order {
+          padding-top: 1rem;
+          display: grid;
+          justify-content: center;
+          gap: 1rem;
+      
+          @include breakpoint (medium) {
+            grid-template-columns: 1fr 1fr;
+            column-gap: 0.5rem;
+          }
+      
+          @include breakpoint (large) {
+            gap: 1rem;
+          }
+      
+          @include breakpoint (xlarge) {
+            gap: 1rem;
+            grid-template-columns: 1fr 1fr 1fr;
+            padding-inline: 4rem;
+          }
+
+          &__div {
+            border: 1px solid var(--light-gray-color);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.02rem;
+          }
+
+          &__image {
+            border-radius: 0.5rem;
+          }
+
+          &__title {
+            font-weight: 500;
+            margin-block: 0.5rem;
+            letter-spacing: 0.04rem;
+          }
+
+          &__subtotal {
+            font-weight: 500;
+            padding-top: 0.5rem;
+          }
+        }
+
+        &__continue {
+
+          letter-spacing: 0.05rem;
+          width: 100%;
+          margin-bottom: 1rem;
+          max-width: 23rem;
+          margin-top: 1rem;
+      
+          padding-block: 0.3rem;
+          padding-inline: 1rem;
+          font-size: 1.2rem;
+          transition: background-color 0.3s;
+          min-height: 2.875rem; //Height of the price box
+      
+          @include breakpoint (tiny) {
+            margin-inline: auto;
+          }
+
+          background-color: rgb(95, 95, 95);
+          border: 1px solid rgb(95, 95, 95);
+          color: white;
+          align-self: center;
+        
+          border-radius: 0.4rem;
+          transition: background-color 0.1s, color 0.1s, border 0.1s;
+        
+          &:hover {
+            cursor: pointer;
+            background-color: gray;
+            border: 1px solid gray;
+            color: white;
+          }
+
+          &:active {
+            background-color: var(--gray-color);
+            color: white;
+            border: 1px solid var(--gray-color);
+          }
+        }
+
+        &__desc {
+          text-align: center;
+          color: gray;
+        }
+      }
+    }
+  }
+}
+
+.hide_product {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.button-visible {
+  display: block;
+}
+
+.button-hidden {
+  display: none;
+}

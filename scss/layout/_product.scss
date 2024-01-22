@@ -1,0 +1,234 @@
+@use '../globals/typography' as *;
+@use '../globals/colors' as *;
+@use '../util/breakpoints' as *;
+
+
+.products {
+
+  margin-block: 0.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: 0.5rem;
+
+  @include breakpoint(tiny) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include breakpoint(small) {
+    gap: 1rem;
+  }
+
+  @include breakpoint(medium) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @include breakpoint(large) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  @include breakpoint(xlarge) {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+}
+
+.product {
+  height: auto;
+  border: 1px solid var(--light-light-gray-color);
+  border-radius: 0.5rem;
+  transition: box-shadow 0.3s, border 0.3s;
+  min-width: 11.75rem; //min-width 188px;
+  width: 100%;
+  background-color: white;
+
+
+  &:hover {
+    box-shadow: 0 1px 12px 1px rgba(0, 0, 0, 0.451);
+    border: 1px solid white;
+  }
+
+  &__top {
+    padding: 0.5rem;
+
+    &__cont {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.5rem;
+
+      &__img {
+        width: 100%;
+        border-radius: 0.5rem;
+        transition: transform 0.5s, opacity 0.5s;
+        object-fit: contain;
+  
+        &:hover {
+          cursor: pointer;
+        }
+      }
+  
+      &__stock {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 0.7rem;
+        padding-block: 0.5rem;
+        padding-inline: 1rem;
+        color: rgb(162, 162, 162);
+        border-bottom: 1px solid var(--light-light-gray-color);
+        letter-spacing: 0.01rem;
+
+        &__desc {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+  &__middle {
+    display: flex;
+    justify-content: space-between;
+
+    &__price {
+      &--m2 {
+        display: flex;
+        width: 60%;
+        justify-content: center;
+        align-items: center;
+        padding-left: 0.1rem;
+        background-color: var(--gray-color);
+        border-top-right-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+        margin-left: -1px;
+        font-size: 1.1rem;
+
+        @include breakpoint(small) {
+          width: 55%;
+        }
+
+        @include breakpoint(medium) {
+          width: 60%;
+          padding-left: 0.5rem;
+          font-size: 1.2rem;
+        }
+
+        @include breakpoint(medium--products) {
+          width: 50%;
+        }
+
+        @include breakpoint(large) {
+          width: 60%;
+        }
+
+        @include breakpoint(large--products) {
+          width: 50%;
+        }
+
+        &__p {
+          line-height: 2.5rem;
+          color: $white-color;
+          font-size: 1.1rem;
+          font-weight: 400;
+
+          @include breakpoint(small) {
+            letter-spacing: 0.1rem;
+          }
+
+          @include breakpoint(medium) {
+            font-size: 1.2rem;
+          }
+        }
+      }
+      &--st {
+        display: flex;
+        width: 50%;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.1rem;
+
+        @include breakpoint(medium) {
+          font-size: 1.2rem;
+        }
+
+        &__p {
+          line-height: 2.5rem;
+          font-size: 1.1rem;
+          color: var(--gray-color);
+          font-weight: 400; 
+
+          @include breakpoint(small) {
+            letter-spacing: 0.1rem;
+          }
+
+          @include breakpoint(medium) {
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
+  }
+  &__bottom {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+
+    &__title {
+      padding: 0.8rem 0;
+      border-top: 1px solid var(--light-light-gray-color);
+      border-bottom: 1px solid var(--light-light-gray-color);
+      letter-spacing: 0.02rem;
+
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+
+    &__desc {
+      padding: 0.8rem 0;
+
+      &__p {
+        font-size: 0.8rem;
+        color: rgb(109, 109, 109);
+        letter-spacing: 0.01rem;
+      }
+    }
+  }
+
+  .moveLeft {
+    transform: translate(-110%);
+  }
+
+  .moveRight {
+    transform: translate(0);
+  }
+
+  .opacity {
+    opacity: 0.95;
+  }
+
+  img[class*="product_img_second_"] {
+    position: absolute;
+    top: 0;
+    right: -110%;
+  }
+
+  .img_unloaded {
+    opacity: 0;
+  }
+
+  .cont_blurred {
+    background-color: var(--medium-gray-color);
+    animation: pulse 2.5s infinite;
+  }
+
+  @keyframes pulse {
+    0% {
+      opacity: 0.2;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0.2;
+    }
+  }
+}
+

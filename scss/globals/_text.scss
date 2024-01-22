@@ -1,0 +1,28 @@
+.h1, .h2, .h4, .p  {
+  padding-bottom: 1rem;
+}
+
+.h1, .h2, .h4 {
+  padding-top: 1rem;
+}
+
+.p, .bullet, .bullet--two {
+  font-size: 0.9rem;
+  max-width: 150ch;
+  line-height: 1.6rem;
+  letter-spacing: 0.02rem;
+}
+
+.bullet {
+  list-style-type:disc;
+  margin-left: 1rem;
+  padding-left: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.bullet--two {
+  list-style-type:circle;
+  margin-left: 3rem;
+  padding-left: 1rem;
+  padding-bottom: 0.5rem;
+}

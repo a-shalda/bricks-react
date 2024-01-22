@@ -1,0 +1,17 @@
+//tiny 400px, small 464px, medium 684px, large 906px, xlarge 1264px, limit 1440px (90em)
+
+$breakpoints-up: (
+  "tiny": 25em,
+  "small": 29em,
+  "medium": 42.75em,
+  "medium--products": 46em, //Only for products to avoid overflow in the prices, 736px
+  "large": 56.625em,
+  "large--products": 60em, //Only for products to avoid overflow in the prices, 960px
+  "xlarge": 79em
+);
+
+@mixin breakpoint($size) {
+   @media (min-width: map-get($breakpoints-up, $size)) {
+    @content;
+   }
+}

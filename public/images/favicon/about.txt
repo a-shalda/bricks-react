@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Blinker
+- Font Author: Copyright 2019 the Blinker project authors (https://github.com/supertype-de/Blinker)
+- Font Source: http://fonts.gstatic.com/s/blinker/v13/cIf4MaFatEE-VTaP_K2GRGEsnIJkWL4.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))

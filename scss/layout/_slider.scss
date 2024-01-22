@@ -1,0 +1,233 @@
+@use '../util/breakpoints' as *;
+@use '../globals/typography' as *;
+@use '../globals/colors' as *;
+
+.slideshow {
+
+  @include breakpoint (medium) {
+    padding-inline: 1.5rem;
+  }
+
+  @include breakpoint (xlarge) {
+    padding-inline: 2rem;
+  }
+  
+  position: relative;
+
+  &__slide {
+    display: none;
+    position: relative;
+
+
+    &__img {
+      width: 100%;
+      object-fit: cover;
+      height: 30rem;
+      border-radius: 0.5rem;
+
+      @include breakpoint(large) {height: 40rem;}
+    }
+
+    &__abs {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+
+      // background-color: hsla(0, 0%, 0%, 0.092);
+      border-radius: 0.5rem;
+
+
+      &__box {
+        height: 100%;
+
+        &__cont {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+          height: 100%;
+          justify-content: center;
+          align-items: center;
+
+          padding: 0 3.625rem;
+
+          &__title {
+            color: white;
+            font-size: clamp(1rem, 10vw + 0.01rem, 4rem);
+            line-height: clamp(1rem, 8vw + 1rem, 4rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3rem;
+            text-align: center;
+
+            background-color: rgba(58, 58, 58, 0.473);
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+          }
+    
+          &__desc {
+            color: white;
+            font-size: clamp(1rem, 2vw + 0.01rem, 2rem);
+            line-height: clamp(1.5rem, 2vw + 0.01rem, 2rem);
+            font-weight: 400;
+            letter-spacing: 0.2rem;
+            text-align: center;
+
+            background-color: rgba(58, 58, 58, 0.473);
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+          }
+    
+          &__button {
+            border: none;
+            border-radius: 0.5rem;
+            padding: 1rem 1.5rem;
+            text-transform: uppercase;
+            font-weight: 500;
+            font-size: 1.2rem;
+            letter-spacing: 0.1rem;
+            background-color: white;
+            color: var(--gray-color);
+            transition: background-color 0.1s, color 0.1s, border 0.1s;
+
+            @media(hover: hover) {
+              &:hover {
+                cursor: pointer;
+                background-color: var(--light-gray-color);
+                color: var(--gray-color);
+              }
+
+              &:active {
+                cursor: pointer;
+                background-color: var(--gray-color);
+                border: 1px solid var(--gray-color);
+                color: white;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__button {
+
+    &--active {
+      background-color: rgba(58, 58, 58, 0.473);
+    }
+
+    &--prev, &--next {
+      cursor: pointer;
+      position: absolute;
+      top: 45%;
+      width: auto;
+      font-size: 3rem;
+      padding: 1rem;
+      color: white;
+      font-weight: bold;
+      transition: 0.6s ease;
+      user-select: none;
+      border: none;
+      background-color: hsla(0, 0%, 25%, 0.713);
+
+      @media(hover: hover) {
+        &:hover {
+          background-color: rgba(58, 58, 58, 0.473);
+        }
+        &:active {
+          background-color: rgba(58, 58, 58, 0.473);
+        }
+      }
+    }
+
+    &--next {
+      right: 1rem;
+      border-top-left-radius: 0.5rem;
+      border-bottom-left-radius: 0.5rem;
+
+      @include breakpoint (medium) {
+        right: 1.5rem;
+      }
+      @include breakpoint (xlarge) {
+        right: 2rem;
+      }
+    }
+
+    &--prev {
+      border-top-right-radius: 0.5rem;
+      border-bottom-right-radius: 0.5rem;
+    }
+  }
+
+  &__dots {
+    position: absolute;
+    bottom: 8%;
+    left: 0;
+    right: 0;
+
+    &__cont {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+
+      &__dot {
+        cursor: pointer;
+        height: 1rem;
+        width: 2rem;
+        background-color: gray;
+        border-radius: 0.2rem;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+  
+        @media(hover: hover) {
+          &:hover {
+            background-color: white;
+          }
+          &:active {
+            background-color: white;
+          }
+        }
+      }
+    }
+  }
+
+  .active--button {
+    background-color: white;
+    outline: 3px solid gray;
+    border-radius: 0.2rem;
+  }
+  
+  .fade {
+    animation-name: fade;
+    animation-duration: 2s;
+  }
+  
+  @keyframes fade {
+    from {opacity: .8} 
+    to {opacity: 1}
+  }
+}
+
+.img_unloaded {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.slider_blurred {
+  background-color: var(--medium-gray-color);
+  animation: pulse 2.5s infinite;
+  border-radius: 0.5rem;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}

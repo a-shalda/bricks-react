@@ -1,0 +1,22 @@
+:root {
+  --gray-color: rgba(84, 84, 84, 0.99);
+  --light-gray-color: rgb(224, 224, 224);
+  --light-light-gray-color: rgb(242, 242, 242);
+  --medium-gray-color: rgb(174, 174, 174);
+  --strong-gray-color: rgb(88, 88, 88);
+  --strong-gray-color-opacity: rgb(88, 88, 88, 0.8);
+
+
+  --nav-white-color: rgba(250, 250, 250, 0.95);
+
+  --search-white-color1: rgba(255, 255, 255, 0.8);
+  --search-white-color2: rgba(255, 255, 255, 0.1);
+
+  --white-color: rgba(255, 255, 255);
+}
+
+.header-lower--background {background-color: var(--gray-color);}
+
+
+$gray-color: rgba(84, 84, 84, 0.99);
+$white-color: #fff;

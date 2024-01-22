@@ -1,0 +1,58 @@
+@use '../util/breakpoints' as *;
+@use '../globals/typography' as *;
+
+.search {
+  display: flex;
+  font-weight: 300;
+  background-color: var(--search-white-color1);
+  border: 1px solid var(--light-gray-color);
+  padding: 0.5rem 0.8rem 0.5rem 1rem;
+  border-radius: 1.5rem;
+  margin-bottom: 1.5rem;
+  max-width: 23rem;
+  transition: border 300ms;
+
+  &__focus {
+    border: 1px solid var(--medium-gray-color);
+  }
+
+  &__icon {
+    font-size: 1.2rem;
+    color: var(--medium-gray-color);
+    display: block;
+    margin: auto 0;
+
+    &--not-active {
+      font-size: 1.2rem;
+      color: var(--medium-gray-color);
+      display: block;
+      margin: auto 0;
+
+      &:hover {
+        color: var(--medium-gray-color);
+        cursor: auto;
+      }
+    }
+  }
+
+  &__form {
+    border: none;
+    outline: none;
+    width: 100%;
+    padding-left: 0.5rem;
+    background-color: var(--search-white-color1);
+
+    &::placeholder {
+      color: gray;
+    }
+  }
+
+  &--blurred {
+    opacity: 0;
+    transition: opacity 200ms;
+  }
+
+  &--not-blurred {
+    opacity: 1;
+  }
+}

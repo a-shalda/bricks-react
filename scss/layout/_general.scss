@@ -1,0 +1,71 @@
+@use '../globals/typography' as *;
+@use '../globals/colors' as *;
+@use '../util/breakpoints' as *;
+
+:root {
+  --padding-block: 1rem;
+  --padding-inline: 1rem;
+
+  @include breakpoint (medium) {
+    --padding-inline: 1.5rem;
+  }
+
+  @include breakpoint (xlarge) {
+    --padding-inline: 2rem;
+  }
+}
+
+
+.cont {
+  width: 100%;
+  max-width: 90em;
+  margin: 0 auto;
+  padding-block: var(--padding-block);
+  padding-inline: var(--padding-inline);
+}
+
+.divider {
+  &--background {
+    display: flex;
+    align-items: center;
+    background-color: var(--light-gray-color);
+    height: 3rem;
+  }
+
+  &__desc {
+    font-size: 1rem;
+    letter-spacing: 0.05rem;
+  }
+}
+
+.price-small {
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.05rem;
+}
+
+.price-desc {
+  font-size: 1rem;
+  letter-spacing: 0.05rem;
+
+  @include breakpoint(medium) {
+    font-size: 1.05rem;
+  }
+}
+
+// .format-nowrap {
+//   white-space: nowrap;
+// }
+
+sup {
+  font-size: 0.7rem;
+}
+
+.section__title {
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
+  font-weight: 700;
+  text-align: left;
+  font-size: 1.5rem;
+  letter-spacing: 0.05rem;
+}
