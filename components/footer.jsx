@@ -2,7 +2,6 @@ import "@/scss/styles.scss";
 
 const Footer = () => {
 
-
   return (
     <footer className="footer--background">
       <section className="footer cont">
