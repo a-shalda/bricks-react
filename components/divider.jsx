@@ -1,5 +1,3 @@
-import "@/scss/styles.scss";
-
 const Divider = () => {
 
   return (

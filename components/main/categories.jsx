@@ -1,6 +1,5 @@
 "use client"
 
-import "@/scss/styles.scss";
 import categoriesData from "@/data/categories"
 import { useState } from "react"
 import Image from "next/image";
@@ -50,7 +49,7 @@ const Categories = () => {
 
   return (
     <section className="categories cont">
-      {categories}
+      {categories.map(category => category)}
     </section>
   )
 }

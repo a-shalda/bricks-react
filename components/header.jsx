@@ -1,7 +1,5 @@
 "use client"
 
-import "@/scss/styles.scss";
-
 import { useState } from "react";
 
 const Header = () => {

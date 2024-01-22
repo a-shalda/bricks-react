@@ -1,5 +1,3 @@
-import "@/scss/styles.scss";
-
 const Footer = () => {
 
   return (
@@ -72,7 +70,7 @@ const Footer = () => {
 
           <div className="footer__lower__right">
             <p className="footer__lower__right__desc">
-              Designed and developed by <a href="https://shalda.dev" className="signature">Alex Shalda</a>
+              Designed and developed by <a href="https://shalda.dev" className="signature" target="_blank">Alex Shalda</a>
             </p>
           </div>
 
