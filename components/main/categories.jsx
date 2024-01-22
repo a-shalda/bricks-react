@@ -21,8 +21,8 @@ const Category = ({ i }) => {
 
   return (
     <div 
-      onMouseEnter={handleMouseEnter} 
-      onMouseLeave={handleMouseLeave} 
+      onPointerEnter={handleMouseEnter} 
+      onPointerLeave={handleMouseLeave} 
       className={`categories__box ${categoriesData[i].id} ${contBlurred}`}
     >
         <a href={`${categoriesData[i].path}`}>

@@ -37,9 +37,11 @@
     @include breakpoint(medium) {margin-bottom: 0;}
     overflow: hidden;
     border-radius: 0.5rem;
+    transition: opacity 0.5s;
 
     &:hover {
       cursor: pointer;
+      opacity: 0.9;
     }
 
     &__img {
@@ -78,7 +80,6 @@
 
   .enlarge {
     transform: scale(1.025, 1.025);
-    opacity: 0.9;
   }
 
   .img_unloaded {
