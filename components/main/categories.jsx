@@ -15,13 +15,13 @@ const Category = ({ i }) => {
     setContBlurred("")
     setImgUnloaded("")
   }
-  const handleMouseEnter = () => setEnlarge("enlarge")
-  const handleMouseLeave = () => setEnlarge("")
+  const handlePointerEnter = () => setEnlarge("enlarge")
+  const handlePointerLeave = () => setEnlarge("")
 
   return (
     <div 
-      onPointerEnter={handleMouseEnter} 
-      onPointerLeave={handleMouseLeave} 
+      onPointerEnter={handlePointerEnter} 
+      onPointerLeave={handlePointerLeave} 
       className={`categories__box ${categoriesData[i].id} ${contBlurred}`}
     >
         <a href={`${categoriesData[i].path}`}>

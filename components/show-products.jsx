@@ -5,8 +5,6 @@ import Image from "next/image";
 import { useState } from "react"
 
 
-let indicesOfProducts = [];
-
 const ShowCategoryProducts = () => {
 
   let productsHTML = [];
@@ -20,14 +18,9 @@ const ShowCategoryProducts = () => {
       {productsHTML.map(product => product)}
     </section>
   )
-
-  // addPulsingImageAnimation();
-  // addOnMouseImageAnimation(indicesOfProducts);
 }
 
 const ShowProducts = ({ product, index }) => {
-
-  indicesOfProducts.push(index);
 
   let priceCentsM2 = product.priceCentsM2;
   let priceCentsPc = product.priceCentsPc;
@@ -81,66 +74,6 @@ const ShowProducts = ({ product, index }) => {
 let timeOut = ''
 let timeOutBack = ''
 
-// function addOnMouseImageAnimation(indicesOfProducts) {
-
-//   document.querySelectorAll('.product')
-
-//     .forEach((product, index) => {
-
-//       const first = product.querySelector('.product_img_' + indicesOfProducts[index]);
-//       const second = product.querySelector('.product_img_second_' + indicesOfProducts[index]);
-
-//       second.addEventListener('load', () => {
-
-//         function moveLeft() {
-//           first.classList.add('moveLeft');
-//           second.classList.add('moveLeft');
-//         }
-
-//         function moveRight() {
-//           first.classList.add('moveRight');
-//           second.classList.add('moveRight');
-//         }
-
-//         product.addEventListener('mouseenter', () => {
-
-//           first.classList.add('opacity');
-//           second.classList.add('opacity');
-//           timeOut = setTimeout(moveLeft, 1000);
-//           timeOutBack = setTimeout(moveRight, 5000);
-
-//           product.addEventListener('mouseleave', () => {
-
-//             clearTimeout(timeOut);
-//             clearTimeout(timeOutBack);
-//             moveRight();
-
-//             first.classList.remove('opacity', 'moveLeft', 'moveRight');
-//             second.classList.remove('opacity', 'moveLeft', 'moveRight');
-//           });
-//         })
-//       });
-//     });
-// }
-
-// function addPulsingImageAnimation() {
-
-//   document.querySelectorAll('.product__top__cont').forEach((cont) => {
-//     cont.classList.add('cont_blurred');
-
-//     const image = cont.querySelector('img');
-
-//     image.classList.add('img_unloaded');
-
-//     image.addEventListener('load', () => {
-//       image.classList.remove('img_unloaded');
-//       cont.classList.remove('cont_blurred');
-//     })
-//   })
-
-// }
-
-
 const TypeOne = ({ product, index, priceCentsM2, piecesInSquareMeter }) => {
 
   const priceM2 = ((priceCentsM2 / 100).toFixed(2));
@@ -154,6 +87,24 @@ const TypeOne = ({ product, index, priceCentsM2, piecesInSquareMeter }) => {
   const handleLoad = () => {
     setContBlurred("")
     setImgUnloaded("")
+  }
+
+  const [opacity, setOpacity] = useState("")
+  const [moveLeft, setMoveLeft] = useState("")
+  const [moveRight, setMoveRight] = useState("")
+
+  const handlePointerEnter = () => {
+    setOpacity("opacity")
+    timeOut = setTimeout(() => setMoveLeft("moveLeft"), 1000)
+    timeOutBack = setTimeout(() => setMoveRight("moveRight"), 5000);
+  }
+
+  const handlePointerLeave = () => {
+    setOpacity("")
+    setMoveLeft("")
+    setMoveRight("")
+    clearTimeout(timeOut);
+    clearTimeout(timeOutBack);
   }
 
   let priceM2HTML = (
@@ -170,13 +121,24 @@ const TypeOne = ({ product, index, priceCentsM2, piecesInSquareMeter }) => {
 
   return (
 
-    <div className="product">
+    <div className="product" onPointerEnter={handlePointerEnter} onPointerLeave={handlePointerLeave}>
 
       <div className="product__top">
         <a href={`${product.filepath}`}>
           <div className={`product__top__cont ${contBlurred}`}>
-            <Image onLoad={handleLoad} className={`product__top__cont__img product_img_${index} ${imgUnloaded}`} src={`${product.image_thumbnail[0]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" loading="lazy" />
-            <Image className={`product__top__cont__img product_img_second_${index}`} src={`${product.image_thumbnail[1]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" />
+            <Image
+              onLoad={handleLoad}
+              className={`product__top__cont__img product_img_${index} ${imgUnloaded} ${opacity} ${moveLeft} ${moveRight}`}
+              src={`${product.image_thumbnail[0]}`}
+              alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`}
+              width="350" height="229" loading="lazy"
+            />
+            <Image
+              className={`product__top__cont__img product_img_second_${index} ${opacity} ${moveLeft} ${moveRight}`}
+              src={`${product.image_thumbnail[1]}`}
+              alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`}
+              width="350" height="229"
+            />
           </div>
         </a>
 
