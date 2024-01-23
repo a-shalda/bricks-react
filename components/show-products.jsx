@@ -137,7 +137,7 @@ const TypeOne = ({ product, index, priceCentsM2, piecesInSquareMeter }) => {
               className={`product__top__cont__img product_img_second_${index} ${opacity} ${moveLeft} ${moveRight}`}
               src={`${product.image_thumbnail[1]}`}
               alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`}
-              width="350" height="229"
+              width="350" height="229" loading="eager"
             />
           </div>
         </a>
@@ -223,7 +223,7 @@ const TypeTwo = ({ product, index, priceCentsPc, piecesInSquareMeter }) => {
         <a href={`${product.filepath}`}>
           <div className={`product__top__cont ${contBlurred}`}>
             <Image onLoad={handleLoad} className={`product__top__cont__img product_img_${index} ${imgUnloaded} ${opacity} ${moveLeft} ${moveRight}`} src={`${product.image_thumbnail[0]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" loading="lazy" />
-            <Image className={`product__top__cont__img product_img_second_${index} ${opacity} ${moveLeft} ${moveRight}`} src={`${product.image_thumbnail[1]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" />
+            <Image className={`product__top__cont__img product_img_second_${index} ${opacity} ${moveLeft} ${moveRight}`} src={`${product.image_thumbnail[1]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" loading="eager"/>
           </div>
         </a>
 
@@ -307,7 +307,7 @@ const TypeThree = ({ product, index, priceCentsPc, piecesInLinearMeter }) => {
         <a href={`${product.filepath}`}>
           <div className={`product__top__cont ${contBlurred}`}>
             <Image onLoad={handleLoad} className={`product__top__cont__img product_img_${index} ${imgUnloaded} ${opacity} ${moveLeft} ${moveRight}`} src={`${product.image_thumbnail[0]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" loading="lazy" />
-            <Image className={`product__top__cont__img product_img_second_${index} ${opacity} ${moveLeft} ${moveRight}`} src={`${product.image_thumbnail[1]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" />
+            <Image className={`product__top__cont__img product_img_second_${index} ${opacity} ${moveLeft} ${moveRight}`} src={`${product.image_thumbnail[1]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" loading="eager"/>
           </div>
         </a>
 
@@ -383,7 +383,7 @@ const TypeFour = ({ product, index, priceCentsPc }) => {
         <a href={`${product.filepath}`}>
           <div className={`product__top__cont ${contBlurred}`}>
             <Image onLoad={handleLoad} className={`product__top__cont__img product_img_${index} ${imgUnloaded} ${opacity} ${moveLeft} ${moveRight}`} src={`${product.image_thumbnail[0]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" loading="lazy" />
-            <Image className={`product__top__cont__img product_img_second_${index} ${opacity} ${moveLeft} ${moveRight}`} src={`${product.image_thumbnail[1]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" />
+            <Image className={`product__top__cont__img product_img_second_${index} ${opacity} ${moveLeft} ${moveRight}`} src={`${product.image_thumbnail[1]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" loading="eager"/>
           </div>
         </a>
 
