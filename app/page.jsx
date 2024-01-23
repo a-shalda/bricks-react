@@ -3,15 +3,18 @@ import styles from "./page.module.css";
 import Divider from "@/components/divider";
 import ShowCategoryProducts from "@/components/show-products";
 import Slider from "@/components/main/slider";
+import Text from "@/components/main/text";
 
 export default function Home() {
   return (
     <>
       <Slider />
-      <Divider />
+      <Divider label={"Categories"} />
       <Categories />
-      <Divider />
+      <Divider label={"Products"}/>
       <ShowCategoryProducts />
+      <Divider label={"About"}/>
+      <Text />
     </>
   )
 }
