@@ -186,6 +186,24 @@ const TypeTwo = ({ product, index, priceCentsPc, piecesInSquareMeter }) => {
     setImgUnloaded("")
   }
 
+  const [opacity, setOpacity] = useState("")
+  const [moveLeft, setMoveLeft] = useState("")
+  const [moveRight, setMoveRight] = useState("")
+
+  const handlePointerEnter = () => {
+    setOpacity("opacity")
+    timeOut = setTimeout(() => setMoveLeft("moveLeft"), 1000)
+    timeOutBack = setTimeout(() => setMoveRight("moveRight"), 5000);
+  }
+
+  const handlePointerLeave = () => {
+    setOpacity("")
+    setMoveLeft("")
+    setMoveRight("")
+    clearTimeout(timeOut);
+    clearTimeout(timeOutBack);
+  }
+
   let priceM2HTML = (
     <>
       <sup>€</sup>{priceM2.slice(0, indexOfDotM2)}<span className="price-small">{priceM2.slice(indexOfDotM2)}</span> <span className="price-desc">m<sup>2</sup></span>
@@ -199,13 +217,13 @@ const TypeTwo = ({ product, index, priceCentsPc, piecesInSquareMeter }) => {
   )
 
   return (
-    <div className="product">
+    <div className="product" onPointerEnter={handlePointerEnter} onPointerLeave={handlePointerLeave}>
       <div className="product__top">
 
         <a href={`${product.filepath}`}>
           <div className={`product__top__cont ${contBlurred}`}>
-            <Image onLoad={handleLoad} className={`product__top__cont__img product_img_${index} ${imgUnloaded}`} src={`${product.image_thumbnail[0]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" loading="lazy" />
-            <Image className={`product__top__cont__img product_img_second_${index}`} src={`${product.image_thumbnail[1]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" />
+            <Image onLoad={handleLoad} className={`product__top__cont__img product_img_${index} ${imgUnloaded} ${opacity} ${moveLeft} ${moveRight}`} src={`${product.image_thumbnail[0]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" loading="lazy" />
+            <Image className={`product__top__cont__img product_img_second_${index} ${opacity} ${moveLeft} ${moveRight}`} src={`${product.image_thumbnail[1]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" />
           </div>
         </a>
 
@@ -253,6 +271,24 @@ const TypeThree = ({ product, index, priceCentsPc, piecesInLinearMeter }) => {
     setImgUnloaded("")
   }
 
+  const [opacity, setOpacity] = useState("")
+  const [moveLeft, setMoveLeft] = useState("")
+  const [moveRight, setMoveRight] = useState("")
+
+  const handlePointerEnter = () => {
+    setOpacity("opacity")
+    timeOut = setTimeout(() => setMoveLeft("moveLeft"), 1000)
+    timeOutBack = setTimeout(() => setMoveRight("moveRight"), 5000);
+  }
+
+  const handlePointerLeave = () => {
+    setOpacity("")
+    setMoveLeft("")
+    setMoveRight("")
+    clearTimeout(timeOut);
+    clearTimeout(timeOutBack);
+  }
+
   let priceLMHTML = (
     <>
       <sup>€</sup>{priceLM.slice(0, indexOfDotLM)}<span className="price-small">{priceLM.slice(indexOfDotLM)}</span> <span className="price-desc">lm</span>
@@ -265,13 +301,13 @@ const TypeThree = ({ product, index, priceCentsPc, piecesInLinearMeter }) => {
   )
 
   return (
-    <div className="product">
+    <div className="product" onPointerEnter={handlePointerEnter} onPointerLeave={handlePointerLeave}>
       <div className="product__top">
 
         <a href={`${product.filepath}`}>
           <div className={`product__top__cont ${contBlurred}`}>
-            <Image onLoad={handleLoad} className={`product__top__cont__img product_img_${index} ${imgUnloaded}`} src={`${product.image_thumbnail[0]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" loading="lazy" />
-            <Image className={`product__top__cont__img product_img_second_${index}`} src={`${product.image_thumbnail[1]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" />
+            <Image onLoad={handleLoad} className={`product__top__cont__img product_img_${index} ${imgUnloaded} ${opacity} ${moveLeft} ${moveRight}`} src={`${product.image_thumbnail[0]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" loading="lazy" />
+            <Image className={`product__top__cont__img product_img_second_${index} ${opacity} ${moveLeft} ${moveRight}`} src={`${product.image_thumbnail[1]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" />
           </div>
         </a>
 
@@ -316,6 +352,24 @@ const TypeFour = ({ product, index, priceCentsPc }) => {
     setImgUnloaded("")
   }
 
+  const [opacity, setOpacity] = useState("")
+  const [moveLeft, setMoveLeft] = useState("")
+  const [moveRight, setMoveRight] = useState("")
+
+  const handlePointerEnter = () => {
+    setOpacity("opacity")
+    timeOut = setTimeout(() => setMoveLeft("moveLeft"), 1000)
+    timeOutBack = setTimeout(() => setMoveRight("moveRight"), 5000);
+  }
+
+  const handlePointerLeave = () => {
+    setOpacity("")
+    setMoveLeft("")
+    setMoveRight("")
+    clearTimeout(timeOut);
+    clearTimeout(timeOutBack);
+  }
+
   let pricePcHTML = (
     <>
       <sup>€</sup>{pricePc.slice(0, indexofDotPc)}<span className="price-small">{pricePc.slice(indexofDotPc)}</span> <span className="price-desc">pc</span>
@@ -323,13 +377,13 @@ const TypeFour = ({ product, index, priceCentsPc }) => {
   )
 
   return (
-    <div className="product">
+    <div className="product" onPointerEnter={handlePointerEnter} onPointerLeave={handlePointerLeave}>
       <div className="product__top">
 
         <a href={`${product.filepath}`}>
           <div className={`product__top__cont ${contBlurred}`}>
-            <Image onLoad={handleLoad} className={`product__top__cont__img product_img_${index} ${imgUnloaded}`} src={`${product.image_thumbnail[0]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" loading="lazy" />
-            <Image className={`product__top__cont__img product_img_second_${index}`} src={`${product.image_thumbnail[1]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" />
+            <Image onLoad={handleLoad} className={`product__top__cont__img product_img_${index} ${imgUnloaded} ${opacity} ${moveLeft} ${moveRight}`} src={`${product.image_thumbnail[0]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" loading="lazy" />
+            <Image className={`product__top__cont__img product_img_second_${index} ${opacity} ${moveLeft} ${moveRight}`} src={`${product.image_thumbnail[1]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" />
           </div>
         </a>
 
