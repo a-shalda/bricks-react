@@ -30,7 +30,6 @@ const Slider = () => {
     return () => clearInterval(interval)
   }, [current])
 
-
   return (
     <section className="slideshow cont">
       {slides.map(slide => slide)}
@@ -51,6 +50,14 @@ const Slide = ({ item, index, current }) => {
   let display = "none"
   if (currentIndex === current) display = "block"
 
+  const [sliderBlurred, setSliderBlurred] = useState("slider_blurred")
+  const [imgUnloaded, setImgUnloaded] = useState("img_unloaded")
+
+  const handleLoad = () => {
+    setSliderBlurred("")
+    setImgUnloaded("")
+  }
+
   // if (typeof window !== "undefined") {
   //   if (window.innerWidth <= 906) { sliderHeight = 480; }
   //   else { sliderHeight = 640; }
@@ -58,17 +65,18 @@ const Slide = ({ item, index, current }) => {
 
   return (
     <div
-      className="slideshow__slide"
+      className={`slideshow__slide ${sliderBlurred}`}
       style={{ display: display }}
     >
       <Image srcSet={`${item.img_800} 800w, ${item.img} 1200w`} sizes="(max-width: 800px) 800px, 1200px"
         src={`${item.img}`}
         alt={`${item.desc}`}
-        className="slideshow__slide__img fade"
+        className={`slideshow__slide__img fade ${imgUnloaded}`}
         data-product-id={`${item.id}`}
         height={sliderHeight}
         width={sliderWidth}
         priority={true}
+        onLoad={handleLoad}
       />
       <div className="slideshow__slide__abs">
         <div className="slideshow__slide__abs__box__cont">
@@ -104,9 +112,7 @@ const LowerButton = ({ index, handlePointerDown, current }) => {
 
   let activeButton = ""
   if (index === current) activeButton = "active--button"
-
   return <span className={`slideshow__dots__cont__dot ${activeButton}`} onPointerDown={() => handlePointerDown(index)}></span>
 }
-
 
 export default Slider
