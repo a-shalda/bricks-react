@@ -1,7 +1,7 @@
 "use client"
 
 import sliderItems from "@/data/slider-items"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image";
 
 
@@ -9,24 +9,47 @@ const Slider = () => {
 
   let slides = []
 
-  sliderItems.forEach((item) => {
-    slides.push(<Slide key={item.id} item={item} />);
+  const [current, setCurrent] = useState(0)
+
+  sliderItems.forEach((item, index) => {
+    slides.push(<Slide key={item.id} item={item} index={index} current={current} />);
   })
+
+  const changeIndex = (e) => {
+    if (e + current > slides.length - 1) setCurrent(0)
+    else if (current + e < 0) setCurrent(slides.length - 1)
+    else setCurrent(current + e)
+  }
+
+  const changeIndexDot = (index) => setCurrent(index)
+
+  const sliderInterval = () => changeIndex(1)
+
+  useEffect(() => {
+    const interval = setInterval(sliderInterval, 5000)
+    return () => clearInterval(interval)
+  }, [current])
+
 
   return (
     <section className="slideshow cont">
       {slides.map(slide => slide)}
-      <button className="slideshow__button--prev">❮</button>
-      <button className="slideshow__button--next">❯</button>
-      <LowerButtons />
+      <button onPointerDown={() => changeIndex(-1)} className="slideshow__button--prev">❮</button>
+      <button onPointerDown={() => changeIndex(1)} className="slideshow__button--next">❯</button>
+      <LowerButtons handlePointerDown={changeIndexDot} current={current} />
     </section>
   )
 }
 
-const Slide = ({ item }) => {
+const Slide = ({ item, index, current }) => {
 
   let sliderHeight = 640
   let sliderWidth = 640
+
+  let currentIndex = index
+
+  let display = "none"
+  if (currentIndex === current) display = "block"
 
   // if (typeof window !== "undefined") {
   //   if (window.innerWidth <= 906) { sliderHeight = 480; }
@@ -34,7 +57,10 @@ const Slide = ({ item }) => {
   // }
 
   return (
-    <div className="slideshow__slide">
+    <div
+      className="slideshow__slide"
+      style={{ display: display }}
+    >
       <Image srcSet={`${item.img_800} 800w, ${item.img} 1200w`} sizes="(max-width: 800px) 800px, 1200px"
         src={`${item.img}`}
         alt={`${item.desc}`}
@@ -42,6 +68,7 @@ const Slide = ({ item }) => {
         data-product-id={`${item.id}`}
         height={sliderHeight}
         width={sliderWidth}
+        priority={true}
       />
       <div className="slideshow__slide__abs">
         <div className="slideshow__slide__abs__box__cont">
@@ -54,118 +81,32 @@ const Slide = ({ item }) => {
   )
 }
 
-
-const LowerButtons = () => {
+const LowerButtons = ({ handlePointerDown, current }) => {
 
   let lowerButtons = [];
 
-  sliderItems.forEach((item) => {
-    lowerButtons.push(<LowerButton key={item.id} id={item.id}/>)
+  sliderItems.forEach((item, index) => {
+    lowerButtons.push(<LowerButton key={item.id} handlePointerDown={handlePointerDown} index={index} current={current} />)
   })
 
   return (
     <>
-      <div className="slideshow__dots"></div>
-      <div className="slideshow__dots__cont">
-        {lowerButtons.map(button => button)}
+      <div className="slideshow__dots">
+        <div className="slideshow__dots__cont">
+          {lowerButtons.map(button => button)}
+        </div>
       </div>
     </>
   )
 }
 
-const LowerButton = ({ id }) => {
+const LowerButton = ({ index, handlePointerDown, current }) => {
 
-  const [currentSlide, setCurrentSlide] = useState("")
+  let activeButton = ""
+  if (index === current) activeButton = "active--button"
 
-  const handlePointerDown = () => {
-
-    
-  }
-
-
-  return <span onPointerDown={handlePointerDown} className="slideshow__dots__cont__dot" data-product-id={`${id}`}></span>
+  return <span className={`slideshow__dots__cont__dot ${activeButton}`} onPointerDown={() => handlePointerDown(index)}></span>
 }
 
-
-
-
-// //Adding event listeners
-// document.querySelectorAll('.slideshow__dots__cont__dot')
-
-//   .forEach((button) => {
-//     button.addEventListener('pointerdown', () => {
-//       currentSlide(button.dataset.productId);
-//     });
-//   });
-
-
-
-// let sliderInterval = function () {
-//   plusSlides(1);
-// }
-
-// //Starting slider once the latest slide has been loaded
-// const mainSlider = document.querySelector('.slideshow');
-
-// const allSlides = mainSlider.querySelectorAll('img');
-
-// let start = setInterval(sliderInterval, 3000);
-
-// //Setting and clearing intervals for the slider
-
-// let slideIndex = 1;
-
-// //Code for side buttons
-// function plusSlides(n) {
-//   // clearInterval(start)
-//   showSlides(slideIndex += n);
-// }
-
-// function currentSlide(n) {
-//   clearInterval(start)
-//   showSlides(slideIndex = Number(n));
-// }
-
-
-// const prevSlide = document.querySelector('.slideshow__button--prev');
-// const nextSlide = document.querySelector('.slideshow__button--next');
-
-// prevSlide.addEventListener('pointerdown', () => {
-//   clearInterval(start)
-//   plusSlides(-1);
-//   prevSlide.classList.add('slideshow__button--active');
-//   setTimeout((function () { prevSlide.classList.remove('slideshow__button--active') }), 200)
-// });
-
-// nextSlide.addEventListener('pointerdown', () => {
-//   clearInterval(start)
-//   plusSlides(1);
-//   nextSlide.classList.add('slideshow__button--active');
-//   setTimeout((function () { nextSlide.classList.remove('slideshow__button--active') }), 200)
-// });
-
-// //Code for the slider
-
-// showSlides(slideIndex);
-
-// function showSlides(n) {
-//   let slides = document.querySelectorAll(".slideshow__slide");
-//   let dots = document.querySelectorAll(".slideshow__dots__cont__dot");
-
-//   if (n > slides.length) { slideIndex = 1 }
-
-//   if (n < 1) { slideIndex = slides.length }
-
-//   for (let i = 0; i < slides.length; i++) {
-//     slides[i].style.display = "none";
-//   }
-
-//   for (let i = 0; i < dots.length; i++) {
-//     dots[i].className = dots[i].className.replace(" active--button", "");
-//   }
-
-//   slides[slideIndex - 1].style.display = "block";
-//   dots[slideIndex - 1].className += " active--button";
-// }
 
 export default Slider
