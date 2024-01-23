@@ -2,6 +2,7 @@
 
 import products from "@/data/products"
 import Image from "next/image";
+import { useState } from "react"
 
 
 let indicesOfProducts = [];
@@ -147,6 +148,14 @@ const TypeOne = ({ product, index, priceCentsM2, piecesInSquareMeter }) => {
   const indexOfDotM2 = priceM2.toString().indexOf('.');
   const indexofDotPc = pricePc.toString().indexOf('.');
 
+  const [contBlurred, setContBlurred] = useState("cont_blurred")
+  const [imgUnloaded, setImgUnloaded] = useState("img_unloaded")
+
+  const handleLoad = () => {
+    setContBlurred("")
+    setImgUnloaded("")
+  }
+
   let priceM2HTML = (
     <>
       <sup>€</sup>{priceM2.slice(0, indexOfDotM2)}<span className="price-small">{priceM2.slice(indexOfDotM2)}</span> <span className="price-desc">m<sup>2</sup></span>
@@ -165,8 +174,8 @@ const TypeOne = ({ product, index, priceCentsM2, piecesInSquareMeter }) => {
 
       <div className="product__top">
         <a href={`${product.filepath}`}>
-          <div className="product__top__cont">
-            <Image className={`product__top__cont__img product_img_${index}`} src={`${product.image_thumbnail[0]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" loading="lazy" />
+          <div className={`product__top__cont ${contBlurred}`}>
+            <Image onLoad={handleLoad} className={`product__top__cont__img product_img_${index} ${imgUnloaded}`} src={`${product.image_thumbnail[0]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" loading="lazy" />
             <Image className={`product__top__cont__img product_img_second_${index}`} src={`${product.image_thumbnail[1]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" />
           </div>
         </a>
@@ -207,6 +216,14 @@ const TypeTwo = ({ product, index, priceCentsPc, piecesInSquareMeter }) => {
   const indexOfDotM2 = priceM2.toString().indexOf('.');
   const indexofDotPc = pricePc.toString().indexOf('.');
 
+  const [contBlurred, setContBlurred] = useState("cont_blurred")
+  const [imgUnloaded, setImgUnloaded] = useState("img_unloaded")
+
+  const handleLoad = () => {
+    setContBlurred("")
+    setImgUnloaded("")
+  }
+
   let priceM2HTML = (
     <>
       <sup>€</sup>{priceM2.slice(0, indexOfDotM2)}<span className="price-small">{priceM2.slice(indexOfDotM2)}</span> <span className="price-desc">m<sup>2</sup></span>
@@ -224,8 +241,8 @@ const TypeTwo = ({ product, index, priceCentsPc, piecesInSquareMeter }) => {
       <div className="product__top">
 
         <a href={`${product.filepath}`}>
-          <div className="product__top__cont">
-            <Image className={`product__top__cont__img product_img_${index}`} src={`${product.image_thumbnail[0]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" loading="lazy" />
+          <div className={`product__top__cont ${contBlurred}`}>
+            <Image onLoad={handleLoad} className={`product__top__cont__img product_img_${index} ${imgUnloaded}`} src={`${product.image_thumbnail[0]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" loading="lazy" />
             <Image className={`product__top__cont__img product_img_second_${index}`} src={`${product.image_thumbnail[1]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" />
           </div>
         </a>
@@ -266,6 +283,14 @@ const TypeThree = ({ product, index, priceCentsPc, piecesInLinearMeter }) => {
   const indexOfDotLM = priceLM.toString().indexOf('.');
   const indexofDotPc = pricePc.toString().indexOf('.');
 
+  const [contBlurred, setContBlurred] = useState("cont_blurred")
+  const [imgUnloaded, setImgUnloaded] = useState("img_unloaded")
+
+  const handleLoad = () => {
+    setContBlurred("")
+    setImgUnloaded("")
+  }
+
   let priceLMHTML = (
     <>
       <sup>€</sup>{priceLM.slice(0, indexOfDotLM)}<span className="price-small">{priceLM.slice(indexOfDotLM)}</span> <span className="price-desc">lm</span>
@@ -282,8 +307,8 @@ const TypeThree = ({ product, index, priceCentsPc, piecesInLinearMeter }) => {
       <div className="product__top">
 
         <a href={`${product.filepath}`}>
-          <div className="product__top__cont">
-            <Image className={`product__top__cont__img product_img_${index}`} src={`${product.image_thumbnail[0]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" loading="lazy" />
+          <div className={`product__top__cont ${contBlurred}`}>
+            <Image onLoad={handleLoad} className={`product__top__cont__img product_img_${index} ${imgUnloaded}`} src={`${product.image_thumbnail[0]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" loading="lazy" />
             <Image className={`product__top__cont__img product_img_second_${index}`} src={`${product.image_thumbnail[1]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" />
           </div>
         </a>
@@ -321,6 +346,14 @@ const TypeFour = ({ product, index, priceCentsPc }) => {
   const pricePc = (priceCentsPc / 100).toFixed(2).toString();
   const indexofDotPc = pricePc.toString().indexOf('.');
 
+  const [contBlurred, setContBlurred] = useState("cont_blurred")
+  const [imgUnloaded, setImgUnloaded] = useState("img_unloaded")
+
+  const handleLoad = () => {
+    setContBlurred("")
+    setImgUnloaded("")
+  }
+
   let pricePcHTML = (
     <>
       <sup>€</sup>{pricePc.slice(0, indexofDotPc)}<span className="price-small">{pricePc.slice(indexofDotPc)}</span> <span className="price-desc">pc</span>
@@ -332,8 +365,8 @@ const TypeFour = ({ product, index, priceCentsPc }) => {
       <div className="product__top">
 
         <a href={`${product.filepath}`}>
-          <div className="product__top__cont">
-            <Image className={`product__top__cont__img product_img_${index}`} src={`${product.image_thumbnail[0]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" loading="lazy" />
+          <div className={`product__top__cont ${contBlurred}`}>
+            <Image onLoad={handleLoad} className={`product__top__cont__img product_img_${index} ${imgUnloaded}`} src={`${product.image_thumbnail[0]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" loading="lazy" />
             <Image className={`product__top__cont__img product_img_second_${index}`} src={`${product.image_thumbnail[1]}`} alt={`${product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format}`} width="350" height="229" />
           </div>
         </a>
