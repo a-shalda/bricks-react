@@ -1,0 +1,1 @@
+https://bricks-react.shalda.dev/

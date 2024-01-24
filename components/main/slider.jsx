@@ -69,10 +69,9 @@ const Slide = ({ item, index, current }) => {
       style={{ display: display }}
     >
       <Image srcSet={`${item.img_800} 800w, ${item.img} 1200w`} sizes="(max-width: 800px) 800px, 1200px"
-        src={`${item.img}`}
-        alt={`${item.desc}`}
+        src={item.img}
+        alt={item.desc}
         className={`slideshow__slide__img fade ${imgUnloaded}`}
-        data-product-id={`${item.id}`}
         height={sliderHeight}
         width={sliderWidth}
         priority={true}

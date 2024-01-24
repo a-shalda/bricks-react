@@ -66,12 +66,7 @@ const ProductComponent = ({ productId }) => {
 
         </div>
 
-        <div className="modal__image">
-          <div className="modal__image__box">
-            <span className="modal__image__box__close">&times;</span>
-            <img className="modal__image__box__content" src="" alt="" />
-          </div>
-        </div>
+
 
         <div className="modal__cart">
           <div className="modal__cart__box">

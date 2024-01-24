@@ -5,7 +5,7 @@ import { useState } from "react";
 import Thumbnails from "@/components/product_card/gallery/thumbnails";
 
 
-const ImageComp = ({ image, index, alt, current }) => {
+const ImageComp = ({ image, index, alt, current, handleModal }) => {
 
   const [imageBlurred, setImageBlurred] = useState("image_blurred")
   const [imgUnloaded, setImgUnloaded] = useState("img_unloaded")
@@ -33,17 +33,36 @@ const ImageComp = ({ image, index, alt, current }) => {
     <div className={`main__window__top__left__cont ${mainBox} ${imageBlurred}`}>
       <Image
         onLoad={handleLoad}
-        src={`${image}`}
+        onPointerDown={() => handleModal(image, alt)}
+        src={image}
         className={`main__window__top__left__cont__img fade ${mainImage} ${imgUnloaded}`}
-        alt={`${alt}`}
+        alt={alt}
         width="1000" height="1000"
-        itemProp={`${itemprop}`}
-        loading={`${loading}`} />
+        itemProp={itemprop}
+        loading={loading} />
     </div>
   )
 }
 
 const Gallery = ({ product }) => {
+
+  const [imageModal, setImageModal] = useState(product.image_original[0])
+  const [imageModalAlt, setImageModalAlt] = useState("")
+  const [modalVisible, setModalVisible] = useState("")
+
+  const handleModal = (imageSource, imageSourceAlt) => {
+    setImageModal(imageSource)
+    setImageModalAlt(imageSourceAlt)
+    setModalVisible("modal--visible")
+    document.body.classList.add('stop-scroll')
+  }
+
+  const closeModal = () => {
+    setImageModal("")
+    setImageModalAlt("")
+    setModalVisible("")
+    document.body.classList.remove('stop-scroll')
+  }
 
   const [current, setCurrent] = useState(0)
 
@@ -51,7 +70,7 @@ const Gallery = ({ product }) => {
   let alt = product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format
 
   product.image_original.forEach((image, index) => {
-    images.push(<ImageComp key={index} image={image} index={index} alt={alt} current={current} />)
+    images.push(<ImageComp key={index} image={image} index={index} alt={alt} current={current} handleModal={handleModal} />)
   });
 
   const changeIndex = (e) => {
@@ -60,6 +79,7 @@ const Gallery = ({ product }) => {
     else setCurrent(current + e)
   }
   const changeIndexThumbnail = (index) => setCurrent(index)
+
 
   return (
     <>
@@ -72,6 +92,21 @@ const Gallery = ({ product }) => {
       <div className="main__window__bottom__left">
         <div className="main__window__bottom__left__grid">
           <Thumbnails product={product} current={current} changeIndexThumbnail={changeIndexThumbnail} />
+        </div>
+      </div>
+
+      <div className={`modal__image ${modalVisible}`}>
+        <div className="modal__image__box">
+          <span onPointerDown={closeModal} className="modal__image__box__close">&times;</span>
+          {(modalVisible === "modal--visible") ?
+            <Image
+              className="modal__image__box__content"
+              onPointerDown={closeModal}
+              src={imageModal}
+              alt={imageModalAlt}
+              fill={true}
+              priority={true}
+            /> : null}
         </div>
       </div>
     </>

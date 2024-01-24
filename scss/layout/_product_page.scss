@@ -728,6 +728,9 @@
     display: flex;
     align-items: center;
     height: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
 
     &__content {
       display: block;
@@ -736,6 +739,7 @@
       height: auto;
       border-radius: 0.5rem;
       margin: auto;
+      object-fit: contain;
   
       &:hover {
         cursor: pointer;
@@ -751,6 +755,7 @@
       font-weight: bold;
       transition: 0.3s;
       user-select: none;
+      z-index: 1;
   
       @media (hover: hover) {
         &:hover {
@@ -939,4 +944,9 @@
   overflow: hidden;
   margin: 0;
   height: 100%;
+}
+
+.modal--visible {
+  visibility: visible;
+  opacity: 1;
 }

@@ -48,9 +48,9 @@ const Thumbnail = ({ image, index, alt, current, changeIndexThumbnail }) => {
     <div className={`main__window__bottom__left__grid__cont ${activeThumbnail} ${gridNumber} ${thumbnailBlurred}`}>
       <Image
         onLoad={handleLoad}
-        src={`${image}`}
+        src={image}
         className={`main__window__bottom__left__grid__cont__img ${imgUnloaded} ${mainThumbnail}`}
-        alt={`${alt}`}
+        alt={alt}
         width="500" height="500"
         loading="lazy"
         onPointerDown={() => changeIndexThumbnail(index)}
