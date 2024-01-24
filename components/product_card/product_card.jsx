@@ -1,5 +1,5 @@
 import products from "@/data/products"
-import { Gallery, Thumbnails } from "@/components/product_card/gallery"
+import Gallery from "@/components/product_card/gallery/gallery"
 
 const ProductComponent = ({ productId }) => {
 
@@ -16,7 +16,6 @@ const ProductComponent = ({ productId }) => {
   const productTitle = product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format;
 
 
-
   return (
     <main itemScope itemType="https://schema.org/Product">
       <section className="main cont">
@@ -28,15 +27,7 @@ const ProductComponent = ({ productId }) => {
         </div>
 
         <div className="main__window">
-          <div className="main__window__top__left">
-            <Gallery product={product} />
-          </div>
-
-          <div className="main__window__bottom__left">
-            <div className="main__window__bottom__left__grid">
-              <Thumbnails product={product} />
-            </div>
-          </div>
+          <Gallery product={product} />
 
           <div className="main__window__middle__top">
             <div className="main__window__middle__top__price" itemProp="offers" itemScope itemType="https://schema.org/Offer">
