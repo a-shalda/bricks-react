@@ -731,6 +731,11 @@
     position: relative;
     overflow: hidden;
     border-radius: 0.5rem;
+    margin-top: -2.5rem;
+
+    @include breakpoint(large) {
+      margin-top: 0;
+    }
 
     &__content {
       display: block;
@@ -740,6 +745,7 @@
       border-radius: 0.5rem;
       margin: auto;
       object-fit: contain;
+      transition: opacity 0.5s;
   
       &:hover {
         cursor: pointer;
@@ -789,7 +795,6 @@
     height: 100%;
 
     &__content {
-
       position: relative;
       display: flex;
       flex-direction: column;
@@ -949,4 +954,8 @@
 .modal--visible {
   visibility: visible;
   opacity: 1;
+}
+
+.modal--image--unloaded {
+  opacity: 0;
 }
