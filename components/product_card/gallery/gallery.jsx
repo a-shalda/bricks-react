@@ -15,13 +15,9 @@ const ImageComp = ({ image, index, alt, current, handleModal }) => {
     setImgUnloaded("")
   }
 
-  let itemprop = "", loading = "eager"
-
-  if (index === 0) {
-    itemprop = "image"
-    loading = "lazy"
-  }
-
+  let priority = false
+  if (index === 0) priority = true
+  
   let mainBox = "", mainImage = ""
 
   if (index === current) {
@@ -38,8 +34,8 @@ const ImageComp = ({ image, index, alt, current, handleModal }) => {
         className={`main__window__top__left__cont__img fade ${mainImage} ${imgUnloaded}`}
         alt={alt}
         width="1000" height="1000"
-        itemProp={itemprop}
-        loading={loading} />
+        itemProp="image"
+        priority={priority} />
     </div>
   )
 }
@@ -99,26 +95,23 @@ const Gallery = ({ product }) => {
         {images.map(img => img)}
       </div>
 
-      <div className="main__window__bottom__left">
-        <div className="main__window__bottom__left__grid">
-          <Thumbnails product={product} current={current} changeIndexThumbnail={changeIndexThumbnail} />
-        </div>
-      </div>
+      <Thumbnails product={product} current={current} changeIndexThumbnail={changeIndexThumbnail} />
 
       <div className={`modal__image ${modalVisible}`}>
-        <button onPointerDown={() => changeIndex(-1)} className="main__window__top__left__button--prev">❮</button>
-        <button onPointerDown={() => changeIndex(1)} className="main__window__top__left__button--next">❯</button>
+        <button onPointerDown={() => changeIndex(-1)} className="modal__image__button--prev">❮</button>
+        <button onPointerDown={() => changeIndex(1)} className="modal__image__button--next">❯</button>
         <div className="modal__image__box">
           <span onPointerDown={closeModal} className="modal__image__box__close">&times;</span>
           {(modalVisible === "modal--visible") ?
-            <Image
+            <img
               className={`modal__image__box__content ${imgUnloaded}`}
               onPointerDown={closeModal}
               onLoad={handleLoad}
               src={imageModal}
               alt={product.id}
-              fill={true}
-              priority={true}
+              // fill={true}
+              // priority={true}
+              // quality={100}
             /> : null}
         </div>
       </div>

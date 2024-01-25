@@ -23,6 +23,7 @@
         letter-spacing: 0.07rem;
         word-spacing: 0.1rem;
       }
+
       @include breakpoint(medium) {
         font-size: clamp(0.5rem, 3vw + 0.01rem, 2rem);
       }
@@ -36,16 +37,27 @@
 
     display: grid;
 
-    grid-template-areas: 
-    "one"
-    "two"
-    "three"
-    "four";
+    grid-template-areas:
+      "one"
+      "two"
+      "three"
+      "four";
 
-    .main__window__top__left {grid-area: one;}
-    .main__window__bottom__left {grid-area: two;}
-    .main__window__middle__top {grid-area: three;}
-    .main__window__middle__bottom {grid-area: four;}
+    .main__window__top__left {
+      grid-area: one;
+    }
+
+    .main__window__bottom__left {
+      grid-area: two;
+    }
+
+    .main__window__middle__top {
+      grid-area: three;
+    }
+
+    .main__window__middle__bottom {
+      grid-area: four;
+    }
 
     @include breakpoint(small) {
       padding: 0.5rem;
@@ -54,12 +66,12 @@
     @include breakpoint(medium) {
       padding: 1rem;
       grid-template-columns: 30% 1fr;
-      grid-template-areas: 
-      "two one"
-      "two one"
-      "two one"
-      "three three"
-      "four four";
+      grid-template-areas:
+        "two one"
+        "two one"
+        "two one"
+        "three three"
+        "four four";
     }
 
     @include breakpoint(large) {
@@ -70,11 +82,11 @@
       min-width: 75rem;
       grid-template-columns: 1fr 1fr 1fr 1fr;
 
-      grid-template-areas: 
-      "one one three three"
-      "one one four four"
-      "two two two two"
-      "two two two two";
+      grid-template-areas:
+        "one one three three"
+        "one one four four"
+        "two two two two"
+        "two two two two";
     }
 
     &__top {
@@ -104,7 +116,8 @@
           height: 35rem;
         }
 
-        &__button--prev, &__button--next {
+        &__button--prev,
+        &__button--next {
           cursor: pointer;
           position: absolute;
           top: 40%;
@@ -128,6 +141,7 @@
             &:hover {
               background-color: hsla(0, 0%, 25%, 0.713);
             }
+
             &:active {
               background-color: hsla(0, 0%, 25%, 0.713);
             }
@@ -208,40 +222,102 @@
           display: grid;
           grid-template-columns: 1fr 1fr 1fr;
 
-          grid-template-areas: 
-          "one two three"
-          "four five six"
-          "seven eight nine"
-          "ten eleven twelve"
-          "thirteen fourteen fifteen"
-          "sixteen seventeen eighteen"
-          "nineteen twenty twenty_one";
+          grid-template-areas:
+            "one two three"
+            "four five six"
+            "seven eight nine"
+            "ten eleven twelve"
+            "thirteen fourteen fifteen"
+            "sixteen seventeen eighteen"
+            "nineteen twenty twenty_one";
 
           justify-content: space-between;
           padding: 1rem;
           gap: 0.5rem;
 
-          .one {grid-area: one;}
-          .two {grid-area: two;}
-          .three {grid-area: three;}
-          .four {grid-area: four;}
-          .five {grid-area: five;}
-          .six {grid-area: six;}
-          .seven {grid-area: seven;}
-          .eight {grid-area: eight;}
-          .nine {grid-area: nine;}
-          .ten {grid-area: ten;}
-          .eleven {grid-area: eleven;}
-          .twelve {grid-area: twelve;}
-          .thirteen {grid-area: thirteen;}
-          .fourteen {grid-area: fourteen;}
-          .fifteen {grid-area: fifteen;}
-          .sixteen {grid-area: sixteen;}
-          .seventeen {grid-area: seventeen;}
-          .eighteen {grid-area: eighteen;}
-          .nineteen {grid-area: nineteen;}
-          .twenty {grid-area: twenty;}
-          .twenty_one {grid-area: twenty_one;}
+          .one {
+            grid-area: one;
+          }
+
+          .two {
+            grid-area: two;
+          }
+
+          .three {
+            grid-area: three;
+          }
+
+          .four {
+            grid-area: four;
+          }
+
+          .five {
+            grid-area: five;
+          }
+
+          .six {
+            grid-area: six;
+          }
+
+          .seven {
+            grid-area: seven;
+          }
+
+          .eight {
+            grid-area: eight;
+          }
+
+          .nine {
+            grid-area: nine;
+          }
+
+          .ten {
+            grid-area: ten;
+          }
+
+          .eleven {
+            grid-area: eleven;
+          }
+
+          .twelve {
+            grid-area: twelve;
+          }
+
+          .thirteen {
+            grid-area: thirteen;
+          }
+
+          .fourteen {
+            grid-area: fourteen;
+          }
+
+          .fifteen {
+            grid-area: fifteen;
+          }
+
+          .sixteen {
+            grid-area: sixteen;
+          }
+
+          .seventeen {
+            grid-area: seventeen;
+          }
+
+          .eighteen {
+            grid-area: eighteen;
+          }
+
+          .nineteen {
+            grid-area: nineteen;
+          }
+
+          .twenty {
+            grid-area: twenty;
+          }
+
+          .twenty_one {
+            grid-area: twenty_one;
+          }
 
           @include breakpoint(tiny) {
             gap: 0.75rem;
@@ -251,49 +327,28 @@
             display: grid;
             gap: 0.5rem;
             grid-template-columns: repeat(5, 1fr);
-            grid-template-areas: 
-            "one two three four five"
-            "six seven eight nine ten"
-            "eleven twelve thirteen fourteen fifteen"
-            "sixteen seventeen eighteen nineteen twenty";
+            grid-template-areas:
+              "one two three four five"
+              "six seven eight nine ten"
+              "eleven twelve thirteen fourteen fifteen"
+              "sixteen seventeen eighteen nineteen twenty";
           }
 
           @include breakpoint(medium) {
             border-top: none;
             grid-template-columns: 1fr 1fr;
-            
-            grid-template-areas: 
-            "one two"
-            "three four"
-            "five six"
-            "seven eight"
-            "nine ten"
-            "eleven twelve"
-            "thirteen fourteen"
-            "fifteen sixteen"
-            "seventeen eighteen"
-            "nineteen twenty";
 
-            // "one"
-            // "two"
-            // "three"
-            // "four"
-            // "five"
-            // "six"
-            // "seven"
-            // "eight"
-            // "nine"
-            // "ten"
-            // "eleven"
-            // "twelve"
-            // "thirteen"
-            // "fourteen"
-            // "fifteen"
-            // "sixteen"
-            // "seventeen"
-            // "eighteen"
-            // "nineteen"
-            // "twenty";
+            grid-template-areas:
+              "one two"
+              "three four"
+              "five six"
+              "seven eight"
+              "nine ten"
+              "eleven twelve"
+              "thirteen fourteen"
+              "fifteen sixteen"
+              "seventeen eighteen"
+              "nineteen twenty";
           }
 
           @include breakpoint(xlarge) {
@@ -301,9 +356,9 @@
             padding-top: 2rem;
             grid-template-columns: repeat(10, 1fr);
             gap: 1rem;
-            grid-template-areas: 
-            "one two three four five six seven eight nine ten"
-            "eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty";
+            grid-template-areas:
+              "one two three four five six seven eight nine ten"
+              "eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty";
           }
 
           &__cont {
@@ -414,7 +469,7 @@
             width: 50%;
             justify-content: center;
             align-items: center;
-            
+
             &__box {
               line-height: 2.5rem;
               font-size: 1.2rem;
@@ -432,22 +487,22 @@
             justify-content: flex-start;
             align-items: center;
             padding-left: 1.3rem;
-  
+
             &__desc {
               padding-block: 1rem;
               padding-left: 0.8rem;
               color: rgb(162, 162, 162);
-              font-size: 0.8rem;  
+              font-size: 0.8rem;
               letter-spacing: 0.02rem;
             }
           }
 
           &__subtotal {
             display: flex;
-            
+
             &__value {
               color: rgb(162, 162, 162);
-              font-size: 0.8rem;  
+              font-size: 0.8rem;
               letter-spacing: 0.05rem;
               padding-block: 1rem;
               display: flex;
@@ -474,7 +529,7 @@
                 flex-grow: 1;
                 width: 100%;
                 transition: border 200ms;
-              
+
                 &:focus {
                   border: 1px solid var(--medium-gray-color);
                   outline: none;
@@ -641,7 +696,7 @@
 
           &_left {
             color: rgb(162, 162, 162);
-            font-size: 0.8rem;  
+            font-size: 0.8rem;
             padding-right: 0.5rem;
             letter-spacing: 0.01rem;
           }
@@ -654,7 +709,7 @@
           }
 
           &_right {
-            font-size: 0.8rem;  
+            font-size: 0.8rem;
             padding-left: 0.5rem;
             color: gray;
             letter-spacing: 0.01rem;
@@ -714,28 +769,21 @@
   visibility: hidden;
   transition: opacity 200ms, visibility 200ms;
 
-  position: fixed; 
+  position: fixed;
   z-index: 3;
   padding: 1rem;
   left: 0;
   top: 0;
-  width: 100%; 
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgba(0,0,0,0.9); 
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
 
   &__box {
     display: flex;
     align-items: center;
     height: 100%;
-    position: relative;
-    overflow: hidden;
     border-radius: 0.5rem;
-    margin-top: -2.5rem;
-
-    @include breakpoint(large) {
-      margin-top: 0;
-    }
 
     &__content {
       display: block;
@@ -744,9 +792,8 @@
       height: auto;
       border-radius: 0.5rem;
       margin: auto;
-      object-fit: contain;
       transition: opacity 0.5s;
-  
+
       &:hover {
         cursor: pointer;
       }
@@ -762,7 +809,7 @@
       transition: 0.3s;
       user-select: none;
       z-index: 1;
-  
+
       @media (hover: hover) {
         &:hover {
           cursor: pointer;
@@ -771,22 +818,65 @@
       }
     }
   }
+
+  &__button--prev,
+  &__button--next {
+    cursor: pointer;
+    position: fixed;
+    top: 45%;
+    width: auto;
+    font-size: 1rem;
+    padding: 1rem;
+    color: white;
+    font-weight: bold;
+    user-select: none;
+    background-color: var(--gray-color);
+    z-index: 1;
+    transition: background-color 0.3s;
+    touch-action: manipulation;
+    border: none;
+
+    @include breakpoint(small) {
+      font-size: 2rem;
+    }
+
+    @media(hover: hover) {
+      &:hover {
+        background-color: hsla(0, 0%, 25%, 0.713);
+      }
+
+      &:active {
+        background-color: hsla(0, 0%, 25%, 0.713);
+      }
+    }
+  }
+
+  &__button--next {
+    right: 0;
+    border-top-left-radius: 0.4rem;
+    border-bottom-left-radius: 0.4rem;
+  }
+
+  &__button--prev {
+    left: 0;
+    border-top-right-radius: 0.4rem;
+    border-bottom-right-radius: 0.4rem;
+  }
 }
 
 .modal__cart {
   opacity: 0;
   visibility: hidden;
   transition: opacity 200ms, visibility 200ms;
-  position: fixed; 
+  position: fixed;
   z-index: 3;
   padding: 1rem;
   left: 0;
   top: 0;
-  width: 100%; 
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgb(0,0,0); 
-  background-color: rgba(0,0,0,0.9); 
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
 
   &__box {
 
@@ -866,11 +956,11 @@
         font-weight: 400;
         width: 91%;
         max-width: 23rem;
-    
+
         @include breakpoint (tiny) {
           margin-inline: auto;
         }
-    
+
         &:hover {
           background-color: hsla(0, 68%, 42%, 0.885);
           cursor: pointer;
@@ -897,7 +987,7 @@
         border-radius: 0.4rem;
         transition: background-color 0.3s;
         min-height: 2.875rem; //Height of the price box
-    
+
         &:hover {
           background-color: gray;
           color: white;
@@ -929,8 +1019,13 @@
 }
 
 @keyframes fade {
-  from {opacity: 0.8;} 
-  to {opacity: 1;}
+  from {
+    opacity: 0.8;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .image_blurred {

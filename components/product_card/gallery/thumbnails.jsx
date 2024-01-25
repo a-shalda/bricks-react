@@ -68,7 +68,13 @@ const Thumbnails = ({ product, current, changeIndexThumbnail }) => {
     thumbnails.push(<Thumbnail key={index} image={image} index={index} alt={alt} current={current} changeIndexThumbnail={changeIndexThumbnail} />)
   });
 
-  return thumbnails.map(thumbnail => thumbnail)
+  return (
+    <div className="main__window__bottom__left">
+      <div className="main__window__bottom__left__grid">
+        {thumbnails.map(thumbnail => thumbnail)}
+      </div>
+    </div>
+  )
 }
 
 export default Thumbnails
