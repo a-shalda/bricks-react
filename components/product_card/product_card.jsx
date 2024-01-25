@@ -1,5 +1,7 @@
 import products from "@/data/products"
 import Gallery from "@/components/product_card/gallery/gallery"
+import Prices from "@/components/product_card/prices/prices"
+import PricesOptions from "@/components/product_card/prices/prices-options"
 
 const ProductComponent = ({ productId }) => {
 
@@ -30,8 +32,7 @@ const ProductComponent = ({ productId }) => {
           <Gallery product={product} />
 
           <div className="main__window__middle__top">
-            <div className="main__window__middle__top__price" itemProp="offers" itemScope itemType="https://schema.org/Offer">
-            </div>
+            <Prices product={product} />
 
             <div className="main__window__middle__top__stock">
               <div className="main__window__middle__top__stock__info"></div>
@@ -40,7 +41,9 @@ const ProductComponent = ({ productId }) => {
                   <label htmlFor="qty" className="main__window__middle__top__stock__subtotal__value--label">select
                     quantity</label>
                   <select name="Quantity" id="qty"
-                    className="main__window__middle__top__stock__subtotal__value__select"></select>
+                    className="main__window__middle__top__stock__subtotal__value__select">
+                    <PricesOptions />
+                  </select>
                 </div>
               </div>
             </div>
