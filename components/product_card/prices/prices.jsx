@@ -4,66 +4,59 @@ const Prices = ({ product }) => {
 
   const indexOfDot = (number) => number.toString().indexOf('.')
 
-  if (product.priceType === 1) {
+  let priceM, pricePc, priceMHtml
 
-    const priceM2 = calculatePrices(product)[0]
-    const pricePc = calculatePrices(product)[1]
+  if (product.priceType !== 4) {
+    priceM = calculatePrices(product)[0]
+    pricePc = calculatePrices(product)[1]
 
-    const contentProp = priceM2.slice(0, indexOfDot(priceM2)) + priceM2.slice(indexOfDot(priceM2))
+    const contentProp = priceM.slice(0, indexOfDot(priceM)) + priceM.slice(indexOfDot(priceM))
 
-    let priceM2HTML = (
+    priceMHtml = (
       <>
         <sup itemProp="priceCurrency" content="EUR">€</sup>
-        {priceM2.slice(0, indexOfDot(priceM2))}
+        {priceM.slice(0, indexOfDot(priceM))}
         <span className="price-small"
           itemProp="price" content={contentProp}>
-          {priceM2.slice(indexOfDot(priceM2))}</span>
+          {priceM.slice(indexOfDot(priceM))}</span>
         <span className="price-desc">
-          &nbsp;m<sup>2</sup></span>
-      </>
-    )
-
-    let pricePcHTML = (
-      <>
-        <sup>€</sup>
-        {pricePc.slice(0, indexOfDot(pricePc))}
-        <span className="price-small">
-          {pricePc.slice(indexOfDot(pricePc))}
-        </span>
-        <span className="price-desc">
-          &nbsp;pc
+          {(product.priceType !== 3) ?
+            <>&nbsp;m<sup>2</sup></> :
+            <>&nbsp;lin.m</>
+          }
         </span>
       </>
     )
+  }
+  else if (product.priceType === 4) pricePc = calculatePrices(product)[0]
 
-    return (
-      <div className="main__window__middle__top__price" itemProp="offers" itemScope itemType="https://schema.org/Offer">
-        <div className="main__window__middle__top__price__left">
-          <p className="main__window__middle__top__price__left__box">
-            {priceM2HTML}
-          </p>
-        </div>
-        <div className="main__window__middle__top__price__right">
-          <p className="main__window__middle__top__price__right__box">
-            {pricePcHTML}
-          </p>
-        </div>
+  let pricePcHtml = (
+    <>
+      <sup>€</sup>
+      {pricePc.slice(0, indexOfDot(pricePc))}
+      <span className="price-small">
+        {pricePc.slice(indexOfDot(pricePc))}
+      </span>
+      <span className="price-desc">
+        &nbsp;pc
+      </span>
+    </>
+  )
+
+  return (
+    <div className="main__window__middle__top__price" itemProp="offers" itemScope itemType="https://schema.org/Offer">
+      <div className="main__window__middle__top__price__left">
+        <p className="main__window__middle__top__price__left__box">
+          {(product.priceType !== 4) ? priceMHtml : pricePcHtml}
+        </p>
       </div>
-    )
-  }
-  else if (product.priceType === 2) {
-
-
-  }
-  else if (product.priceType === 3) {
-
-
-  }
-
-  else if (product.priceType === 4) {
-
-
-  }
+      <div className="main__window__middle__top__price__right">
+        <p className="main__window__middle__top__price__right__box">
+        {(product.priceType !== 4) ? pricePcHtml : null}
+        </p>
+      </div>
+    </div>
+  )
 }
 
 export default Prices
