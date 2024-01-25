@@ -30,7 +30,6 @@ const GenerateProducts = ({ product, index }) => {
       index={index}
       priceM={calculatePrices(product)[0]}
       pricePc={calculatePrices(product)[1]}
-      type={"one"}
     />
   }
   else if (product.priceType === 2) {
@@ -40,7 +39,6 @@ const GenerateProducts = ({ product, index }) => {
       index={index}
       priceM={calculatePrices(product)[0]}
       pricePc={calculatePrices(product)[1]}
-      type={"two"}
     />
   }
   else if (product.priceType === 3) {
@@ -50,7 +48,6 @@ const GenerateProducts = ({ product, index }) => {
       index={index}
       priceM={calculatePrices(product)[0]}
       pricePc={calculatePrices(product)[1]}
-      type={"three"}
     />
   }
 
@@ -60,7 +57,6 @@ const GenerateProducts = ({ product, index }) => {
       product={product}
       index={index}
       pricePc={calculatePrices(product)[0]}
-      type={"four"}
     />
   }
 }
@@ -68,7 +64,7 @@ const GenerateProducts = ({ product, index }) => {
 let timeOut = ''
 let timeOutBack = ''
 
-const ProductCard = ({ product, index, priceM, pricePc, type }) => {
+const ProductCard = ({ product, index, priceM, pricePc }) => {
 
   if (!product) return null
   const indexOfDot = (number) => number.toString().indexOf('.')
@@ -105,7 +101,7 @@ const ProductCard = ({ product, index, priceM, pricePc, type }) => {
     </>
   )
 
-  if (type === "three") {
+  if (product.priceType === 3) {
     priceType = (
       <>
         &nbsp;lm
@@ -115,7 +111,7 @@ const ProductCard = ({ product, index, priceM, pricePc, type }) => {
 
   let priceFinalM = <></>
 
-  (type !== "four") ? priceFinalM = (
+  (product.priceType !== 4) ? priceFinalM = (
     <>
       <sup>€</sup>
       {priceM.slice(0, indexOfDot(priceM))}
@@ -185,10 +181,10 @@ const ProductCard = ({ product, index, priceM, pricePc, type }) => {
 
       <div className="product__middle">
         <div className="product__middle__price--m2">
-          <p className="product__middle__price--m2__p">{(type !== "four") ? priceFinalM : priceFinalPc}</p>
+          <p className="product__middle__price--m2__p">{(product.priceType !== 4) ? priceFinalM : priceFinalPc}</p>
         </div>
         <div className="product__middle__price--st">
-          <p className="product__middle__price--st__p">{(type !== "four") ? priceFinalPc : null}</p>
+          <p className="product__middle__price--st__p">{(product.priceType !== 4) ? priceFinalPc : null}</p>
         </div>
       </div>
 
