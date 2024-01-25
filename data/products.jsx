@@ -7,6 +7,7 @@ const products = [
     filepath: '/shop/feldhaus_klinker/r788nf9',
     priceCentsM2: 5289,
     supplierPriceType: 'm2',
+    priceType: 1,
     isM2: true,
     isLinearMeter: false,
     description: `Clinker tiles R788NF9 are produced at one of the best German enterprises - the Feldhaus Klinker plant. The letter “R” stands for “Riemchen”, which means “tile”. The surface is mostly smooth, rough in places. The classic red color with soot attracts with its appearance. It is based on red clay. The entire Feldhaus Klinker façade program is manufactured using the piecemeal method. Those. clinker tiles are not cut from the brick, but are produced as is.
@@ -58,6 +59,7 @@ const products = [
     filepath: '/shop/feldhaus_klinker/r698nf14',
     priceCentsM2: 8021,
     supplierPriceType: 'm2',
+    priceType: 1,
     isM2: true,
     isLinearMeter: false,
     description: `Clinker tiles R698NF14 are produced at one of the best German enterprises - the Feldhaus Klinker plant. The letter “R” stands for “Riemchen”, which means “tile”. Aged surface, with torn edges, SINTRA series. The classic red color is not flashy, but at the same time attracts with its appearance, reminiscent of antique brickwork. It is based on red clay. The entire Feldhaus Klinker façade program is manufactured using the piecemeal method. Those. clinker tiles are not cut from the brick, but are produced as is.
@@ -109,6 +111,7 @@ const products = [
     filepath: '/shop/feldhaus_klinker/r685nf14',
     priceCentsM2: 7903,
     supplierPriceType: 'm2',
+    priceType: 1,
     isM2: true,
     isLinearMeter: false,
     description: `Clinker tiles R685NF14 are produced at one of the best German enterprises - the Feldhaus Klinker plant. This is one of the most successful and popular colors of the entire line of foreign manufacturers. The letter “R” stands for “Riemchen”, which means “tile”. Aged surface, with torn edges, SINTRA series. The classic red color with carbon deposits attracts with its appearance, reminiscent of ancient brickwork. It is based on red clay. The entire Feldhaus Klinker façade program is manufactured using the piecemeal method. Those. clinker tiles are not cut from the brick, but are produced as is.
@@ -160,6 +163,7 @@ const products = [
     filepath: '/shop/feldhaus_klinker/r743nf14',
     priceCentsM2: 7648,
     supplierPriceType: 'm2',
+    priceType: 1,
     isM2: true,
     isLinearMeter: false,
     description: `Clinker tiles R743NF14 are produced at one of the best German enterprises - the Feldhaus Klinker plant. The letter “R” stands for “Riemchen”, which means “tile”. Aged surface, VASCU series, “water touches”. The classic red color with carbon deposits attracts with its appearance, reminiscent of ancient brickwork. It is based on red clay. It is based on red clay. The entire Feldhaus Klinker façade program is manufactured using the piecemeal method. Those. clinker tiles are not cut from the brick, but are produced as is.
@@ -211,6 +215,7 @@ const products = [
     filepath: '/shop/feldhaus_klinker/r682nf14',
     priceCentsM2: 8158,
     supplierPriceType: 'm2',
+    priceType: 1,
     isM2: true,
     isLinearMeter: false,
     description: `Clinker tiles R682NF14 are produced at one of the best German enterprises - the Feldhaus Klinker plant. This is one of the most successful and popular colors of the entire line of foreign manufacturers. The letter “R” stands for “Riemchen”, which means “tile”. Aged surface, with torn edges, SINTRA series. The gray color with a white coating attracts with its appearance, reminiscent of antique brickwork. The basis is clay of gray varieties. The entire Feldhaus Klinker façade program is manufactured using the piecemeal method. Those. clinker tiles are not cut from the brick, but are produced as is.
@@ -262,6 +267,7 @@ const products = [
     filepath: '/shop/feldhaus_klinker/r764nf14',
     priceCentsM2: 8365,
     supplierPriceType: 'm2',
+    priceType: 1,
     isM2: true,
     isLinearMeter: false,
     description: `Clinker tiles R764NF14 are produced at one of the best German enterprises - the Feldhaus Klinker plant. The letter “R” stands for “Riemchen”, which means “tile”. Aged surface, VASCU series, “water touches”. The gray color with a white coating attracts with its appearance, reminiscent of antique brickwork. The basis is clay of gray varieties. The entire Feldhaus Klinker façade program is manufactured using the piecemeal method. Those. clinker tiles are not cut from the brick, but are produced as is.
@@ -313,6 +319,7 @@ const products = [
     filepath: '/shop/feldhaus_klinker/r773nf14',
     priceCentsM2: 8365,
     supplierPriceType: 'm2',
+    priceType: 1,
     isM2: true,
     isLinearMeter: false,
     description: `Clinker tiles R773NF14 are produced at one of the best German enterprises - the Feldhaus Klinker plant. The letter “R” stands for “Riemchen”, which means “tile”. Aged surface, VASCU series, “water touches”. One of the most popular and successful gray colors, with a white coating, attracts with its appearance, reminiscent of antique brickwork. The basis is clay of gray varieties. The entire Feldhaus Klinker façade program is manufactured using the piecemeal method. Those. clinker tiles are not cut from the brick, but are produced as is.
@@ -370,6 +377,7 @@ const products = [
     filepath: '/shop/feldhaus_klinker/r766nf14',
     priceCentsM2: 8365,
     supplierPriceType: 'm2',
+    priceType: 1,
     isM2: true,
     isLinearMeter: false,
     description: `Clinker tiles R766NF14 are produced at one of the best German enterprises - the Feldhaus Klinker plant. The letter “R” stands for “Riemchen”, which means “tile”. Aged surface, VASCU series, “water touches”. A very attractive and memorable color, in places with a slight soot and a light coating. The entire Feldhaus Klinker façade program is manufactured using the piecemeal method. Those. clinker tiles are not cut from the brick, but are produced as is.
@@ -427,6 +435,7 @@ const products = [
     filepath: '/shop/feldhaus_klinker/r688nf14',
     priceCentsM2: 7903,
     supplierPriceType: 'm2',
+    priceType: 1,
     isM2: true,
     isLinearMeter: false,
     description: `Clinker tiles R688NF14 are produced at one of the best German enterprises - the Feldhaus Klinker plant. The letter “R” stands for “Riemchen”, which means “tile”. Aged surface, with torn edges, SINTRA series. A very attractive and attractive sand color with a slight soot in some areas. The entire Feldhaus Klinker façade program is manufactured using the piecemeal method. Those. clinker tiles are not cut from the brick, but are produced as is.
@@ -484,6 +493,7 @@ const products = [
     filepath: '/shop/feldhaus_klinker/r700nf9',
     priceCentsM2: 5456,
     supplierPriceType: 'm2',
+    priceType: 1,
     isM2: true,
     isLinearMeter: false,
     description: `Clinker tiles R700NF9 are produced at one of the best German enterprises - the Feldhaus Klinker plant. The letter “R” stands for “Riemchen”, which means “tile”. The surface is smooth, but not slippery, with even edges. Anthracite color, almost black, will look discreet, but at the same time elegant, on the facade. The front part has no additional coatings; it is based on dark grade clay. The entire Feldhaus Klinker façade program is manufactured using the piecemeal method. Those. clinker tiles are not cut from the brick, but are produced as is.
@@ -535,6 +545,7 @@ const products = [
     filepath: '/shop/feldhaus_klinker/r736nf14',
     priceCentsM2: 8365,
     supplierPriceType: 'm2',
+    priceType: 1,
     isM2: true,
     isLinearMeter: false,
     description: `Clinker tiles R736NF14 are produced at one of the best German enterprises - the Feldhaus Klinker plant. The letter “R” stands for “Riemchen”, which means “tile”. Aged surface, VASCU series, “water touches”. Anthracite color, almost black, will look discreet, but at the same time elegant, on the facade. The front part has no additional coatings; it is based on dark grade clay. The entire Feldhaus Klinker façade program is manufactured using the piecemeal method. Those. clinker tiles are not cut from the brick, but are produced as is.
@@ -586,6 +597,7 @@ const products = [
     filepath: '/shop/feldhaus_klinker/r669nf14',
     priceCentsM2: 8158,
     supplierPriceType: 'm2',
+    priceType: 1,
     isM2: true,
     isLinearMeter: false,
     description: `Clinker tiles R669NF14 are produced at one of the best German enterprises - the Feldhaus Klinker plant. The letter “R” stands for “Riemchen”, which means “tile”. Aged surface, with torn edges, SINTRA series. The brown color will look discreet, but at the same time elegant, on the facade, showing off the ancient brickwork. The entire Feldhaus Klinker façade program is manufactured using the piecemeal method. Those. clinker tiles are not cut from the brick, but are produced as is.
@@ -643,6 +655,7 @@ const products = [
     filepath: '/shop/feldhaus_klinker/r686nf14',
     priceCentsM2: 7903,
     supplierPriceType: 'm2',
+    priceType: 1,
     isM2: true,
     isLinearMeter: false,
     description: `Clinker tiles R686NF14 are produced at one of the best German enterprises - the Feldhaus Klinker plant. The letter “R” stands for “Riemchen”, which means “tile”. Aged surface, with torn edges, SINTRA series. The chic dark red color, with a yellow-orange patina, is the epitome of antique brickwork. The entire Feldhaus Klinker façade program is manufactured using the piecemeal method. Those. clinker tiles are not cut from the brick, but are produced as is.
@@ -694,6 +707,7 @@ const products = [
     filepath: '/shop/feldhaus_klinker/r658nf14',
     priceCentsM2: 7864,
     supplierPriceType: 'm2',
+    priceType: 1,
     isM2: true,
     isLinearMeter: false,
     description: `Clinker tiles R658NF14 are produced at the German plant Feldhaus Klinker. The surface is aged, with the effect of hand molding. One of the most popular colors of all German-made clinker tiles. The uneven front side, torn edges, black firing and white coating give the tiles uniqueness and individuality. In addition to ordinary tiles, L-shaped corner tiles are produced for decorating door and window openings, as well as external corners of the building. Standard European NF format, brick-like tiles, flawless imitation of clinker brick laying. With proper installation, the service life will be more than 50 years. Supplied in cardboard boxes of 24 pieces, double, i.e. The two tiles are soldered on the side and can be easily separated with a light blow in the middle of the back side.
@@ -744,6 +758,7 @@ const products = [
     filepath: '/shop/feldhaus_klinker/r100nf9',
     priceCentsM2: 5456,
     supplierPriceType: 'm2',
+    priceType: 1,
     isM2: true,
     isLinearMeter: false,
     description: `Clinker tiles for brick R100NF9 are produced at one of the best German enterprises - the Feldhaus Klinker plant. The letter “R” stands for “Riemchen”, which means “tile”. The surface is smooth, but not slippery, with even edges. The color is not flashy, but at the same time aesthetically attractive. The shade is close to ivory. The front side has no additional coatings; it is based on white clay. The entire Feldhaus Klinker façade program is manufactured using the piecemeal method. Those. clinker tiles are not cut from the brick, but are produced as is.
@@ -797,6 +812,7 @@ const products = [
     filepath: '/shop/feldhaus_klinker/r116nf9',
     priceCentsM2: 5888,
     supplierPriceType: 'm2',
+    priceType: 1,
     isM2: true,
     isLinearMeter: false,
     description: `Clinker tiles “brick-like” R116NF9 are produced at one of the best German enterprises - the Feldhaus Klinker plant. The letter “R” stands for “Riemchen”, which means “tile”. The surface is embossed, with smooth edges. The color is not flashy, but at the same time aesthetically attractive. The shade is close to ivory. The front side has no additional coatings; it is based on white clay. The entire Feldhaus Klinker façade program is manufactured using the piecemeal method. Those. clinker tiles are not cut from the brick, but are produced as is.
@@ -848,6 +864,7 @@ const products = [
     filepath: '/shop/feldhaus_klinker/r757nf14',
     priceCentsM2: 8365,
     supplierPriceType: 'm2',
+    priceType: 1,
     isM2: true,
     isLinearMeter: false,
     description: `Clinker tiles “brick-like” R757NF14 are produced at one of the best German enterprises - the Feldhaus Klinker plant. The letter “R” stands for “Riemchen”, which means “tile”. Aged surface, VASCU series, “water touches”. The color is not flashy, but at the same time aesthetically attractive. The shade is close to ivory. The front part has no additional coatings; it is based on light grade clay. The entire Feldhaus Klinker façade program is manufactured using the piecemeal method. Those. clinker tiles are not cut from the brick, but are produced as is.
@@ -899,6 +916,7 @@ const products = [
     filepath: '/king_klinker/obsidian-shadow-lf18',
     priceCentsPc: 328,
     supplierPriceType: 'pc',
+    priceType: 2,
     isM2: true,
     isLinearMeter: false,
     description: 'Obsidian Shadow from the King Size collection is a real favourite among architects. The tile features a mysterious, untamed charm. The silvery and graphite reflections and shadows that are naturally created on the engobe as a result of the reductive atmosphere in the ceramic kiln produce an amazing effect.',
@@ -936,6 +954,7 @@ const products = [
     filepath: '/klinker_brick/feldhaus_klinker/k746wdf',
     priceCentsPc: 286,
     supplierPriceType: 'pc',
+    priceType: 2,
     isM2: true,
     isLinearMeter: false,
 
@@ -981,6 +1000,7 @@ const products = [
     filepath: '/stair_tile/stroeher/710_4817',
     priceCentsPc: 2698,
     supplierPriceType: 'pc',
+    priceType: 3,
     isM2: false,
     isLinearMeter: true,
 
@@ -1015,6 +1035,7 @@ const products = [
     filepath: '/stair_tile/stroeher/710_8031',
     priceCentsM2: 8217,
     supplierPriceType: 'm2',
+    priceType: 1,
     isM2: true,
     isLinearMeter: false,
 
@@ -1051,6 +1072,7 @@ const products = [
     filepath: '/thermopanel/feldhaus_klinker/r788nf9_thermopanel',
     priceCentsM2: 7240,
     supplierPriceType: 'm2',
+    priceType: 1,
     isM2: true,
     isLinearMeter: false,
 
@@ -1099,6 +1121,7 @@ const products = [
     filepath: '/product_pages/ceramic-fence-cap-king-klinker-ruby-red-01',
     priceCentsPc: 8026,
     supplierPriceType: 'pc',
+    priceType: 4,
     isM2: false,
     isLinearMeter: false,
 
@@ -1128,6 +1151,7 @@ const products = [
     filepath: '/clay_paver/feldhaus_klinker/p402skf_eco',
     priceCentsPc: 124,
     supplierPriceType: 'pc',
+    priceType: 2,
     isM2: true,
     isLinearMeter: false,
 
@@ -1166,6 +1190,7 @@ const products = [
     filepath: '/product_pages/ceramic-window-sill-onyx-black-17-king-klinker',
     priceCentsPc: 430,
     supplierPriceType: 'pc',
+    priceType: 3,
     isM2: false,
     isLinearMeter: true,
 
@@ -1199,6 +1224,7 @@ const products = [
     filepath: '/product_pages/mineral-waterproof-mortar-mds-72379-quick-mix',
     priceCentsPc: 2000,
     supplierPriceType: 'pc',
+    priceType: 4,
     isM2: false,
     isLinearMeter: false,
 

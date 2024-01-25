@@ -3,6 +3,7 @@
 import products from "@/data/products"
 import Image from "next/image";
 import { useState } from "react"
+import calculatePrices from "@/helpers/calculatePrices";
 
 
 const ShowProducts = () => {
@@ -22,67 +23,45 @@ const ShowProducts = () => {
 
 const GenerateProducts = ({ product, index }) => {
 
-  let priceCentsM2 = product.priceCentsM2;
-  let priceCentsPc = product.priceCentsPc;
-  let supplierPriceType = product.supplierPriceType;
-  const piecesInSquareMeter = Number(product.specs?.piecesInSquareMeterCm / 100);
-  const piecesInLinearMeter = Number(product.specs?.piecesInLinearMeterCm / 100);
-  const isM2 = product.isM2;
-  const isLinearMeter = product.isLinearMeter;
-
-  if (isM2 === true && supplierPriceType === 'm2' && supplierPriceType !== 'pc') {
-
-    const priceM = ((priceCentsM2 / 100).toFixed(2));
-    const pricePc = (Math.ceil((priceCentsM2 / piecesInSquareMeter).toFixed(4)) / 100).toFixed(2);
+  if (product.priceType === 1) {
 
     return <ProductCard
       product={product}
       index={index}
-      priceM={priceM}
-      pricePc={pricePc}
+      priceM={calculatePrices(product)[0]}
+      pricePc={calculatePrices(product)[1]}
       type={"one"}
     />
   }
-  else if (product.supplierPriceType === 'pc') {
+  else if (product.priceType === 2) {
 
-    if (isM2 === true && isLinearMeter === false) {
+    return <ProductCard
+      product={product}
+      index={index}
+      priceM={calculatePrices(product)[0]}
+      pricePc={calculatePrices(product)[1]}
+      type={"two"}
+    />
+  }
+  else if (product.priceType === 3) {
 
-      const priceM = (Math.ceil((priceCentsPc * piecesInSquareMeter).toFixed(4)) / 100).toFixed(2);
-      const pricePc = (priceCentsPc / 100).toFixed(2).toString();
+    return <ProductCard
+      product={product}
+      index={index}
+      priceM={calculatePrices(product)[0]}
+      pricePc={calculatePrices(product)[1]}
+      type={"three"}
+    />
+  }
 
-      return <ProductCard
-        product={product}
-        index={index}
-        priceM={priceM}
-        pricePc={pricePc}
-        type={"two"}
-      />
-    }
-    else if (isM2 === false && isLinearMeter === true) {
+  else if (product.priceType === 4) {
 
-      const priceM = (Math.ceil((priceCentsPc * piecesInLinearMeter).toFixed(4)) / 100).toFixed(2).toString();
-      const pricePc = (priceCentsPc / 100).toFixed(2).toString();
-
-      return <ProductCard
-        product={product}
-        index={index}
-        priceM={priceM}
-        pricePc={pricePc}
-        type={"three"}
-      />
-    }
-
-    else if (isM2 === false && isLinearMeter === false) {
-
-      const pricePc = (priceCentsPc / 100).toFixed(2).toString();
-
-      return <ProductCard
-        product={product}
-        index={index}
-        pricePc={pricePc}
-        type={"four"}
-      />
-    }
+    return <ProductCard
+      product={product}
+      index={index}
+      pricePc={calculatePrices(product)[0]}
+      type={"four"}
+    />
   }
 }
 

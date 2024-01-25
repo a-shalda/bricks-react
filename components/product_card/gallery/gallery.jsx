@@ -109,9 +109,6 @@ const Gallery = ({ product }) => {
               onLoad={handleLoad}
               src={imageModal}
               alt={product.id}
-              // fill={true}
-              // priority={true}
-              // quality={100}
             /> : null}
         </div>
       </div>
