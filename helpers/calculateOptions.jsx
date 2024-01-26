@@ -2,31 +2,22 @@ import calculatePrices from "@/helpers/calculatePrices";
 
 const Option = ({ order, product, totalPacks, totalVolume, priceModified, totalPacksModified, piecesModified, totalWeight, totalPallets }) => {
 
-  if (product.priceType === 1 || product.priceType === 2) {
-    if (order === "first") return <option value="0">select quantity...</option>
-    else if (order === "last") return <option value={totalPacks}>&gt;{totalVolume} m&sup2; specify in the cart</option>
-  }
-  else if (product.priceType === 3) {
-    if (order === "first") return <option value="0">select quantity...</option>
-    else if (order === "last") return <option value={totalPacks}>&gt;{totalVolume} lin.m specify in the cart</option>
-  }
-  else if (product.priceType === 4) {
-    if (order === "first") return <option value="0">select quantity...</option>
-    else if (order === "last") return <option value={totalPacks}>&gt;{totalVolume} pcs specify in the cart</option>
-  }
+  let spec
+  const p = product.priceType;
 
-  if (product.type === 'Klinker brick' || product.type === 'Klinker clay paver') {
-    return <option value={totalPacks}>{totalVolume} m&sup2;&nbsp; = &nbsp;€{priceModified} &nbsp;({piecesModified}, {totalWeight} kg, {totalPallets})</option>
+  (p === 1 || p === 2) ? spec = <>m&sup2;</> :
+    (p === 3) ? spec = <>lin.m</> :
+      (p === 3) ? spec = <>pcs</> : null
+
+  if (order === "first") return <option value="0">select quantity...</option>
+  else if (order === "last") return <option value={totalPacks}>&gt;{totalVolume} {spec} specify in the cart</option>
+
+  if (p === 1 || p === 2) {
+    if (product.type === 'Klinker brick' || product.type === 'Klinker clay paver') return <option value={totalPacks}>{totalVolume} {spec}&nbsp; = &nbsp;€{priceModified} &nbsp;({piecesModified}, {totalWeight} kg, {totalPallets})</option>
+    else return <option value={totalPacks}>{totalVolume} {spec}&nbsp; = &nbsp;€{priceModified} &nbsp;({totalPacksModified}, {piecesModified}, {totalWeight} kg, {totalPallets})</option>
   }
-  else if (product.priceType === 3) {
-    return <option value={totalPacks}>{totalVolume} lin.m&nbsp;&nbsp; = &nbsp;€{priceModified} &nbsp;({totalPacksModified}, {piecesModified}, {totalWeight} kg, {totalPallets})</option>
-  }
-  else if (product.priceType === 4) {
-    return <option value={totalPacks}>{piecesModified}&nbsp; = &nbsp;€{priceModified} &nbsp;({totalPacksModified}, {totalWeight} kg, {totalPallets})</option>
-  }
-  else {
-    return <option value={totalPacks}>{totalVolume} m&sup2;&nbsp; = &nbsp;€{priceModified} &nbsp;({totalPacksModified}, {piecesModified}, {totalWeight} kg, {totalPallets})</option>
-  }
+  else if (p === 3) return <option value={totalPacks}>{totalVolume} {spec}&nbsp;&nbsp; = &nbsp;€{priceModified} &nbsp;({totalPacksModified}, {piecesModified}, {totalWeight} kg, {totalPallets})</option>
+  else if (p === 4) return <option value={totalPacks}>{piecesModified}&nbsp; = &nbsp;€{priceModified} &nbsp;({totalPacksModified}, {totalWeight} kg, {totalPallets})</option>
 }
 
 const calculateOptions = (product) => {

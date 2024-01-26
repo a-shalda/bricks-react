@@ -5,9 +5,11 @@ import Gallery from "@/components/product_card/gallery/gallery"
 import Prices from "@/components/product_card/prices/prices"
 import PricesOptions from "@/components/product_card/prices/prices-options"
 import Buttons from "@/components/product_card/prices/buttons"
+import Modal from "@/components/product_card/prices/modal"
+import Divider from "@/components/general/divider"
+import ProductCardTitle from "@/components/product_card/product-card-title"
 
 import { useState } from "react"
-import Link from 'next/link'
 
 const ProductComponent = ({ productId }) => {
 
@@ -15,7 +17,6 @@ const ProductComponent = ({ productId }) => {
   let product
   products.filter(item => { if (item.id === productId) product = item })
   if (!product) return null
-  const productTitle = product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format
 
   const [quantity, setQuantity] = useState(0)
   const [errorAdding, setErrorAdding] = useState("")
@@ -34,16 +35,11 @@ const ProductComponent = ({ productId }) => {
     document.body.classList.remove('stop-scroll');
   }
 
-
   return (
     <main itemScope itemType="https://schema.org/Product">
       <section className="main cont">
 
-        <div className="main__cont">
-          <h1 className="main__cont__title" itemProp="name">
-            {productTitle}
-          </h1>
-        </div>
+        <ProductCardTitle product={product} />
 
         <div className="main__window">
           <Gallery product={product} />
@@ -71,45 +67,20 @@ const ProductComponent = ({ productId }) => {
           <div className="main__window__middle__bottom"></div>
           <div className="main__window__right__top"></div>
           <div className="main__window__right__bottom"></div>
-
         </div>
 
-        <div className={`modal__cart ${modal}`}>
-          <div className="modal__cart__box">
-            <div className="modal__cart__box__content">
-
-              <span
-                className="modal__cart__box__content__close"
-                onPointerDown={handleContinue}
-              >
-                &times;</span>
-              <p className="modal__cart__box__content__message">
-                <span className="modal__cart__box__content__message--title">Added to Cart:</span>
-                <br></br>
-                {toCartMessage}
-              </p>
-              <Link href="/cart" className="modal__cart__box__content__cart">Go to cart</Link>
-              <button
-                onPointerDown={handleContinue}
-                className="modal__cart__box__content__continue"
-              >Continue shopping
-              </button>
-
-            </div>
-          </div>
-        </div>
-
+        <Modal
+          modal={modal}
+          handleContinue={handleContinue}
+          toCartMessage={toCartMessage}
+        />
       </section>
 
       <section className="additional cont"></section>
-      <div className="divider--background">
-        <div className="divider cont">
-          <p className="divider__desc">Similar products</p>
-        </div>
-      </div>
+
+      <Divider label={"Similar products"} />
 
       <section className="similar products cont"></section>
-
     </main>
   )
 }

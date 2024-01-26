@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 
-const Buttons = ({ product, quantity, setQuantity, setErrorAdding, setToCartMessage, handleModal }) => {
+const Buttons = ({ product, quantity, setQuantity, setErrorAdding, handleModal }) => {
 
   const packsTotalLimit = 1000
 
@@ -56,8 +56,6 @@ const Buttons = ({ product, quantity, setQuantity, setErrorAdding, setToCartMess
   }
 
   let userQuantity
-
-  console.log(quantity)
 
   const addToCart = () => {
     userQuantity = quantity
