@@ -3,6 +3,7 @@
 import categoriesData from "@/data/categories"
 import { useState } from "react"
 import Image from "next/image";
+import Link from 'next/link'
 
 
 const Category = ({ i }) => {
@@ -24,7 +25,7 @@ const Category = ({ i }) => {
       onPointerLeave={handlePointerLeave} 
       className={`categories__box ${categoriesData[i].id} ${contBlurred}`}
     >
-        <a href={`${categoriesData[i].path}`}>
+        <Link href={categoriesData[i].path}>
           <Image 
             onLoad={handleLoad}
             className={`categories__box__img cat_img${[i]} ${enlarge} ${imgUnloaded}`} 
@@ -34,7 +35,7 @@ const Category = ({ i }) => {
           <div className="categories__box__title">
               <h2 className="categories__box__title__h2">{categoriesData[i].title}</h2>
           </div>
-        </a>
+        </Link>
     </div>
   )
 }

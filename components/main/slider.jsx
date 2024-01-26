@@ -2,7 +2,8 @@
 
 import sliderItems from "@/data/slider-items"
 import { useState, useEffect } from "react"
-import Image from "next/image";
+import Image from "next/image"
+import Link from 'next/link'
 
 
 const Slider = () => {
@@ -81,7 +82,7 @@ const Slide = ({ item, index, current }) => {
         <div className="slideshow__slide__abs__box__cont">
           <p className="slideshow__slide__abs__box__cont__title">{item.title}</p>
           <p className="slideshow__slide__abs__box__cont__desc">{item.desc}</p>
-          <a href={`${item.path}`}><button className="slideshow__slide__abs__box__cont__button">Explore</button></a>
+          <Link href={item.path}><button className="slideshow__slide__abs__box__cont__button">Explore</button></Link>
         </div>
       </div>
     </div>

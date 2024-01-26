@@ -4,6 +4,7 @@ import products from "@/data/products"
 import Image from "next/image";
 import { useState } from "react"
 import calculatePrices from "@/helpers/calculatePrices";
+import Link from 'next/link'
 
 
 const ShowProducts = () => {
@@ -142,7 +143,7 @@ const ProductCard = ({ product, index, priceM, pricePc }) => {
       onPointerLeave={handlePointerLeave}>
 
       <div className="product__top">
-        <a href={`${product.filepath}`}>
+        <Link href={product.filepath}>
           <div className={`product__top__cont ${contBlurred}`}>
             <Image
               onLoad={handleLoad}
@@ -171,7 +172,7 @@ const ProductCard = ({ product, index, priceM, pricePc }) => {
               loading="eager"
             />
           </div>
-        </a>
+        </Link>
 
         <div className="product__top__cont__stock">
           <Image src="/images/icons/check.svg" alt="checkmark" className="stock" width="16" height="16" />
@@ -189,9 +190,9 @@ const ProductCard = ({ product, index, priceM, pricePc }) => {
       </div>
 
       <div className="product__bottom">
-        <a href={`${product.filepath}`}>
+        <Link href={product.filepath}>
           <p className="product__bottom__title">{product.type + ' ' + product.name}</p>
-        </a>
+        </Link>
         <div className="product__bottom__desc">
           <p className="product__bottom__desc__p">Manufacturer: {product.specs?.manufacturer}</p>
           <p className="product__bottom__desc__p">Country: {product.specs?.countryOfOrigin}</p>
