@@ -38,31 +38,46 @@ const calculateOptions = (product) => {
 
   const Option = ({ order, totalPacks, totalVolume, priceModified, totalPacksModified, piecesModified, totalWeight, totalPallets }) => {
 
-    if (order === "first") return <option value="0">select quantity...</option>
-    else if (order === "last") return <option value={totalPacks}>&gt;{totalVolume} m&sup2; specify in the cart</option>
+
+    if (product.priceType !== 3) {
+      if (order === "first") return <option value="0">select quantity...</option>
+      else if (order === "last") return <option value={totalPacks}>&gt;{totalVolume} m&sup2; specify in the cart</option>
+    }
+    else {
+      if (order === "first") return <option value="0">select quantity...</option>
+      else if (order === "last") return <option value={totalPacks}>&gt;{totalVolume} lin.m specify in the cart</option>
+  
+    }
 
     if (productType === 'Klinker brick' || productType === 'Klinker clay paver') {
       return <option value={totalPacks}>{totalVolume} m&sup2;&nbsp; = &nbsp;€{priceModified} &nbsp;({piecesModified}, {totalWeight} kg, {totalPallets})</option>
+    }
+    else if (product.priceType === 3) {
+      return <option value={totalPacks}>{totalVolume} lin.m&nbsp;&nbsp; = &nbsp;€{priceModified} &nbsp;({totalPacksModified}, {piecesModified}, {totalWeight} kg, {totalPallets})</option>
     }
     else {
       return <option value={totalPacks}>{totalVolume} m&sup2;&nbsp; = &nbsp;€{priceModified} &nbsp;({totalPacksModified}, {piecesModified}, {totalWeight} kg, {totalPallets})</option>
     }
   }
 
-  if (product.priceType === 1 || product.priceType === 2) {
+  if (product.priceType === 1 || product.priceType === 2 || product.priceType === 3) {
 
     const priceM2 = calculatePrices(product)[0]
     const pricePc = calculatePrices(product)[1]
 
     priceForSnippet = priceM2
 
-    if (productType === 'Klinker brick' || productType === 'Klinker clay paver') {
+    if (product.priceType === 3) {
+      if ((piecesInPack % piecesInLinearMeter) === 0) baseVolume = (piecesInPack / piecesInLinearMeter)
+      else baseVolume = Number((piecesInPack / piecesInLinearMeter).toFixed(2))
+    }
+    else if (productType === 'Klinker brick' || productType === 'Klinker clay paver') {
       baseVolume = Number((piecesInPallet / piecesInSquareMeter).toFixed(2))
       basePieces = piecesInPallet
     }
     else {
-      if ((piecesInPack % piecesInSquareMeter) === 0) { baseVolume = (piecesInPack / piecesInSquareMeter) }
-      else { baseVolume = Number((piecesInPack / piecesInSquareMeter).toFixed(2)) }
+      if ((piecesInPack % piecesInSquareMeter) === 0) baseVolume = (piecesInPack / piecesInSquareMeter)
+      else baseVolume = Number((piecesInPack / piecesInSquareMeter).toFixed(2))
     }
 
     optionsHTML.push(<Option key={"first"} order={"first"} />)
@@ -86,7 +101,14 @@ const calculateOptions = (product) => {
       }
       else {
         totalVolume = totalVolume + baseVolume
-        if (!Number.isInteger((piecesInPack / piecesInSquareMeter))) totalVolume = Number(totalVolume.toFixed(2))
+
+        if (product.priceType === 3) {
+          if (!Number.isInteger((piecesInPack / piecesInLinearMeter))) totalVolume = Number(totalVolume.toFixed(2))
+        }
+        else {
+          if (!Number.isInteger((piecesInPack / piecesInSquareMeter))) totalVolume = Number(totalVolume.toFixed(2))
+        }
+
         totalPacks++
         totalWeight = Number((totalWeight + weight).toFixed(2))
 
@@ -100,7 +122,7 @@ const calculateOptions = (product) => {
           price = (totalVolume * priceM2).toFixed(2);
           totalPallets = Number((totalVolume / squareMetersInPallet).toFixed(2))
         }
-        else if (product.priceType === 2) {
+        else if (product.priceType === 2 || product.priceType === 3) {
           price = (pieces * pricePc).toFixed(2)
           totalPallets = Number((pieces / piecesInPallet).toFixed(2))
         }
@@ -120,9 +142,7 @@ const calculateOptions = (product) => {
 
     return optionsHTML
   }
-  else if (product.priceType === 3) {
 
-  }
   else if (product.priceType === 4) {
 
   }
