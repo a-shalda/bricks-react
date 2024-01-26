@@ -1051,6 +1051,11 @@
   opacity: 1;
 }
 
+.modal--hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
 .modal--image--unloaded {
   opacity: 0;
 }

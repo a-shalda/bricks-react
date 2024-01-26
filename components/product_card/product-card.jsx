@@ -1,21 +1,38 @@
+"use client"
+
 import products from "@/data/products"
 import Gallery from "@/components/product_card/gallery/gallery"
 import Prices from "@/components/product_card/prices/prices"
 import PricesOptions from "@/components/product_card/prices/prices-options"
+import Buttons from "@/components/product_card/prices/buttons"
+
+import { useState } from "react"
+import Link from 'next/link'
 
 const ProductComponent = ({ productId }) => {
 
   if (!productId) return null
-
   let product
-
-  products.filter(item => {
-    if (item.id === productId) product = item
-  })
-
+  products.filter(item => { if (item.id === productId) product = item })
   if (!product) return null
+  const productTitle = product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format
 
-  const productTitle = product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format;
+  const [quantity, setQuantity] = useState(0)
+  const [errorAdding, setErrorAdding] = useState("")
+
+  const [toCartMessage, setToCartMessage] = useState("")
+
+  const [modal, setModal] = useState("")
+
+  const handleModal = () => {
+    setModal("modal--visible")
+    document.body.classList.add('stop-scroll')
+  }
+
+  const handleContinue = () => {
+    setModal("modal--hidden")
+    document.body.classList.remove('stop-scroll');
+  }
 
 
   return (
@@ -34,24 +51,21 @@ const ProductComponent = ({ productId }) => {
           <div className="main__window__middle__top">
             <Prices product={product} />
 
-            <div className="main__window__middle__top__stock">
-              <div className="main__window__middle__top__stock__info"></div>
-              <PricesOptions product={product} />
-            </div>
+            <PricesOptions
+              product={product}
+              setQuantity={setQuantity}
+              quantity={quantity}
+              errorAdding={errorAdding}
+              setToCartMessage={setToCartMessage}
+            />
 
-            <div className="main__window__middle__top__buy">
-              <button className="main__window__middle__top__buy__button_wish">
-                <img src="/images/icons/heart.svg" className="main__window__middle__top__buy__button_wish__cont__heart"
-                  width="18" height="18" alt="heart" />
-                <span className="main__window__middle__top__buy__button_wish__text">Save</span>
-              </button>
-
-              <button className="main__window__middle__top__buy__button_add">
-                <img src="/images/icons/cart.svg" className="main__window__middle__top__buy__button_wish__cont__heart"
-                  width="18" height="18" alt="heart" />
-                <span className="main__window__middle__top__buy__button_wish__text">Add</span>
-              </button>
-            </div>
+            <Buttons
+              product={product}
+              quantity={quantity}
+              setQuantity={setQuantity}
+              setErrorAdding={setErrorAdding}
+              handleModal={handleModal}
+            />
           </div>
 
           <div className="main__window__middle__bottom"></div>
@@ -60,16 +74,26 @@ const ProductComponent = ({ productId }) => {
 
         </div>
 
-
-
-        <div className="modal__cart">
+        <div className={`modal__cart ${modal}`}>
           <div className="modal__cart__box">
             <div className="modal__cart__box__content">
 
-              <span className="modal__cart__box__content__close">&times;</span>
-              <p className="modal__cart__box__content__message"></p>
-              <a href="/cart.html" className="modal__cart__box__content__cart">Go to cart</a>
-              <button className="modal__cart__box__content__continue">Continue shopping</button>
+              <span
+                className="modal__cart__box__content__close"
+                onPointerDown={handleContinue}
+              >
+                &times;</span>
+              <p className="modal__cart__box__content__message">
+                <span className="modal__cart__box__content__message--title">Added to Cart:</span>
+                <br></br>
+                {toCartMessage}
+              </p>
+              <Link href="/cart" className="modal__cart__box__content__cart">Go to cart</Link>
+              <button
+                onPointerDown={handleContinue}
+                className="modal__cart__box__content__continue"
+              >Continue shopping
+              </button>
 
             </div>
           </div>

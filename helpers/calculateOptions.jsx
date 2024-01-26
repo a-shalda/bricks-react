@@ -1,69 +1,69 @@
 import calculatePrices from "@/helpers/calculatePrices";
 
+const Option = ({ order, product, totalPacks, totalVolume, priceModified, totalPacksModified, piecesModified, totalWeight, totalPallets }) => {
+
+  if (product.priceType === 1 || product.priceType === 2) {
+    if (order === "first") return <option value="0">select quantity...</option>
+    else if (order === "last") return <option value={totalPacks}>&gt;{totalVolume} m&sup2; specify in the cart</option>
+  }
+  else if (product.priceType === 3) {
+    if (order === "first") return <option value="0">select quantity...</option>
+    else if (order === "last") return <option value={totalPacks}>&gt;{totalVolume} lin.m specify in the cart</option>
+  }
+  else if (product.priceType === 4) {
+    if (order === "first") return <option value="0">select quantity...</option>
+    else if (order === "last") return <option value={totalPacks}>&gt;{totalVolume} pcs specify in the cart</option>
+  }
+
+  if (product.type === 'Klinker brick' || product.type === 'Klinker clay paver') {
+    return <option value={totalPacks}>{totalVolume} m&sup2;&nbsp; = &nbsp;€{priceModified} &nbsp;({piecesModified}, {totalWeight} kg, {totalPallets})</option>
+  }
+  else if (product.priceType === 3) {
+    return <option value={totalPacks}>{totalVolume} lin.m&nbsp;&nbsp; = &nbsp;€{priceModified} &nbsp;({totalPacksModified}, {piecesModified}, {totalWeight} kg, {totalPallets})</option>
+  }
+  else if (product.priceType === 4) {
+    return <option value={totalPacks}>{piecesModified}&nbsp; = &nbsp;€{priceModified} &nbsp;({totalPacksModified}, {totalWeight} kg, {totalPallets})</option>
+  }
+  else {
+    return <option value={totalPacks}>{totalVolume} m&sup2;&nbsp; = &nbsp;€{priceModified} &nbsp;({totalPacksModified}, {piecesModified}, {totalWeight} kg, {totalPallets})</option>
+  }
+}
+
 const calculateOptions = (product) => {
 
-  const priceTotalLimit = 9000;
-  const packsTotalLimit = 1000;
+  const priceTotalLimit = 9000
+  const packsTotalLimit = 1000
 
-  const m2Limit = 1000;
-  const pcLimit = 10000;
-  const packLimit = 1000;
+  const m2Limit = 1000
+  const pcLimit = 10000
+  const packLimit = 1000
 
-  let priceCentsM2 = product.priceCentsM2;
-  let priceCentsPc = product.priceCentsPc;
-  const piecesInSquareMeter = Number(product.specs.piecesInSquareMeterCm / 100);
-  const piecesInPack = product.specs.piecesInPack;
-  const piecesInLinearMeter = Number(product.specs.piecesInLinearMeterCm / 100);
-  const isM2 = product.isM2;
-  const isLinearMeter = product.isLinearMeter;
-  let pricesHTML = '';
+  let priceCentsM2 = product.priceCentsM2
+  let priceCentsPc = product.priceCentsPc
+  const piecesInSquareMeter = Number(product.specs.piecesInSquareMeterCm / 100)
+  const piecesInPack = product.specs.piecesInPack
+  const piecesInLinearMeter = Number(product.specs.piecesInLinearMeterCm / 100)
+  const isM2 = product.isM2
+  const isLinearMeter = product.isLinearMeter
+  let pricesHTML
 
   let piecesModified
-  let totalPacksModified = '';
+  let totalPacksModified = ''
   let priceForSnippet
   let optionsHTML = []
-  let baseVolume;
-  let totalVolume = 0;
-  let price;
-  let basePieces = piecesInPack;
-  let pieces = 0;
-  let totalPacks = 0;
-  let weight = Number(product.specs.weightOf1PackGramm / 100);
+  let baseVolume
+  let totalVolume = 0
+  let price
+  let basePieces = piecesInPack
+  let pieces = 0
+  let totalPacks = 0
+  let weight = Number(product.specs.weightOf1PackGramm / 100)
   let weightOf1Piece = Number(product.specs.weightOf1PieceGramm / 100) //For bricks and mortars
-  let totalWeight = 0;
-  let piecesInPallet = product.specs.piecesInPallet;
-  let squareMetersInPallet = product.specs.squareMetersInPallet;
-  let totalPallets = 0;
-  let productType = product.type;
-
-  const Option = ({ order, totalPacks, totalVolume, priceModified, totalPacksModified, piecesModified, totalWeight, totalPallets }) => {
-
-    if (product.priceType === 1 || product.priceType === 2) {
-      if (order === "first") return <option value="0">select quantity...</option>
-      else if (order === "last") return <option value={totalPacks}>&gt;{totalVolume} m&sup2; specify in the cart</option>
-    }
-    else if (product.priceType === 3) {
-      if (order === "first") return <option value="0">select quantity...</option>
-      else if (order === "last") return <option value={totalPacks}>&gt;{totalVolume} lin.m specify in the cart</option>
-    }
-    else if (product.priceType === 4) {
-      if (order === "first") return <option value="0">select quantity...</option>
-      else if (order === "last") return <option value={totalPacks}>&gt;{totalVolume} pcs specify in the cart</option>
-    }
-
-    if (productType === 'Klinker brick' || productType === 'Klinker clay paver') {
-      return <option value={totalPacks}>{totalVolume} m&sup2;&nbsp; = &nbsp;€{priceModified} &nbsp;({piecesModified}, {totalWeight} kg, {totalPallets})</option>
-    }
-    else if (product.priceType === 3) {
-      return <option value={totalPacks}>{totalVolume} lin.m&nbsp;&nbsp; = &nbsp;€{priceModified} &nbsp;({totalPacksModified}, {piecesModified}, {totalWeight} kg, {totalPallets})</option>
-    }
-    else if (product.priceType === 4) {
-      return <option value={totalPacks}>{piecesModified}&nbsp; = &nbsp;€{priceModified} &nbsp;({totalPacksModified}, {totalWeight} kg, {totalPallets})</option>
-    }
-    else {
-      return <option value={totalPacks}>{totalVolume} m&sup2;&nbsp; = &nbsp;€{priceModified} &nbsp;({totalPacksModified}, {piecesModified}, {totalWeight} kg, {totalPallets})</option>
-    }
-  }
+  let totalWeight = 0
+  let piecesInPallet = product.specs.piecesInPallet
+  let squareMetersInPallet = product.specs.squareMetersInPallet
+  let totalPallets = 0
+  let productType = product.type
 
   let priceM2, pricePc
 
@@ -92,7 +92,7 @@ const calculateOptions = (product) => {
     else baseVolume = Number((piecesInPack / piecesInSquareMeter).toFixed(2))
   }
 
-  optionsHTML.push(<Option key={"first"} order={"first"} />)
+  optionsHTML.push(<Option key={"first"} order={"first"} product={product} />)
 
   for (let i = 0; i < 90; i++) {
 
@@ -147,10 +147,10 @@ const calculateOptions = (product) => {
     let priceModified = String(price)
     if (priceLength > 6) { priceModified = priceModified.replace(priceModified.slice(-6), ',' + priceModified.slice(-6)) }
 
-    optionsHTML.push(<Option key={totalPacks} totalPacks={totalPacks} totalVolume={totalVolume} priceModified={priceModified} totalPacksModified={totalPacksModified} piecesModified={piecesModified} totalWeight={totalWeight} totalPallets={totalPallets} />)
+    optionsHTML.push(<Option key={totalPacks} product={product} totalPacks={totalPacks} totalVolume={totalVolume} priceModified={priceModified} totalPacksModified={totalPacksModified} piecesModified={piecesModified} totalWeight={totalWeight} totalPallets={totalPallets} />)
   }
-  
-  optionsHTML.push(<Option key={"last"} order={"last"} totalPacks={totalPacks} totalVolume={totalVolume} />)
+
+  optionsHTML.push(<Option key={"last"} order={"last"} product={product} totalPacks={totalPacks} totalVolume={totalVolume} />)
 
   return optionsHTML
 }
