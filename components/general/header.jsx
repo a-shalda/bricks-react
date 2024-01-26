@@ -1,17 +1,14 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from 'next/link'
+import Image from "next/image"
+import counters from "@/helpers/counters"
 
-const Header = () => {
+const Dropdown = () => {
 
-  const [dropdownVisible, setDropdownVisible] = useState(false)
-
-
-  const Dropdown = () => {
-
-    return (
-      <div className="header__upper__left__hamburger__dropdown">
+  return (
+    <div className="header__upper__left__hamburger__dropdown">
       <div className="header__upper__left__hamburger__dropdown__content">
         <ul className="header__upper__left__hamburger__dropdown__ul">
           <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href="/categories/catalog.html">All products</Link></li>
@@ -26,8 +23,58 @@ const Header = () => {
         </ul>
       </div>
     </div>
-    )
-  }
+  )
+}
+
+const Header = () => {
+
+  // localStorage.removeItem('cart');
+  // localStorage.removeItem('wishlist');
+
+  const [headerUpperRight, setHeaderUpperRight] = useState("")
+  const [headerUpperRightSaved, setHeaderUpperRightSaved] = useState("")
+
+  const [savedCounter, setSavedCounter] = useState("")
+  const [cartCounter, setCartCounter] = useState("")
+
+  const [savedCounterStyle, setSavedCounterStyle] = useState("")
+  const [cartCounterStyle, setCartCounterStyle] = useState("")
+
+  const [updateCounter, setUpdateCounter] = useState("")
+
+  useEffect(() => {
+    counters.wish = JSON.parse(localStorage.getItem('wishlist')) || []
+    counters.cart = JSON.parse(localStorage.getItem('cart')) || []
+
+    if (counters.cart.length !== 0) {
+      setHeaderUpperRight("header__upper__right__has-counter")
+      setHeaderUpperRightSaved("header__upper__right__saved__has-counter")
+    }
+    else {
+      setHeaderUpperRight("")
+      setHeaderUpperRightSaved("")
+    }
+
+    let savedCounterNumber = counters.wish.length
+    let cartCounterNumber = counters.cart.length
+
+    if (savedCounterNumber > 99) savedCounterNumber = 99
+    if (cartCounterNumber > 99) cartCounterNumber = 99
+
+    if (savedCounterNumber !== 0) {
+      setSavedCounter(savedCounterNumber)
+      setTimeout(() => setSavedCounterStyle("header__upper__right__saved__counter__not-blurred"), 100)
+    }
+    else setTimeout(() => setSavedCounterStyle(""), 100)
+
+    if (cartCounterNumber !== 0) {
+      setCartCounter(cartCounterNumber)
+      setTimeout(() => setCartCounterStyle("header__upper__right__saved__counter__not-blurred"), 100)
+    }
+    else setTimeout(() => setCartCounterStyle(""), 100)
+  }, [updateCounter])
+
+  const [dropdownVisible, setDropdownVisible] = useState(false)
 
   const handleDropdown = () => {
     setDropdownVisible(!dropdownVisible)
@@ -35,12 +82,13 @@ const Header = () => {
 
   return (
     <header id="header" className="header">
+
       <div className="header__upper cont">
 
         <div className="header__upper__left">
           <div className="header__upper__left__hamburger" onClick={handleDropdown}>
             <button className="header__upper__left__hamburger__nav-toggle">
-              <img src="/images/icons/menu.svg" className="icon-style header__upper__left__hamburger__nav-toggle__icon" width="24" height="24" alt="menu"/>
+              <Image src="/images/icons/menu.svg" className="icon-style header__upper__left__hamburger__nav-toggle__icon" width="24" height="24" alt="menu" />
             </button>
 
             {dropdownVisible && <Dropdown />}
@@ -53,30 +101,32 @@ const Header = () => {
           </div>
         </div>
 
-        <div className="header__upper__right">
+        <div className={`header__upper__right ${headerUpperRight}`}>
 
           <div className="header__upper__right__search">
             <Link href="/search">
-              <img src="/images/icons/search.svg" className="icon-style--search--header" width="22" height="16" alt="search"/>
+              <Image src="/images/icons/search.svg" className="icon-style--search--header" width="22" height="16" alt="search" />
             </Link>
           </div>
 
-          <div className="header__upper__right__saved">
+          <div className={`header__upper__right__saved ${headerUpperRightSaved}`}>
             <Link href="/saved" className="header__upper__right__saved--link">
-              <img src="/images/icons/heart.svg" className="icon-style" width="24" height="24" alt="heart"/>
-              <p className="header__upper__right__saved__counter"></p>
+              <Image src="/images/icons/heart.svg" className="icon-style" width="24" height="24" alt="heart" />
+              <p className={`header__upper__right__saved__counter ${savedCounterStyle}`}>
+                {savedCounter}
+              </p>
             </Link>
           </div>
 
           <div className="header__upper__right__cart">
-            <Link href="/cart"> 
-              <img src="/images/icons/cart.svg" className="icon-style fa-basket-shopping" width="24" height="24" alt="cart"/>
-              <p className="header__upper__right__cart__counter"></p>
+            <Link href="/cart">
+              <Image src="/images/icons/cart.svg" className="icon-style fa-basket-shopping" width="24" height="24" alt="cart" />
+              <p className={`header__upper__right__cart__counter ${cartCounterStyle}`}>
+                {cartCounter}
+              </p>
             </Link>
           </div>
-          
         </div>
-
       </div>
     </header>
   )
