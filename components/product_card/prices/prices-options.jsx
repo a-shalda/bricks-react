@@ -1,19 +1,9 @@
-"use client"
-
 import calculateOptions from "@/helpers/calculateOptions"
 
 
 const PricesOptions = ({ product }) => {
 
-  // if (typeof window !== "undefined") {
-  //   if (window.innerWidth <= 906) { sliderHeight = 480; }
-  //   else { sliderHeight = 640; }
-  // }
-
   const options = calculateOptions(product)
-
-  console.log(options && options.map(option => option))
-
 
   return (
     <div className="main__window__middle__top__stock__subtotal">
