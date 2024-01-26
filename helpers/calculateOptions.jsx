@@ -38,15 +38,17 @@ const calculateOptions = (product) => {
 
   const Option = ({ order, totalPacks, totalVolume, priceModified, totalPacksModified, piecesModified, totalWeight, totalPallets }) => {
 
-
-    if (product.priceType !== 3) {
+    if (product.priceType === 1 || product.priceType === 2) {
       if (order === "first") return <option value="0">select quantity...</option>
       else if (order === "last") return <option value={totalPacks}>&gt;{totalVolume} m&sup2; specify in the cart</option>
     }
-    else {
+    else if (product.priceType === 3) {
       if (order === "first") return <option value="0">select quantity...</option>
       else if (order === "last") return <option value={totalPacks}>&gt;{totalVolume} lin.m specify in the cart</option>
-  
+    }
+    else if (product.priceType === 4) {
+      if (order === "first") return <option value="0">select quantity...</option>
+      else if (order === "last") return <option value={totalPacks}>&gt;{totalVolume} pcs specify in the cart</option>
     }
 
     if (productType === 'Klinker brick' || productType === 'Klinker clay paver') {
@@ -55,97 +57,102 @@ const calculateOptions = (product) => {
     else if (product.priceType === 3) {
       return <option value={totalPacks}>{totalVolume} lin.m&nbsp;&nbsp; = &nbsp;€{priceModified} &nbsp;({totalPacksModified}, {piecesModified}, {totalWeight} kg, {totalPallets})</option>
     }
+    else if (product.priceType === 4) {
+      return <option value={totalPacks}>{piecesModified}&nbsp; = &nbsp;€{priceModified} &nbsp;({totalPacksModified}, {totalWeight} kg, {totalPallets})</option>
+    }
     else {
       return <option value={totalPacks}>{totalVolume} m&sup2;&nbsp; = &nbsp;€{priceModified} &nbsp;({totalPacksModified}, {piecesModified}, {totalWeight} kg, {totalPallets})</option>
     }
   }
 
-  if (product.priceType === 1 || product.priceType === 2 || product.priceType === 3) {
+  let priceM2, pricePc
 
-    const priceM2 = calculatePrices(product)[0]
-    const pricePc = calculatePrices(product)[1]
+  if (product.priceType !== 4) {
+    priceM2 = calculatePrices(product)[0]
+    pricePc = calculatePrices(product)[1]
+  }
+  else if (product.priceType === 4) pricePc = calculatePrices(product)[0]
 
-    priceForSnippet = priceM2
+  priceForSnippet = priceM2
 
-    if (product.priceType === 3) {
-      if ((piecesInPack % piecesInLinearMeter) === 0) baseVolume = (piecesInPack / piecesInLinearMeter)
-      else baseVolume = Number((piecesInPack / piecesInLinearMeter).toFixed(2))
-    }
-    else if (productType === 'Klinker brick' || productType === 'Klinker clay paver') {
-      baseVolume = Number((piecesInPallet / piecesInSquareMeter).toFixed(2))
-      basePieces = piecesInPallet
+  if (product.priceType === 4) {
+    baseVolume = 1
+    basePieces = 1
+  }
+  else if (product.priceType === 3) {
+    if ((piecesInPack % piecesInLinearMeter) === 0) baseVolume = (piecesInPack / piecesInLinearMeter)
+    else baseVolume = Number((piecesInPack / piecesInLinearMeter).toFixed(2))
+  }
+  else if (productType === 'Klinker brick' || productType === 'Klinker clay paver') {
+    baseVolume = Number((piecesInPallet / piecesInSquareMeter).toFixed(2))
+    basePieces = piecesInPallet
+  }
+  else {
+    if ((piecesInPack % piecesInSquareMeter) === 0) baseVolume = (piecesInPack / piecesInSquareMeter)
+    else baseVolume = Number((piecesInPack / piecesInSquareMeter).toFixed(2))
+  }
+
+  optionsHTML.push(<Option key={"first"} order={"first"} />)
+
+  for (let i = 0; i < 90; i++) {
+
+    if (totalVolume > 90) break
+    if (price >= priceTotalLimit) break
+
+    pieces = pieces + basePieces
+
+    if (productType === 'Klinker brick' || productType === 'Klinker clay paver') {
+      if (i === 9) break
+      if (price >= priceTotalLimit) break
+      totalVolume = Number((totalVolume + baseVolume).toFixed(2))
+      price = (pieces * pricePc).toFixed(2)
+      totalPallets = Number((pieces / piecesInPallet).toFixed(2))
+      totalPacks = totalPallets
+      totalWeight = Number((totalWeight + (weightOf1Piece * piecesInPallet)).toFixed(2))
+      piecesModified = pieces + ` pcs`
     }
     else {
-      if ((piecesInPack % piecesInSquareMeter) === 0) baseVolume = (piecesInPack / piecesInSquareMeter)
-      else baseVolume = Number((piecesInPack / piecesInSquareMeter).toFixed(2))
-    }
+      totalVolume = totalVolume + baseVolume
 
-    optionsHTML.push(<Option key={"first"} order={"first"} />)
-
-    for (let i = 0; i < 90; i++) {
-
-      if (totalVolume > 90) break
-      if (price >= priceTotalLimit) break
-
-      pieces = pieces + basePieces
-
-      if (productType === 'Klinker brick' || productType === 'Klinker clay paver') {
-        if (i === 9) break
-        if (price >= priceTotalLimit) break
-        totalVolume = Number((totalVolume + baseVolume).toFixed(2))
-        price = (pieces * pricePc).toFixed(2)
-        totalPallets = Number((pieces / piecesInPallet).toFixed(2))
-        totalPacks = totalPallets
-        totalWeight = Number((totalWeight + (weightOf1Piece * piecesInPallet)).toFixed(2))
-        piecesModified = pieces + ` pcs`
+      if (product.priceType === 3) {
+        if (!Number.isInteger((piecesInPack / piecesInLinearMeter))) totalVolume = Number(totalVolume.toFixed(2))
       }
       else {
-        totalVolume = totalVolume + baseVolume
-
-        if (product.priceType === 3) {
-          if (!Number.isInteger((piecesInPack / piecesInLinearMeter))) totalVolume = Number(totalVolume.toFixed(2))
-        }
-        else {
-          if (!Number.isInteger((piecesInPack / piecesInSquareMeter))) totalVolume = Number(totalVolume.toFixed(2))
-        }
-
-        totalPacks++
-        totalWeight = Number((totalWeight + weight).toFixed(2))
-
-        if (totalPacks === 1) { totalPacksModified = totalPacks + ` pack` }
-        else { totalPacksModified = totalPacks + ` packs` }
-
-        if (pieces === 1) { piecesModified = pieces + ` pc` }
-        else { piecesModified = pieces + ` pcs` }
-
-        if (product.priceType === 1) {
-          price = (totalVolume * priceM2).toFixed(2);
-          totalPallets = Number((totalVolume / squareMetersInPallet).toFixed(2))
-        }
-        else if (product.priceType === 2 || product.priceType === 3) {
-          price = (pieces * pricePc).toFixed(2)
-          totalPallets = Number((pieces / piecesInPallet).toFixed(2))
-        }
+        if (!Number.isInteger((piecesInPack / piecesInSquareMeter))) totalVolume = Number(totalVolume.toFixed(2))
       }
 
-      if (totalPallets < 2) { totalPallets = totalPallets + ` pallet` }
-      else { totalPallets = totalPallets + ` pallets` }
+      totalPacks++
+      totalWeight = Number((totalWeight + weight).toFixed(2))
 
-      let priceLength = String(price).length
-      let priceModified = String(price)
-      if (priceLength > 6) { priceModified = priceModified.replace(priceModified.slice(-6), ',' + priceModified.slice(-6)) }
+      if (totalPacks === 1) { totalPacksModified = totalPacks + ` pack` }
+      else { totalPacksModified = totalPacks + ` packs` }
 
-      optionsHTML.push(<Option key={totalPacks} totalPacks={totalPacks} totalVolume={totalVolume} priceModified={priceModified} totalPacksModified={totalPacksModified} piecesModified={piecesModified} totalWeight={totalWeight} totalPallets={totalPallets} />)
+      if (pieces === 1) { piecesModified = pieces + ` pc` }
+      else { piecesModified = pieces + ` pcs` }
+
+      if (product.priceType === 1) {
+        price = (totalVolume * priceM2).toFixed(2);
+        totalPallets = Number((totalVolume / squareMetersInPallet).toFixed(2))
+      }
+      else if (product.priceType === 2 || product.priceType === 3 || product.priceType === 4) {
+        price = (pieces * pricePc).toFixed(2)
+        totalPallets = Number((pieces / piecesInPallet).toFixed(2))
+      }
     }
 
-    optionsHTML.push(<Option key={"last"} order={"last"} totalPacks={totalPacks} totalVolume={totalVolume} />)
+    if (totalPallets < 2) { totalPallets = totalPallets + ` pallet` }
+    else { totalPallets = totalPallets + ` pallets` }
 
-    return optionsHTML
+    let priceLength = String(price).length
+    let priceModified = String(price)
+    if (priceLength > 6) { priceModified = priceModified.replace(priceModified.slice(-6), ',' + priceModified.slice(-6)) }
+
+    optionsHTML.push(<Option key={totalPacks} totalPacks={totalPacks} totalVolume={totalVolume} priceModified={priceModified} totalPacksModified={totalPacksModified} piecesModified={piecesModified} totalWeight={totalWeight} totalPallets={totalPallets} />)
   }
+  
+  optionsHTML.push(<Option key={"last"} order={"last"} totalPacks={totalPacks} totalVolume={totalVolume} />)
 
-  else if (product.priceType === 4) {
-
-  }
+  return optionsHTML
 }
 
 export default calculateOptions
