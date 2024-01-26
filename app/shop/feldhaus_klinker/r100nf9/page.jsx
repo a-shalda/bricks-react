@@ -1,4 +1,4 @@
-import ProductComponent from "@/components/product_card/product_card"
+import ProductComponent from "@/components/product_card/product-card"
 
 const productId = "r100nf9"
 

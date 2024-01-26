@@ -36,7 +36,7 @@ const ProductComponent = ({ productId }) => {
 
             <div className="main__window__middle__top__stock">
               <div className="main__window__middle__top__stock__info"></div>
-              <PricesOptions />
+              <PricesOptions product={product} />
             </div>
 
             <div className="main__window__middle__top__buy">

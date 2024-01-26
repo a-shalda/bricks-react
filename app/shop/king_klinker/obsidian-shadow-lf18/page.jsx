@@ -1,4 +1,4 @@
-import ProductComponent from "@/components/product_card/product_card"
+import ProductComponent from "@/components/product_card/product-card"
 
 const productId = "obsidian-shadow-lf18"
 

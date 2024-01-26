@@ -1,13 +1,18 @@
+"use client"
+
+import calculateOptions from "@/helpers/calculateOptions"
 
 
-const PricesOptions = () => {
+const PricesOptions = ({ product }) => {
 
   // if (typeof window !== "undefined") {
   //   if (window.innerWidth <= 906) { sliderHeight = 480; }
   //   else { sliderHeight = 640; }
   // }
 
-  let rrr
+  const options = calculateOptions(product)
+
+  console.log(options && options.map(option => option))
 
 
   return (
@@ -17,7 +22,7 @@ const PricesOptions = () => {
           quantity</label>
         <select name="Quantity" id="qty"
           className="main__window__middle__top__stock__subtotal__value__select">
-          {rrr}
+          {options && options.map(option => option)}
         </select>
       </div>
     </div>
