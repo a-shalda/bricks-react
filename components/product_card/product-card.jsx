@@ -9,6 +9,7 @@ import Modal from "@/components/product_card/prices/modal"
 import ProductCardTitle from "@/components/product_card/product-card-title"
 import Specs from "@/components/product_card/specs"
 import Similar from "@/components/product_card/similar"
+import Additional from "@/components/product_card/additional"
 
 import { useState } from "react"
 
@@ -78,7 +79,9 @@ const ProductComponent = ({ productId }) => {
         />
       </section>
 
-      <section className="additional cont"></section>
+      <Additional
+        product={product}
+      />
 
       <Similar
         products={products}
