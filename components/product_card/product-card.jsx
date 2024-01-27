@@ -8,6 +8,7 @@ import Buttons from "@/components/product_card/prices/buttons"
 import Modal from "@/components/product_card/prices/modal"
 import Divider from "@/components/general/divider"
 import ProductCardTitle from "@/components/product_card/product-card-title"
+import Specs from "@/components/product_card/specs"
 
 import { useState } from "react"
 
@@ -64,7 +65,8 @@ const ProductComponent = ({ productId }) => {
             />
           </div>
 
-          <div className="main__window__middle__bottom"></div>
+          <Specs product={product}/>
+
           <div className="main__window__right__top"></div>
           <div className="main__window__right__bottom"></div>
         </div>

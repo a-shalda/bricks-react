@@ -72,7 +72,7 @@ const Buttons = ({ product, quantity, setQuantity, setErrorAdding, handleModal }
 
       let mathingIndex;
 
-      cart.forEach((item, index) => {
+      cart.filter((item, index) => {
         if (item.id === order.id && item.type === order.type) {
           mathingIndex = index;
         }
@@ -100,7 +100,7 @@ const Buttons = ({ product, quantity, setQuantity, setErrorAdding, handleModal }
       }, 300);
     }
   }
-  
+
 
   return (
     <div className="main__window__middle__top__buy">

@@ -76,10 +76,7 @@ const Header = () => {
   }, [trigger])
 
   const [dropdownVisible, setDropdownVisible] = useState(false)
-
-  const handleDropdown = () => {
-    setDropdownVisible(!dropdownVisible)
-  }
+  const handleDropdown = () => setDropdownVisible(!dropdownVisible)
 
   return (
     <header id="header" className="header">

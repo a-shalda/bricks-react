@@ -1162,6 +1162,7 @@ const products = [
       recommendedJointSpacing: '3-4',
       thickness: 18,
       format: '200x100x18',
+      recommendedDryMortarVolume: '4-6',
       weightOf1PieceGramm: 95,
       manufacturer: 'Feldhaus Klinker',
       countryOfOrigin: 'Germany',
