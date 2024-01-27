@@ -1,25 +1,32 @@
 "use client"
 
-import products from "@/data/products"
 import Image from "next/image";
 import { useState } from "react"
 import calculatePrices from "@/helpers/calculatePrices";
 import Link from 'next/link'
 
 
-const ShowProducts = () => {
+const ShowProducts = ({ products, quantity, type, color, product }) => {
 
   let productsHTML = [];
 
-  products.forEach((product, index) => {
-    productsHTML.push(<GenerateProducts key={product.id} product={product} index={index} />);
-  });
+  if (!products) return null
 
-  return (
-    <section className="products cont">
-      {productsHTML.map(product => product)}
-    </section>
-  )
+  for (let i = 0; i < products.length; i++) {
+    if (type) {
+      if (products[i].type !== type) continue
+    }
+    if (color){
+      if (products[i].specs.color !== color) continue
+    }
+    if (!quantity) productsHTML.push(<GenerateProducts key={products[i].id} product={products[i]} index={i} />)
+    else {
+      if (productsHTML.length >= quantity) break
+      else if (products[i].id !== product.id) productsHTML.push(<GenerateProducts key={products[i].id} product={products[i]} index={i} />)
+    }
+  }
+  
+  return productsHTML.map(product => product)
 }
 
 const GenerateProducts = ({ product, index }) => {

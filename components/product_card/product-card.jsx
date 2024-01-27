@@ -6,9 +6,9 @@ import Prices from "@/components/product_card/prices/prices"
 import PricesOptions from "@/components/product_card/prices/prices-options"
 import Buttons from "@/components/product_card/prices/buttons"
 import Modal from "@/components/product_card/prices/modal"
-import Divider from "@/components/general/divider"
 import ProductCardTitle from "@/components/product_card/product-card-title"
 import Specs from "@/components/product_card/specs"
+import Similar from "@/components/product_card/similar"
 
 import { useState } from "react"
 
@@ -65,7 +65,7 @@ const ProductComponent = ({ productId }) => {
             />
           </div>
 
-          <Specs product={product}/>
+          <Specs product={product} />
 
           <div className="main__window__right__top"></div>
           <div className="main__window__right__bottom"></div>
@@ -80,9 +80,13 @@ const ProductComponent = ({ productId }) => {
 
       <section className="additional cont"></section>
 
-      <Divider label={"Similar products"} />
+      <Similar
+        products={products}
+        type={product.type}
+        color={product.specs.color}
+        product={product}
+      />
 
-      <section className="similar products cont"></section>
     </main>
   )
 }

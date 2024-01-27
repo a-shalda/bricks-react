@@ -4,6 +4,8 @@ import Divider from "@/components/general/divider";
 import ShowCategoryProducts from "@/components/general/show-products";
 import Slider from "@/components/main/slider";
 import Text from "@/components/main/text";
+import products from "@/data/products"
+
 
 export default function Home() {
   return (
@@ -12,7 +14,11 @@ export default function Home() {
       <Divider label={"Categories"} />
       <Categories />
       <Divider label={"Products"} />
-      <ShowCategoryProducts />
+
+      <section className="products cont">
+        <ShowCategoryProducts products={products} />
+      </section>
+      
       <Divider label={"About"} />
       <Text />
     </>

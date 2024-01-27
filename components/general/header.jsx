@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react"
 import Link from 'next/link'
 import Image from "next/image"
-import counters from "@/helpers/counters"
 import { useTriggerUseEffect } from "@/app/store"
 
 const Dropdown = () => {
@@ -44,10 +43,10 @@ const Header = () => {
   const [cartCounterStyle, setCartCounterStyle] = useState("")
 
   useEffect(() => {
-    counters.wish = JSON.parse(localStorage.getItem('wishlist')) || []
-    counters.cart = JSON.parse(localStorage.getItem('cart')) || []
+    const countersWish = JSON.parse(localStorage.getItem('wishlist')) || []
+    const countersCart = JSON.parse(localStorage.getItem('cart')) || []
 
-    if (counters.cart.length !== 0) {
+    if (countersCart.length !== 0) {
       setHeaderUpperRight("header__upper__right__has-counter")
       setHeaderUpperRightSaved("header__upper__right__saved__has-counter")
     }
@@ -56,8 +55,8 @@ const Header = () => {
       setHeaderUpperRightSaved("")
     }
 
-    let savedCounterNumber = counters.wish.length
-    let cartCounterNumber = counters.cart.length
+    let savedCounterNumber = countersWish.length
+    let cartCounterNumber = countersCart.length
 
     if (savedCounterNumber > 99) savedCounterNumber = 99
     if (cartCounterNumber > 99) cartCounterNumber = 99
