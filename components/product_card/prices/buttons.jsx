@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { useTriggerUseEffect } from "@/app/store"
 
 const Buttons = ({ product, quantity, setQuantity, setErrorAdding, handleModal }) => {
 
@@ -28,6 +29,7 @@ const Buttons = ({ product, quantity, setQuantity, setErrorAdding, handleModal }
     })
   })
 
+  const updateCounters = useTriggerUseEffect(state => state.change)
 
   const modifyWishlist = () => {
 
@@ -53,6 +55,7 @@ const Buttons = ({ product, quantity, setQuantity, setErrorAdding, handleModal }
       localStorage.setItem('wishlist', JSON.stringify(wishlist))
       setWishButton("Save")
     }
+    updateCounters()
   }
 
   let userQuantity
@@ -61,7 +64,6 @@ const Buttons = ({ product, quantity, setQuantity, setErrorAdding, handleModal }
     userQuantity = quantity
 
     if (userQuantity !== 0) {
-      console.log(cart)
 
       const order = {
         id: product.id,
@@ -89,7 +91,7 @@ const Buttons = ({ product, quantity, setQuantity, setErrorAdding, handleModal }
       handleModal()
       setQuantity(0)
 
-      // updateCounters();
+      updateCounters()
     }
     else {
       setErrorAdding("main__window__middle__top__stock__subtotal__value__select__focus")
@@ -98,8 +100,7 @@ const Buttons = ({ product, quantity, setQuantity, setErrorAdding, handleModal }
       }, 300);
     }
   }
-
-
+  
 
   return (
     <div className="main__window__middle__top__buy">

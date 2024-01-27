@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import Link from 'next/link'
 import Image from "next/image"
 import counters from "@/helpers/counters"
+import { useTriggerUseEffect } from "@/app/store"
 
 const Dropdown = () => {
 
@@ -28,6 +29,8 @@ const Dropdown = () => {
 
 const Header = () => {
 
+  const trigger = useTriggerUseEffect(state => state.triggerUseEffect)
+
   // localStorage.removeItem('cart');
   // localStorage.removeItem('wishlist');
 
@@ -39,8 +42,6 @@ const Header = () => {
 
   const [savedCounterStyle, setSavedCounterStyle] = useState("")
   const [cartCounterStyle, setCartCounterStyle] = useState("")
-
-  const [updateCounter, setUpdateCounter] = useState("")
 
   useEffect(() => {
     counters.wish = JSON.parse(localStorage.getItem('wishlist')) || []
@@ -72,7 +73,7 @@ const Header = () => {
       setTimeout(() => setCartCounterStyle("header__upper__right__saved__counter__not-blurred"), 100)
     }
     else setTimeout(() => setCartCounterStyle(""), 100)
-  }, [updateCounter])
+  }, [trigger])
 
   const [dropdownVisible, setDropdownVisible] = useState(false)
 
