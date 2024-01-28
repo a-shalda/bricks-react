@@ -36,9 +36,10 @@
         transition: opacity 200ms;
 
         &__bricks {
-          color: #a43434;
-          position: absolute;
-          top: -0.42rem;
+          // color: #a43434;
+          // position: absolute;
+          // top: -0.42rem;
+          // width: 1.75rem;
 
           &--active {
             opacity: 0.8;

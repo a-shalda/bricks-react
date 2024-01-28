@@ -93,7 +93,7 @@ const Header = () => {
           </div>
           <div className="header__upper__left__logo">
             <Link href="/" className="header__upper__left__logo__link">
-              <p className="header__upper__left__logo__bricks">Bricks</p>
+              <Image src="/images/log.webp" width="42" height="22" className="header__upper__left__logo__bricks" alt="logo"/>
             </Link>
           </div>
         </div>
