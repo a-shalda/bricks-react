@@ -41,12 +41,13 @@ const Footer = () => {
 
           <div className="footer__upper__column upper--four" itemScope itemType="https://schema.org/Organization">
             <p className="footer__upper__column__title">Contacts</p>
-            <p className="footer__upper__column__contact--name" itemProp="name">Bricks LLC</p>
+            <p className="footer__upper__column__contact--name" itemProp="name">Bricks Moscow LLC</p>
             <div className="footer__upper__column__title--address" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
-              <p className="footer__upper__column__contact" itemProp="addressLocality">Pittsburgh, USA</p>
-              <p className="footer__upper__column__contact" itemProp="streetAddress">5th ave, 100</p>
-              <p className="footer__upper__column__contact" itemProp="telephone">+1(555)555555</p>
-              <p className="footer__upper__column__contact" itemProp="email">info@bricks.com</p>
+              <p className="footer__upper__column__contact" itemProp="addressLocality">Moscow, Russia</p>
+              <p className="footer__upper__column__contact" itemProp="streetAddress">Michurinsky, retail center</p>
+              <p className="footer__upper__column__contact" itemProp="streetAddress">Ozyornaya Street, 42</p>
+              {/* <p className="footer__upper__column__contact" itemProp="telephone">+7(977)651-1237</p> */}
+              {/* <p className="footer__upper__column__contact" itemProp="email">info@bricks.com</p> */}
               <p className="footer__upper__column__contact">Mon-Sun 09:00-18:00</p>
 
               <Link href="https://api.whatsapp.com/send?phone=79776511237" target="_blank" className="footer__upper__column__contact__phone_button">
@@ -62,7 +63,7 @@ const Footer = () => {
 
         </div>
 
-        <div className="footer__lower">
+        {/* <div className="footer__lower">
 
           <div className="footer__lower__left">
             <Link href="https://www.youtube.com/channel/UCZPDt64PY3l6PkXKIWPiBIw" target="_blank">
@@ -76,7 +77,7 @@ const Footer = () => {
             </p>
           </div>
 
-        </div>
+        </div> */}
 
         </section>
     </footer>
