@@ -11,28 +11,28 @@ const Footer = () => {
           <div className="footer__upper__column upper--one">
             <ul>
               <li className="footer__upper__column__title">Categories</li>
-              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/categories/brick_slips.html">Klinker brick slips</Link></li>
-              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/categories/bricks.html">Klinker bricks</Link></li>
-              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/categories/thermopanels.html">Brick slip thermo panels</Link></li>
-              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/categories/fence_caps.html">Ceramic fence caps</Link></li>
-              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/categories/clay_pavers.html">Clay pavers</Link></li>
-              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/categories/stair_and_floor_tile.html">Stair and floor tile</Link></li>
-              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/categories/window_sills.html">Ceramic window sills</Link></li>
-              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/categories/mortars.html">Mortars</Link></li>
+              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/shop/brick_slips">Klinker brick slips</Link></li>
+              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/shop/bricks">Klinker bricks</Link></li>
+              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/shop/thermopanels">Brick slip thermo panels</Link></li>
+              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/shop/fence_caps">Ceramic fence caps</Link></li>
+              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/shop/clay_pavers">Clay pavers</Link></li>
+              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/shop/stair_floor_tile">Stair and floor tile</Link></li>
+              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/shop/window_sills">Ceramic window sills</Link></li>
+              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/shop/mortar">Mortars</Link></li>
             </ul>
           </div>
 
           <div className="footer__upper__column upper--two">
             <ul>
               <li className="footer__upper__column__title">Manufacturers</li>
-              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/categories/feldhaus.html">Feldhaus Klinker</Link></li>
-              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/categories/stroeher.html">Stroeher</Link></li>
-              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/categories/roben.html">Roben</Link></li>
-              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/categories/abc-klinkergruppe.html">ABC-Klinkergruppe</Link></li>
-              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/categories/king-klinker.html">King Klinker</Link></li>
-              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/categories/zg-clinker.html">ZG Clinker</Link></li>
-              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/categories/quick-mix.html">Quick Mix</Link></li>
-              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/categories/perel.html">Perel</Link></li>
+              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/shop/feldhaus_klinker">Feldhaus Klinker</Link></li>
+              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/shop/stroeher">Stroeher</Link></li>
+              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/shop/roben">Roben</Link></li>
+              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/shop/abc_klinkergruppe">ABC-Klinkergruppe</Link></li>
+              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/shop/king_klinker">King Klinker</Link></li>
+              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/shop/zg">ZG Clinker</Link></li>
+              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/shop/quick_mix">Quick Mix</Link></li>
+              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/shop/perel">Perel</Link></li>
             </ul>
           </div>
 

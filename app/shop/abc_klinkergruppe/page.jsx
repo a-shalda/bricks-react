@@ -1,10 +1,10 @@
 import products from "@/data/products"
 import Shop from "@/components/general/shop"
-import { textKingKlinker } from "@/data/texts"
+import { textAbc } from "@/data/texts"
 
-const title = "Mortar"
-const type = "Mortar"
-const text = ""
+const title = "Klinker brick slips ABC-Klinkergruppe"
+const type = "ABC-Klinkergruppe"
+const text = textAbc
 
 const ShopPage = () => {
 

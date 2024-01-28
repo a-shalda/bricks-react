@@ -14,7 +14,7 @@ const ShowProducts = ({ products, quantity, type, color, product }) => {
 
   for (let i = 0; i < products.length; i++) {
     if (type) {
-      if (products[i].type !== type) continue
+      if (products[i].type !== type && products[i].specs.manufacturer !== type) continue
     }
     if (color){
       if (products[i].specs.color !== color) continue

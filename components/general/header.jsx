@@ -11,15 +11,15 @@ const Dropdown = () => {
     <div className="header__upper__left__hamburger__dropdown">
       <div className="header__upper__left__hamburger__dropdown__content">
         <ul className="header__upper__left__hamburger__dropdown__ul">
-          <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href="/categories/catalog.html">All products</Link></li>
-          <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href="/categories/brick_slips.html">Klinker brick slips</Link></li>
-          <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href="/categories/bricks.html">Klinker bricks</Link></li>
-          <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href="/categories/thermopanels.html">Brick slip thermo panels</Link></li>
-          <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href="/categories/fence_caps.html">Ceramic fence caps</Link></li>
-          <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href="/categories/clay_pavers.html">Clay pavers</Link></li>
-          <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href="/categories/stair_and_floor_tile.html">Stair and floor tile</Link></li>
-          <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href="/categories/window_sills.html">Ceramic window sills</Link></li>
-          <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href="/categories/mortars.html">Mortars</Link></li>
+          <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href="/shop">All products</Link></li>
+          <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href="/shop/brick_slips">Klinker brick slips</Link></li>
+          <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href="/shop/bricks">Klinker bricks</Link></li>
+          <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href="/shop/thermopanels">Brick slip thermo panels</Link></li>
+          <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href="/shop/fence_caps">Ceramic fence caps</Link></li>
+          <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href="/shop/clay_pavers">Clay pavers</Link></li>
+          <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href="/shop/stair_floor_tile">Stair and floor tile</Link></li>
+          <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href="/shop/window_sills">Ceramic window sills</Link></li>
+          <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href="/shop/mortar">Mortar</Link></li>
         </ul>
       </div>
     </div>

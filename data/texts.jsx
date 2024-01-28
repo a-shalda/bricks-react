@@ -70,7 +70,7 @@ export const textAbc = (
 
 export const textRoben = (
   <>
-    <h2 className="h2">Robin</h2>
+    <h2 className="h2">Roben</h2>
     <p className="p"> Roben Corporation was founded in 1855 in Germany and today represents 14 production facilities located in Europe and the USA for the production of building materials from clinker and ceramics . Roben clinker tiles are produced from kilns of the German factories Querenstede and Bannbersheid, as well as the Polish factory Neumarkt. The products are famous for their strength characteristics and stunning appearance . The range includes both classic red smooth colors and vintage surfaces , with an aged front side or a glossy effect . There are always about 40 expressive color solutions in stock in Moscow that can satisfy the exacting demands of any designer and private developer ; in total, more than 50 articles of facade tiles are produced , mainly NF- format 240 * 71 mm , with provided corner elements . The price starts from 40 euros / m2 .</p>
     <h2 className="h2"> Review of Roben clinker tiles </h2>
     <p className="p">AARHUS, manufacturer Roben is a beautiful embodiment of ancient brickwork , which remains unshakable and unchanged , with a hint of eternity . Remaining itself and maintaining its appearance and shade for decades , it protects the building from external influences , leaving the impression of reliability and security of the fortress . Available in seven incomparable NF- format colors in a thickness of 14 mm and is always available in large quantities in stock in Moscow .</p>

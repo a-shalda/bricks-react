@@ -2,8 +2,8 @@ import products from "@/data/products"
 import Shop from "@/components/general/shop"
 import { textKingKlinker } from "@/data/texts"
 
-const title = "Mortar"
-const type = "Mortar"
+const title = "Clay pavers"
+const type = "Klinker clay paver"
 const text = ""
 
 const ShopPage = () => {
