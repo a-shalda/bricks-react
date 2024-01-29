@@ -1,7 +1,10 @@
-const Search = () => {
+import Search from "@/components/search/search"
+
+const SearchPage = () => {
+
   return (
-    <></>
+    <Search />
   )
 }
 
-export default Search
+export default SearchPage
