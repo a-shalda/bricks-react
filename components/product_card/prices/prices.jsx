@@ -1,6 +1,6 @@
 import calculatePrices from "@/helpers/calculatePrices"
 
-const Prices = ({ product }) => {
+const Prices = ({ product, cartType }) => {
 
   const indexOfDot = (number) => number.toString().indexOf('.')
 
@@ -43,20 +43,42 @@ const Prices = ({ product }) => {
     </>
   )
 
-  return (
-    <div className="main__window__middle__top__price" itemProp="offers" itemScope itemType="https://schema.org/Offer">
-      <div className="main__window__middle__top__price__left">
-        <p className="main__window__middle__top__price__left__box">
-          {(product.priceType !== 4) ? priceMHtml : pricePcHtml}
-        </p>
+  let prices
+
+  if (!cartType) {
+    prices = (
+      <div className="main__window__middle__top__price" itemProp="offers" itemScope itemType="https://schema.org/Offer">
+        <div className="main__window__middle__top__price__left">
+          <p className="main__window__middle__top__price__left__box">
+            {(product.priceType !== 4) ? priceMHtml : pricePcHtml}
+          </p>
+        </div>
+        <div className="main__window__middle__top__price__right">
+          <p className="main__window__middle__top__price__right__box">
+            {(product.priceType !== 4) ? pricePcHtml : null}
+          </p>
+        </div>
       </div>
-      <div className="main__window__middle__top__price__right">
-        <p className="main__window__middle__top__price__right__box">
-        {(product.priceType !== 4) ? pricePcHtml : null}
-        </p>
-      </div>
-    </div>
-  )
+    )
+    return prices
+  }
+  else if (cartType === true) {
+    prices = (
+      <>
+        <div className="cart__cont__product__price__left">
+          <p className="cart__cont__product__price__left__box">
+            {(product.priceType !== 4) ? priceMHtml : pricePcHtml}
+          </p>
+        </div>
+        <div className="cart__cont__product__price__right">
+          <p className="cart__cont__product__price__right__box">
+            {(product.priceType !== 4) ? pricePcHtml : null}
+          </p>
+        </div>
+      </>
+    )
+    return prices
+  }
 }
 
 export default Prices
