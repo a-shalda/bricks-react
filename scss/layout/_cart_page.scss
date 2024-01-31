@@ -648,3 +648,9 @@
 .button-hidden {
   display: none;
 }
+
+.modal--visible {
+  visibility: visible;
+  display: block;
+  opacity: 1;
+}

@@ -41,6 +41,13 @@ const Cart = () => {
 
   const [trigger, setTrigger] = useState(true)
 
+  const [openedModal, setOpenedModal] = useState(false)
+  const [modalVisible, setModalVisible] = useState("")
+
+
+  const switchModal = () => setOpenedModal(!openedModal)
+
+
 
   useEffect(() => {
 
@@ -55,14 +62,20 @@ const Cart = () => {
       else {
         setButtonProceed("button-hidden")
         setButtonContinue("")
+        window.scrollTo(0, 0)
       }
     }
-    document.body.classList.remove("stop-scroll")
 
-  }, [trigger])
+    if (openedModal) {
+      setModalVisible("modal--visible")
+      document.body.classList.add("stop-scroll")
+    }
+    else {
+      setModalVisible("")
+      document.body.classList.remove("stop-scroll")
+    }
 
-
-  // console.log(cart)
+  }, [trigger, openedModal])
 
   const minusButton = (id) => {
 
@@ -71,7 +84,6 @@ const Cart = () => {
       if (item.id === id) {
 
         let updatedCart = [...cart]
-
         if (item.quantity >= 1) {
           updatedCart[index].quantity--
           localStorage.setItem('cart', JSON.stringify(updatedCart))
@@ -98,7 +110,6 @@ const Cart = () => {
       if (item.id === id) {
 
         let updatedCart = [...cart]
-
         if (item.quantity >= 1) {
           updatedCart[index].quantity++
           localStorage.setItem('cart', JSON.stringify(updatedCart))
@@ -115,7 +126,6 @@ const Cart = () => {
       if (item.id === id) {
 
         let updatedCart = [...cart]
-
         updatedCart.splice(index, 1)
         localStorage.setItem('cart', JSON.stringify(updatedCart))
         setCart(updatedCart)
@@ -282,10 +292,17 @@ const Cart = () => {
   })
 
 
+  const handleForm = () => {
+    const orderRandom = (Math.random() * 1000).toFixed(0)
 
+  }
 
+  const [formName, setFormName] = useState("")
+  const [formPhone, setFormPhone] = useState("")
 
-
+  const handleFormName = (e) => setFormName(e.target.value)
+  const handleFormPhone = (e) => setFormPhone(e.target.value)
+  
 
   return (
     <main>
@@ -295,26 +312,44 @@ const Cart = () => {
           <p className="cart__checkout__subtotal">
             {subtotalValue}
           </p>
-          <button className={`cart__checkout__proceed ${buttonProceed}`}>Proceed to checkout</button>
+          <button
+            className={`cart__checkout__proceed ${buttonProceed}`}
+            onPointerDown={switchModal}
+          >Proceed to checkout</button>
           <Link href="/" className={`cart__checkout__continue ${buttonContinue}`}>Continue shopping</Link>
         </div>
         <div className="cart__cont cont">
           {cartProducts.map(product => product)}
         </div>
 
-        <div className="cart__modal">
+        <div className={`cart__modal ${modalVisible}`}>
           <div className="cart__modal__box">
             <div className="cart__modal__box__content">
 
               <p className="cart__modal__box__content__title">Checkout</p>
-              <span className="cart__modal__box__content__close">&times;</span>
+              <span
+                className="cart__modal__box__content__close"
+                onPointerDown={switchModal}
+              >&times;</span>
 
-              <form className="cart__modal__box__content__form">
+              <form
+                onSubmit={handleForm}
+                className="cart__modal__box__content__form"
+              >
                 <label htmlFor="name">Name
-                  <input type="text" name="name" id="name" className="cart__modal__box__content__form__input" required />
+                  <input
+                    onChange={(e) => handleFormName(e)}
+                    value={formName}
+                    type="text" name="name" id="name"
+                    className="cart__modal__box__content__form__input" required
+                  />
                 </label>
                 <label htmlFor="phone">Phone
-                  <input type="tel" name="phone" id="phone" className="cart__modal__box__content__form__input" required />
+                  <input
+                    onChange={(e) => handleFormPhone(e)}
+                    value={formPhone}
+                    type="tel" name="phone" id="phone"
+                    className="cart__modal__box__content__form__input" required />
                 </label>
                 {/* <label htmlFor="email">Email
                   <input type="email" name="email" id="email" className="cart__modal__box__content__form__input" required />
@@ -325,7 +360,10 @@ const Cart = () => {
                   className="cart__modal__box__content__form__submit" />
               </form>
 
-              <button className="cart__modal__box__content__continue">Continue shopping</button>
+              <button
+                className="cart__modal__box__content__continue"
+                onPointerDown={switchModal}
+              >Continue shopping</button>
               <p className="cart__modal__box__content__subtotal"></p>
               <p className="cart__modal__box__content__order"></p>
             </div>
