@@ -11,8 +11,13 @@ import calculateOptions from "@/helpers/calculateOptions"
 
 import Prices from "@/components/product_card/prices/prices"
 
+import { useTriggerUseEffect } from "@/app/store"
+
+
 
 const Cart = () => {
+
+  const updateCounters = useTriggerUseEffect(state => state.change)
 
   const [cart, setCart] = useState("")
 
@@ -34,6 +39,9 @@ const Cart = () => {
   const [buttonProceed, setButtonProceed] = useState("button-hidden")
   const [buttonContinue, setButtonContinue] = useState("")
 
+  const [trigger, setTrigger] = useState(true)
+
+
   useEffect(() => {
 
     parsedCart = JSON.parse(localStorage.getItem('cart')) || []
@@ -41,15 +49,83 @@ const Cart = () => {
       setCart(parsedCart)
 
       if (parsedCart[0]) {
-      setButtonProceed("")
-      setButtonContinue("button-hidden")
+        setButtonProceed("")
+        setButtonContinue("button-hidden")
       }
       else {
         setButtonProceed("button-hidden")
         setButtonContinue("")
       }
     }
-  }, [])
+    document.body.classList.remove("stop-scroll")
+
+  }, [trigger])
+
+
+  // console.log(cart)
+
+  const minusButton = (id) => {
+
+    cart.forEach((item, index) => {
+
+      if (item.id === id) {
+
+        let updatedCart = [...cart]
+
+        if (item.quantity >= 1) {
+          updatedCart[index].quantity--
+          localStorage.setItem('cart', JSON.stringify(updatedCart))
+          setCart(updatedCart)
+          updateCounters()
+
+          if (updatedCart[index].quantity === 0) {
+            updatedCart.splice(index, 1)
+            localStorage.setItem('cart', JSON.stringify(updatedCart))
+            setCart(updatedCart)
+            updateCounters()
+            setTrigger(!trigger)
+          }
+        }
+      }
+    })
+  }
+
+  const plusButton = (id) => {
+    if (totalCostCart >= totalCostCartLimit) return
+
+    cart.forEach((item, index) => {
+
+      if (item.id === id) {
+
+        let updatedCart = [...cart]
+
+        if (item.quantity >= 1) {
+          updatedCart[index].quantity++
+          localStorage.setItem('cart', JSON.stringify(updatedCart))
+          setCart(updatedCart)
+        }
+      }
+    })
+  }
+
+  const deleteButton = (id) => {
+
+    cart.forEach((item, index) => {
+
+      if (item.id === id) {
+
+        let updatedCart = [...cart]
+
+        updatedCart.splice(index, 1)
+        localStorage.setItem('cart', JSON.stringify(updatedCart))
+        setCart(updatedCart)
+        updateCounters()
+        setTrigger(!trigger)
+      }
+    })
+  }
+
+
 
   totalCostCart = 0
   totalSquareMetersCart = 0
@@ -165,8 +241,14 @@ const Cart = () => {
               <div className="cart__cont__product__quantity__modify">
                 {m2OrLinOrPcs}
                 <div className="cart__cont__product__quantity__buttons">
-                  <a className="cart__cont__product__quantity__buttons__minus">-</a>
-                  <a className="cart__cont__product__quantity__buttons__plus">+</a>
+                  <button
+                    className="cart__cont__product__quantity__buttons__minus"
+                    onPointerDown={() => minusButton(product.id)}
+                  >-</button>
+                  <button
+                    className="cart__cont__product__quantity__buttons__plus"
+                    onPointerDown={() => plusButton(product.id)}
+                  >+</button>
                 </div>
               </div>
 
@@ -177,7 +259,10 @@ const Cart = () => {
 
               <div className="cart__cont__product__quantity__sub-del">
                 <p className="cart__cont__product__quantity__subtotal">Subtotal: €{dataObj["priceModified"]}</p>
-                <a className="cart__cont__product__quantity__delete">Delete</a>
+                <button
+                  className="cart__cont__product__quantity__delete"
+                  onPointerDown={() => deleteButton(product.id)}
+                >Delete</button>
               </div>
 
             </div>
@@ -195,6 +280,7 @@ const Cart = () => {
       }
     })
   })
+
 
 
 
