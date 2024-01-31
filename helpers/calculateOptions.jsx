@@ -1,7 +1,4 @@
 import calculatePrices from "@/helpers/calculatePrices"
-import Image from "next/image"
-import Link from "next/link"
-import Prices from "@/components/product_card/prices/prices"
 
 const Option = ({ order, product, totalPacks, totalVolume, priceModified, totalPacksModified, piecesModified, totalWeight, totalPallets }) => {
 
@@ -23,9 +20,9 @@ const Option = ({ order, product, totalPacks, totalVolume, priceModified, totalP
   else if (p === 4) return <option value={totalPacks}>{piecesModified}&nbsp; = &nbsp;€{priceModified} &nbsp;({totalPacksModified}, {totalWeight} kg, {totalPallets})</option>
 }
 
-const calculateOptions = (product, cartPacks ) => {
+const calculateOptions = (product, cartPacks) => {
 
-  const priceTotalLimit = 9000
+  let priceTotalLimit = 9000
   const packsTotalLimit = 1000
 
   const m2Limit = 1000
@@ -47,8 +44,6 @@ const calculateOptions = (product, cartPacks ) => {
   let productTitle = ''
   let productHTML = ''
 
-
-
   let totalPiecesCartMofified = ''
   let totalPacksCartMofified = ''
 
@@ -65,7 +60,7 @@ const calculateOptions = (product, cartPacks ) => {
   let pieces = 0
   let totalPacks = 0
   let weight = Number(product.specs.weightOf1PackGramm / 100)
-  let weightOf1Piece = Number(product.specs.weightOf1PieceGramm / 100) //For bricks and mortars
+  let weightOf1Piece = Number(product.specs.weightOf1PieceGramm / 100) //For bricks and mortar
   let totalWeight = 0
   let piecesInPallet = product.specs.piecesInPallet
   let squareMetersInPallet = product.specs.squareMetersInPallet
@@ -101,17 +96,29 @@ const calculateOptions = (product, cartPacks ) => {
 
   if (!cartPacks) optionsHTML.push(<Option key={"first"} order={"first"} product={product} />)
 
-  for (let i = 0; i < 90; i++) {
+  let generalLimit = 0
+  let brickLimit = 0
 
-    if (totalVolume > 90) break
+  if (cartPacks) {
+    generalLimit = 5000
+    brickLimit = 5000
+    priceTotalLimit = 100000
+  } else {
+    generalLimit = 90
+    brickLimit = 9
+    priceTotalLimit = 9000
+  } 
+
+  for (let i = 0; i < generalLimit; i++) {
+
+    if (totalVolume > generalLimit) break
     if (price >= priceTotalLimit) break
 
     pieces = pieces + basePieces
     let totalPalletsNumber
 
     if (productType === 'Klinker brick' || productType === 'Klinker clay paver') {
-      if (i === 9) break
-      if (price >= priceTotalLimit) break
+      if (i === brickLimit) break
       totalVolume = Number((totalVolume + baseVolume).toFixed(2))
       price = (pieces * pricePc).toFixed(2)
       totalPallets = Number((pieces / piecesInPallet).toFixed(2))
