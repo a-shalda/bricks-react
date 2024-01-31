@@ -1,7 +1,6 @@
-import calculateOptions from "@/helpers/calculateOptions"
+const CartProduct = ({ product }) => {
 
-const CartProduct = ({ product, cartQuantity}) => {
-  return calculateOptions(product, cartQuantity)
+  return product
 }
 
 export default CartProduct

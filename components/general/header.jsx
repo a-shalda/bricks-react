@@ -30,8 +30,8 @@ const Header = () => {
 
   const trigger = useTriggerUseEffect(state => state.triggerUseEffect)
 
-  // localStorage.removeItem('cart');
-  // localStorage.removeItem('wishlist');
+  // localStorage.removeItem('cart')
+  // localStorage.removeItem('wishlist')
 
   const [headerUpperRight, setHeaderUpperRight] = useState("")
   const [headerUpperRightSaved, setHeaderUpperRightSaved] = useState("")

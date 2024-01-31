@@ -23,7 +23,7 @@ const Option = ({ order, product, totalPacks, totalVolume, priceModified, totalP
   else if (p === 4) return <option value={totalPacks}>{piecesModified}&nbsp; = &nbsp;€{priceModified} &nbsp;({totalPacksModified}, {totalWeight} kg, {totalPallets})</option>
 }
 
-const calculateOptions = (product, cartPacks) => {
+const calculateOptions = (product, cartPacks ) => {
 
   const priceTotalLimit = 9000
   const packsTotalLimit = 1000
@@ -47,14 +47,7 @@ const calculateOptions = (product, cartPacks) => {
   let productTitle = ''
   let productHTML = ''
 
-  let totalCostCart = 0
-  let totalCostCartLimit = 100000 //Used to set a ceiling on the order total
-  let totalSquareMetersCart = 0
-  let totalLinearMetersCart = 0
-  let totalPacksCart = 0
-  let totalPiecesCart = 0
-  let totalWeightCart = 0
-  let totalPalletsCart = 0
+
 
   let totalPiecesCartMofified = ''
   let totalPacksCartMofified = ''
@@ -114,6 +107,7 @@ const calculateOptions = (product, cartPacks) => {
     if (price >= priceTotalLimit) break
 
     pieces = pieces + basePieces
+    let totalPalletsNumber
 
     if (productType === 'Klinker brick' || productType === 'Klinker clay paver') {
       if (i === 9) break
@@ -124,6 +118,7 @@ const calculateOptions = (product, cartPacks) => {
       totalPacks = totalPallets
       totalWeight = Number((totalWeight + (weightOf1Piece * piecesInPallet)).toFixed(2))
       piecesModified = pieces + ` pcs`
+      totalPalletsNumber = totalPallets
     }
     else {
       totalVolume = totalVolume + baseVolume
@@ -154,8 +149,8 @@ const calculateOptions = (product, cartPacks) => {
       }
     }
 
-    if (totalPallets < 2) { totalPallets = totalPallets + ` pallet` }
-    else { totalPallets = totalPallets + ` pallets` }
+    // if (totalPallets < 2) { totalPallets = totalPallets + ` pallet` }
+    // else { totalPallets = totalPallets + ` pallets` }
 
     let priceLength = String(price).length
     let priceModified = String(price)
@@ -164,75 +159,19 @@ const calculateOptions = (product, cartPacks) => {
     if (!cartPacks) optionsHTML.push(<Option key={totalPacks} product={product} totalPacks={totalPacks} totalVolume={totalVolume} priceModified={priceModified} totalPacksModified={totalPacksModified} piecesModified={piecesModified} totalWeight={totalWeight} totalPallets={totalPallets} />)
     else {
 
-
       if (totalPacks === quantityPacks) {
 
-        totalCostCart = (Number(totalCostCart) + Number(price)).toFixed(2)
-        totalSquareMetersCart = (Number(totalSquareMetersCart) + Number(totalVolume)).toFixed(2)
-        totalPacksCart = (Number(totalPacksCart) + Number(totalPacks))
-        totalPiecesCart = (Number(totalPiecesCart) + Number(pieces))
-        totalWeightCart = (Number(totalWeightCart) + Number(totalWeight)).toFixed(2)
-        totalPalletsCart = (Number(totalPalletsCart) + Number(totalPallets)).toFixed(2)
-
-        productTitle = product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format;
-
-        let NotBrickOrPaver
-        if (product.type !== 'Klinker brick' && product.type !== 'Klinker clay paver') {
-          NotBrickOrPaver = <p className="cart__cont__product__quantity__packs">Packs: {totalPacks}</p>
+        return {
+          price: price,
+          totalVolume: totalVolume,
+          totalPacks: totalPacks,
+          pieces: pieces,
+          totalWeight: totalWeight,
+          totalPallets: totalPallets,
+          priceModified: priceModified,
+          totalPalletsNumber: totalPalletsNumber,
+          piecesModified: piecesModified
         }
-
-
-        // updateTotal()
-
-        productHTML = (
-          <div className="cart__cont__product">
-            <div className="cart__cont__product__image">
-              <a href={product.filepath}>
-                <Image width="350" height="229" className="cart__cont__product__image__img" src={product.image_thumbnail[0]} alt={product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format} loading="lazy" />
-              </a>
-            </div>
-            <div className="cart__cont__product__price">
-              <Prices
-                product={product}
-                cartType={true}
-              />
-            </div>
-            <div className="cart__cont__product__vendor">
-              <p className="cart__cont__product__vendor__code">Code:&nbsp;</p>
-              <p className="cart__cont__product__vendor__id">{product.id}</p>
-            </div>
-            <div className="cart__cont__product__title">
-              <Link href={product.filepath}>
-                <p className="cart__cont__product__title__name">{productTitle}</p>
-              </Link>
-            </div>
-            <div className="cart__cont__product__quantity">
-              <div className="cart__cont__product__quantity__modify">
-                <p className="cart__cont__product__quantity__qty">Quantity: {totalVolume} m&sup2;</p>
-
-                <div className="cart__cont__product__quantity__buttons">
-                  <a className="cart__cont__product__quantity__buttons__minus">-</a>
-                  <a className="cart__cont__product__quantity__buttons__plus">+</a>
-                </div>
-              </div>
-
-              {NotBrickOrPaver}
-              <p className="cart__cont__product__quantity__pieces">Pieces: {pieces}</p>
-              <p className="cart__cont__product__quantity__weight">Weight (kg): {totalWeight}</p>
-              <p className="cart__cont__product__quantity__pallets">Pallets: {totalPallets}</p>
-
-              <div className="cart__cont__product__quantity__sub-del">
-                <p className="cart__cont__product__quantity__subtotal">Subtotal: €{priceModified}</p>
-                <a className="cart__cont__product__quantity__delete">Delete</a>
-              </div>
-
-            </div>
-            <div className="cart__cont__product__save"></div>
-            <div className="cart__cont__product__remove"></div>
-          </div>
-        )
-
-        return productHTML
       }
     }
   }
