@@ -5,14 +5,12 @@ import Link from "next/link"
 import Image from "next/image"
 
 import products from "@/data/products"
-import CartProduct from "@/components/cart/cart-product"
-
 import calculateOptions from "@/helpers/calculateOptions"
 
+import CartProduct from "@/components/cart/cart-product"
 import Prices from "@/components/product_card/prices/prices"
 
 import { useTriggerUseEffect } from "@/app/store"
-
 
 
 const Cart = () => {
@@ -22,6 +20,8 @@ const Cart = () => {
   const [cart, setCart] = useState("")
 
   let cartProducts = []
+  let orderSummary = ""
+  let orderProducts = []
 
   let totalCostCart = 0
   let totalCostCartLimit = 100000 //Used to set a ceiling on the order total
@@ -44,10 +44,7 @@ const Cart = () => {
   const [openedModal, setOpenedModal] = useState(false)
   const [modalVisible, setModalVisible] = useState("")
 
-
   const switchModal = () => setOpenedModal(!openedModal)
-
-
 
   useEffect(() => {
 
@@ -135,8 +132,6 @@ const Cart = () => {
     })
   }
 
-
-
   totalCostCart = 0
   totalSquareMetersCart = 0
   totalLinearMetersCart = 0
@@ -209,28 +204,78 @@ const Cart = () => {
           subtotalValue = (
             <><span className="cart__checkout__subtotal__bold">Total: €{totalCostCartModified} ({totalItems})<br /></span> {totalSquareMetersCart} m<sup>2</sup>, {totalLinearMetersCart} lin.m, {totalPiecesCartMofified}, <br />{totalPacksCartMofified}, {totalWeightCart} kg, {Number(totalPalletsCart).toFixed(2)} pal</>
           )
+          orderSummary = `Total: €${totalCostCartModified} (${totalItems}) ${totalSquareMetersCart} m2, ${totalLinearMetersCart} lin.m, ${totalPiecesCartMofified}, ${totalPacksCartMofified}, ${totalWeightCart} kg, ${Number(totalPalletsCart).toFixed(2)} pal`
         }
         else if (totalSquareMetersCart !== 0) {
           if (totalPacksCart === 0) {
             subtotalValue = (<><span className="cart__checkout__subtotal__bold">Total: €{totalCostCartModified} ({totalItems})<br /></span> {totalSquareMetersCart} m<sup>2</sup>, {totalPiecesCartMofified}, <br />{totalWeightCart} kg, {Number(totalPalletsCart).toFixed(2)} pal</>)
+            orderSummary = `Total: €${totalCostCartModified} (${totalItems}) ${totalSquareMetersCart} m2, ${totalPiecesCartMofified}, ${totalWeightCart} kg, ${Number(totalPalletsCart).toFixed(2)} pal`
           }
           else {
             subtotalValue = (<><span className="cart__checkout__subtotal__bold">Total: €{totalCostCartModified} ({totalItems})<br /></span> {totalSquareMetersCart} m<sup>2</sup>, {totalPiecesCartMofified}, <br />{totalPacksCartMofified}, {totalWeightCart} kg, {Number(totalPalletsCart).toFixed(2)} pal</>)
+            orderSummary = `Total: €${totalCostCartModified} (${totalItems}) ${totalSquareMetersCart} m2, ${totalPiecesCartMofified}, ${totalPacksCartMofified}, ${totalWeightCart} kg, ${Number(totalPalletsCart).toFixed(2)} pal`
           }
         }
         else if (totalLinearMetersCart !== 0) {
           subtotalValue = (<><span className="cart__checkout__subtotal__bold">Total: €{totalCostCartModified} ({totalItems})<br /></span> {totalLinearMetersCart} lin.m, {totalPiecesCartMofified}, <br />{totalPacksCartMofified}, {totalWeightCart} kg, {Number(totalPalletsCart).toFixed(2)} pal</>)
+          orderSummary = `Total: €${totalCostCartModified} (${totalItems}) ${totalLinearMetersCart} lin.m, ${totalPiecesCartMofified}, ${totalPacksCartMofified}, ${totalWeightCart} kg, ${Number(totalPalletsCart).toFixed(2)} pal`
         }
         else if (totalPacksCart !== 0) {
           subtotalValue = (<><span className="cart__checkout__subtotal__bold">Total: €{totalCostCartModified} ({totalItems})<br /></span> {totalPiecesCartMofified}, <br />{totalPacksCartMofified}, {totalWeightCart} kg, {Number(totalPalletsCart).toFixed(2)} pal</>)
+          orderSummary = `Total: €${totalCostCartModified} (${totalItems}) ${totalPiecesCartMofified}, ${totalPacksCartMofified}, ${totalWeightCart} kg, ${Number(totalPalletsCart).toFixed(2)} pal`
         }
+
+        let isImageLink, isTitleImageLink, areButtons, isDelete
+
+        if (!openedModal) {
+          isImageLink = (
+            <a href={product.filepath}>
+              <Image width="350" height="229" className="cart__cont__product__image__img" src={product.image_thumbnail[0]} alt={product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format} loading="lazy" />
+            </a>
+          )
+          isTitleImageLink = (
+            <Link href={product.filepath}>
+              <p className="cart__cont__product__title__name">{productTitle}</p>
+            </Link>
+          )
+          areButtons = (
+            <div className="cart__cont__product__quantity__buttons">
+              <button
+                className="cart__cont__product__quantity__buttons__minus"
+                onPointerDown={() => minusButton(product.id)}
+              >-</button>
+              <button
+                className="cart__cont__product__quantity__buttons__plus"
+                onPointerDown={() => plusButton(product.id)}
+              >+</button>
+            </div>
+          )
+          isDelete = (
+            <button
+              className="cart__cont__product__quantity__delete"
+              onPointerDown={() => deleteButton(product.id)}
+            >Delete</button>
+          )
+        }
+        else {
+          isImageLink = (
+            <Image width="350" height="229" className="cart__cont__product__image__img-checkout" src={product.image_thumbnail[0]} alt={product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format} loading="lazy" />
+          )
+          isTitleImageLink = (
+            <p className="cart__cont__product__title__name-checkout">{productTitle}</p>
+          )
+          areButtons = (
+            <div className="cart__cont__product__quantity__buttons"></div>
+          )
+          isDelete = ""
+        }
+
+        orderProducts.push(`[${productTitle}]: ${dataObj["totalPacks"]} packs (Quantity: ${(Number(dataObj["totalVolume"])).toFixed(2)}), ${dataObj["totalPallets"]} pallets, ${dataObj["totalWeight"]} kg, ${dataObj["pieces"]} pcs, €${dataObj["priceModified"]}`)
 
         productHTML = (
           <div className="cart__cont__product">
             <div className="cart__cont__product__image">
-              <a href={product.filepath}>
-                <Image width="350" height="229" className="cart__cont__product__image__img" src={product.image_thumbnail[0]} alt={product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format} loading="lazy" />
-              </a>
+              {isImageLink}
             </div>
             <div className="cart__cont__product__price">
               <Prices
@@ -243,23 +288,12 @@ const Cart = () => {
               <p className="cart__cont__product__vendor__id">{product.id}</p>
             </div>
             <div className="cart__cont__product__title">
-              <Link href={product.filepath}>
-                <p className="cart__cont__product__title__name">{productTitle}</p>
-              </Link>
+              {isTitleImageLink}
             </div>
             <div className="cart__cont__product__quantity">
               <div className="cart__cont__product__quantity__modify">
                 {m2OrLinOrPcs}
-                <div className="cart__cont__product__quantity__buttons">
-                  <button
-                    className="cart__cont__product__quantity__buttons__minus"
-                    onPointerDown={() => minusButton(product.id)}
-                  >-</button>
-                  <button
-                    className="cart__cont__product__quantity__buttons__plus"
-                    onPointerDown={() => plusButton(product.id)}
-                  >+</button>
-                </div>
+                {areButtons}
               </div>
 
               {NotBrickOrPaver}
@@ -269,10 +303,7 @@ const Cart = () => {
 
               <div className="cart__cont__product__quantity__sub-del">
                 <p className="cart__cont__product__quantity__subtotal">Subtotal: €{dataObj["priceModified"]}</p>
-                <button
-                  className="cart__cont__product__quantity__delete"
-                  onPointerDown={() => deleteButton(product.id)}
-                >Delete</button>
+                {isDelete}
               </div>
 
             </div>
@@ -291,18 +322,114 @@ const Cart = () => {
     })
   })
 
-
-  const handleForm = () => {
-    const orderRandom = (Math.random() * 1000).toFixed(0)
-
-  }
-
   const [formName, setFormName] = useState("")
   const [formPhone, setFormPhone] = useState("")
 
   const handleFormName = (e) => setFormName(e.target.value)
   const handleFormPhone = (e) => setFormPhone(e.target.value)
-  
+
+  const [successMessageVisible, setSuccessMessageVisible] = useState(false)
+
+  const orderRandom = (Math.random() * 1000).toFixed(0)
+
+  const handleForm = () => {
+
+    setSuccessMessageVisible(true)
+
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    const d = new Date()
+    const month = months[d.getMonth()]
+    const day = d.getDay()
+    const date = month + ', ' + day
+
+    const sendOrder = fetch('https://bricks-backend-d8hx.onrender.com/api/orders/', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        orderNumber: 'Order #' + orderRandom + ', ',
+        name: formName + ', ',
+        total: orderSummary + ', ',
+        date: date + ', ',
+        phone: formPhone,
+        order: orderProducts.join(" ")
+      })
+    })
+
+    localStorage.removeItem('cart')
+    updateCounters()
+  }
+
+  const removeStopScroll = () => document.body.classList.remove("stop-scroll")
+
+  let modalContent
+  if (!successMessageVisible) {
+    modalContent = (
+      <div className="cart__modal__box__content">
+        <p className="cart__modal__box__content__title">Checkout</p>
+        <span
+          className="cart__modal__box__content__close"
+          onPointerDown={switchModal}
+        >&times;</span>
+
+        <form
+          onSubmit={handleForm}
+          className="cart__modal__box__content__form"
+        >
+          <label htmlFor="name">Name
+            <input
+              onChange={(e) => handleFormName(e)}
+              value={formName}
+              type="text" name="name" id="name"
+              className="cart__modal__box__content__form__input" required
+            />
+          </label>
+          <label htmlFor="phone">Phone
+            <input
+              onChange={(e) => handleFormPhone(e)}
+              value={formPhone}
+              type="tel" name="phone" id="phone"
+              className="cart__modal__box__content__form__input" required />
+          </label>
+          {/* <label htmlFor="email">Email
+            <input type="email" name="email" id="email" className="cart__modal__box__content__form__input" required />
+            </label> */}
+          <input type="hidden" name="orderString" id="orderString" className="cart__modal__box__content__form__back" />
+          <input type="hidden" name="cartString" id="cartString" className="cart__modal__box__content__order__back" />
+          <input type="submit" value="Place order" name="submit" id="submit"
+            className="cart__modal__box__content__form__submit" />
+        </form>
+
+        <button
+          className="cart__modal__box__content__continue"
+          onPointerDown={switchModal}
+        >Continue shopping</button>
+        <p className="cart__modal__box__content__subtotal">
+          {subtotalValue}
+        </p>
+        <div className="cart__modal__box__content__order">
+          {cartProducts.map(product => product)}
+        </div>
+      </div>
+    )
+  }
+  else {
+    modalContent = (
+      <div className="cart__modal__box__content">
+        <div className="cart__modal__box__content__placed">
+          <p className="cart__modal__box__content__placed__message">
+            Thank you, {formName}, your order #{orderRandom} has been formed. We will contact you shortly.
+          </p>
+          <Link
+            href="/"
+            className="cart__modal__box__content__placed__button"
+            onPointerDown={removeStopScroll}
+          >Go to home page</Link>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <main>
@@ -321,52 +448,9 @@ const Cart = () => {
         <div className="cart__cont cont">
           {cartProducts.map(product => product)}
         </div>
-
         <div className={`cart__modal ${modalVisible}`}>
           <div className="cart__modal__box">
-            <div className="cart__modal__box__content">
-
-              <p className="cart__modal__box__content__title">Checkout</p>
-              <span
-                className="cart__modal__box__content__close"
-                onPointerDown={switchModal}
-              >&times;</span>
-
-              <form
-                onSubmit={handleForm}
-                className="cart__modal__box__content__form"
-              >
-                <label htmlFor="name">Name
-                  <input
-                    onChange={(e) => handleFormName(e)}
-                    value={formName}
-                    type="text" name="name" id="name"
-                    className="cart__modal__box__content__form__input" required
-                  />
-                </label>
-                <label htmlFor="phone">Phone
-                  <input
-                    onChange={(e) => handleFormPhone(e)}
-                    value={formPhone}
-                    type="tel" name="phone" id="phone"
-                    className="cart__modal__box__content__form__input" required />
-                </label>
-                {/* <label htmlFor="email">Email
-                  <input type="email" name="email" id="email" className="cart__modal__box__content__form__input" required />
-                </label> */}
-                <input type="hidden" name="orderString" id="orderString" className="cart__modal__box__content__form__back" />
-                <input type="hidden" name="cartString" id="cartString" className="cart__modal__box__content__order__back" />
-                <input type="submit" value="Place order" name="submit" id="submit"
-                  className="cart__modal__box__content__form__submit" />
-              </form>
-
-              <button
-                className="cart__modal__box__content__continue"
-                onPointerDown={switchModal}
-              >Continue shopping</button>
-              <p className="cart__modal__box__content__subtotal"></p>
-              <p className="cart__modal__box__content__order"></p>
-            </div>
+            {modalContent}
           </div>
         </div>
       </div>

@@ -388,7 +388,7 @@
     transition: opacity 200ms, visibility 200ms;
 
     position: fixed; 
-    z-index: 3;
+    z-index: -1;
     padding: 1rem;
     left: 0;
     top: 0;
@@ -417,6 +417,7 @@
         margin: auto;
         background-color: white;
         padding: 1rem;
+
 
         &__title {
           font-weight: 700;
@@ -653,4 +654,12 @@
   visibility: visible;
   display: block;
   opacity: 1;
+  z-index: 3;
+
+}
+
+.stop-scroll {
+  overflow: hidden;
+  margin: 0;
+  height: 100%;
 }

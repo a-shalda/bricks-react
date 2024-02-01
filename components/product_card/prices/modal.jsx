@@ -2,6 +2,9 @@ import Link from 'next/link'
 
 const Modal = ({ modal, handleContinue, toCartMessage }) => {
 
+  const removeStopScroll = () => document.body.classList.remove("stop-scroll")
+
+
   return (
     <div className={`modal__cart ${modal}`}>
       <div className="modal__cart__box">
@@ -16,7 +19,12 @@ const Modal = ({ modal, handleContinue, toCartMessage }) => {
             <br></br>
             {toCartMessage}
           </p>
-          <Link href="/cart" className="modal__cart__box__content__cart">Go to cart</Link>
+          <Link
+            href="/cart"
+            className="modal__cart__box__content__cart"
+            onPointerDown={removeStopScroll}
+          >
+            Go to cart</Link>
           <button
             onPointerDown={handleContinue}
             className="modal__cart__box__content__continue"
