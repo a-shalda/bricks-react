@@ -9,6 +9,9 @@ import calculateOptions from "@/helpers/calculateOptions"
 
 import CartProduct from "@/components/cart/cart-product"
 import Prices from "@/components/product_card/prices/prices"
+import ButtonPlus from "@/components/cart/buttons/button-plus"
+import ButtonMinus from "@/components/cart/buttons/button-minus"
+import ButtonDelete from "@/components/cart/buttons/button-delete"
 
 import { useTriggerUseEffect } from "@/app/store"
 
@@ -148,6 +151,7 @@ const Cart = () => {
 
         const dataObj = calculateOptions(product, item.quantity)
 
+        //Updating total amounts (start)
         totalCostCart = (Number(totalCostCart) + Number(dataObj["price"])).toFixed(2)
         totalPiecesCart = (Number(totalPiecesCart) + Number(dataObj["pieces"]))
         totalWeightCart = (Number(totalWeightCart) + Number(dataObj["totalWeight"])).toFixed(2)
@@ -164,25 +168,9 @@ const Cart = () => {
         else if (product.priceType !== 4) {
           totalSquareMetersCart = (Number(totalSquareMetersCart) + Number(dataObj["totalVolume"])).toFixed(2)
         }
+        //Updating total amounts (end)
 
-        const productTitle = product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format;
-
-        let BrickOrPaverOrNot
-        let NotBrickOrPaver
-
-        if (product.type !== 'Klinker brick' && product.type !== 'Klinker clay paver') {
-          BrickOrPaverOrNot = <p className="cart__cont__product__quantity__pallets">Pallets: {dataObj["totalPallets"]}</p>
-          NotBrickOrPaver = <p className="cart__cont__product__quantity__packs">Packs: {dataObj["totalPacks"]}</p>
-        }
-        else {
-          BrickOrPaverOrNot = <p className="cart__cont__product__quantity__pallets">Pallets: {dataObj["totalPalletsNumber"]}</p>
-        }
-
-        let m2OrLinOrPcs
-        if (product.priceType === 3) m2OrLinOrPcs = <p className="cart__cont__product__quantity__qty">Quantity: {dataObj["totalVolume"]} lin.m</p>
-        else if (product.priceType === 4) m2OrLinOrPcs = <p className="cart__cont__product__quantity__qty">Quantity: {dataObj["piecesModified"]}</p>
-        else m2OrLinOrPcs = <p className="cart__cont__product__quantity__qty">Quantity: {dataObj["totalVolume"]} m&sup2;</p>
-
+        //Updating subtotalValue and orderSummary (start)
         let totalItems = 0
         let totalPiecesCartMofified = ''
         let totalPacksCartMofified = ''
@@ -224,6 +212,27 @@ const Cart = () => {
           subtotalValue = (<><span className="cart__checkout__subtotal__bold">Total: €{totalCostCartModified} ({totalItems})<br /></span> {totalPiecesCartMofified}, <br />{totalPacksCartMofified}, {totalWeightCart} kg, {Number(totalPalletsCart).toFixed(2)} pal</>)
           orderSummary = `Total: €${totalCostCartModified} (${totalItems}) ${totalPiecesCartMofified}, ${totalPacksCartMofified}, ${totalWeightCart} kg, ${Number(totalPalletsCart).toFixed(2)} pal`
         }
+        //Updating subtotalValue and orderSummary (end)
+
+        //Forming a product card for Cart or Checkout (start)
+        const productTitle = product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format;
+        orderProducts.push(`[${productTitle}]: ${dataObj["totalPacks"]} packs (Quantity: ${(Number(dataObj["totalVolume"])).toFixed(2)}), ${dataObj["totalPallets"]} pallets, ${dataObj["totalWeight"]} kg, ${dataObj["pieces"]} pcs, €${dataObj["priceModified"]}`)
+
+        let BrickOrPaverOrNot
+        let NotBrickOrPaver
+
+        if (product.type !== 'Klinker brick' && product.type !== 'Klinker clay paver') {
+          BrickOrPaverOrNot = <p className="cart__cont__product__quantity__pallets">Pallets: {dataObj["totalPallets"]}</p>
+          NotBrickOrPaver = <p className="cart__cont__product__quantity__packs">Packs: {dataObj["totalPacks"]}</p>
+        }
+        else {
+          BrickOrPaverOrNot = <p className="cart__cont__product__quantity__pallets">Pallets: {dataObj["totalPalletsNumber"]}</p>
+        }
+
+        let m2OrLinOrPcs
+        if (product.priceType === 3) m2OrLinOrPcs = <p className="cart__cont__product__quantity__qty">Quantity: {dataObj["totalVolume"]} lin.m</p>
+        else if (product.priceType === 4) m2OrLinOrPcs = <p className="cart__cont__product__quantity__qty">Quantity: {dataObj["piecesModified"]}</p>
+        else m2OrLinOrPcs = <p className="cart__cont__product__quantity__qty">Quantity: {dataObj["totalVolume"]} m&sup2;</p>
 
         let isImageLink, isTitleImageLink, areButtons, isDelete
 
@@ -240,21 +249,12 @@ const Cart = () => {
           )
           areButtons = (
             <div className="cart__cont__product__quantity__buttons">
-              <button
-                className="cart__cont__product__quantity__buttons__minus"
-                onPointerDown={() => minusButton(product.id)}
-              >-</button>
-              <button
-                className="cart__cont__product__quantity__buttons__plus"
-                onPointerDown={() => plusButton(product.id)}
-              >+</button>
+              <ButtonMinus handleButton={() => minusButton(product.id)} />
+              <ButtonPlus handleButton={() => plusButton(product.id)} />
             </div>
           )
           isDelete = (
-            <button
-              className="cart__cont__product__quantity__delete"
-              onPointerDown={() => deleteButton(product.id)}
-            >Delete</button>
+            <ButtonDelete handleButton={() => deleteButton(product.id)} />
           )
         }
         else {
@@ -269,8 +269,6 @@ const Cart = () => {
           )
           isDelete = ""
         }
-
-        orderProducts.push(`[${productTitle}]: ${dataObj["totalPacks"]} packs (Quantity: ${(Number(dataObj["totalVolume"])).toFixed(2)}), ${dataObj["totalPallets"]} pallets, ${dataObj["totalWeight"]} kg, ${dataObj["pieces"]} pcs, €${dataObj["priceModified"]}`)
 
         productHTML = (
           <div className="cart__cont__product">
@@ -318,10 +316,15 @@ const Cart = () => {
             key={item.id}
           />
         )
+        //Forming a product card for Cart or Checkout (end)
       }
     })
   })
 
+  // const AddButtonEffect = () => { minusButton.classList.add('cart__cont__product__quantity__buttons__active'); }
+
+
+  //Handling modal and form (start)
   const [formName, setFormName] = useState("")
   const [formPhone, setFormPhone] = useState("")
 
@@ -430,10 +433,11 @@ const Cart = () => {
       </div>
     )
   }
+  //Handling modal and form (end)
+
 
   return (
     <main>
-
       <div className="cart">
         <div className="cart__checkout">
           <p className="cart__checkout__subtotal">

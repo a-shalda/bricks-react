@@ -23,36 +23,14 @@ const Option = ({ order, product, totalPacks, totalVolume, priceModified, totalP
 const calculateOptions = (product, cartPacks) => {
 
   let priceTotalLimit = 9000
-  const packsTotalLimit = 1000
-
-  const m2Limit = 1000
-  const pcLimit = 10000
-  const packLimit = 1000
-
-  let priceCentsM2 = product.priceCentsM2
-  let priceCentsPc = product.priceCentsPc
   const piecesInSquareMeter = Number(product.specs.piecesInSquareMeterCm / 100)
   const piecesInPack = product.specs.piecesInPack
   const piecesInLinearMeter = Number(product.specs.piecesInLinearMeterCm / 100)
-  const isM2 = product.isM2
-  const isLinearMeter = product.isLinearMeter
-  let pricesHTML
-
-
-  let supplierPriceType = ''
   let quantityPacks = cartPacks
-  let productTitle = ''
-  let productHTML = ''
-
-  let totalPiecesCartMofified = ''
-  let totalPacksCartMofified = ''
-
-
   let piecesModified
   let totalPacksModified = ''
   let priceForSnippet
   let optionsHTML = []
-  let optionsCart = []
   let baseVolume
   let totalVolume = 0
   let price
@@ -155,9 +133,6 @@ const calculateOptions = (product, cartPacks) => {
         totalPallets = Number((pieces / piecesInPallet).toFixed(2))
       }
     }
-
-    // if (totalPallets < 2) { totalPallets = totalPallets + ` pallet` }
-    // else { totalPallets = totalPallets + ` pallets` }
 
     let priceLength = String(price).length
     let priceModified = String(price)
