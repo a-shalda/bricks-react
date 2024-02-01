@@ -17,7 +17,7 @@ const ImageComp = ({ image, index, alt, current, handleModal }) => {
 
   let priority = false
   if (index === 0) priority = true
-  
+
   let mainBox = "", mainImage = ""
 
   if (index === current) {
@@ -29,7 +29,7 @@ const ImageComp = ({ image, index, alt, current, handleModal }) => {
     <div className={`main__window__top__left__cont ${mainBox} ${imageBlurred}`}>
       <Image
         onLoad={handleLoad}
-        onPointerDown={() => handleModal(image)}
+        onClick={() => handleModal(image)}
         src={image}
         className={`main__window__top__left__cont__img fade ${mainImage} ${imgUnloaded}`}
         alt={alt}
@@ -90,22 +90,22 @@ const Gallery = ({ product }) => {
   return (
     <>
       <div className="main__window__top__left">
-        <button onPointerDown={() => changeIndex(-1)} className="main__window__top__left__button--prev">❮</button>
-        <button onPointerDown={() => changeIndex(1)} className="main__window__top__left__button--next">❯</button>
+        <button onClick={() => changeIndex(-1)} className="main__window__top__left__button--prev">❮</button>
+        <button onClick={() => changeIndex(1)} className="main__window__top__left__button--next">❯</button>
         {images.map(img => img)}
       </div>
 
       <Thumbnails product={product} current={current} changeIndexThumbnail={changeIndexThumbnail} />
 
       <div className={`modal__image ${modalVisible}`}>
-        <button onPointerDown={() => changeIndex(-1)} className="modal__image__button--prev">❮</button>
-        <button onPointerDown={() => changeIndex(1)} className="modal__image__button--next">❯</button>
+        <button onClick={() => changeIndex(-1)} className="modal__image__button--prev">❮</button>
+        <button onClick={() => changeIndex(1)} className="modal__image__button--next">❯</button>
         <div className="modal__image__box">
-          <span onPointerDown={closeModal} className="modal__image__box__close">&times;</span>
+          <span onClick={closeModal} className="modal__image__box__close">&times;</span>
           {(modalVisible === "modal--visible") ?
             <img
               className={`modal__image__box__content ${imgUnloaded}`}
-              onPointerDown={closeModal}
+              onClick={closeModal}
               onLoad={handleLoad}
               src={imageModal}
               alt={product.id}

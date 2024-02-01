@@ -19,7 +19,7 @@ const ButtonPlus = ({ handleButton }) => {
   return (
     <button
       className={`cart__cont__product__quantity__buttons__plus ${buttonTouched}`}
-      onPointerDown={handleTouch}
+      onClick={handleTouch}
     >+</button>
   )
 }

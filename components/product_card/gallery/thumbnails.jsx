@@ -53,7 +53,7 @@ const Thumbnail = ({ image, index, alt, current, changeIndexThumbnail }) => {
         alt={alt}
         width="500" height="500"
         loading="lazy"
-        onPointerDown={() => changeIndexThumbnail(index)}
+        onClick={() => changeIndexThumbnail(index)}
       />
     </div>
   )

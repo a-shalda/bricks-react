@@ -11,7 +11,7 @@ const Modal = ({ modal, handleContinue, toCartMessage }) => {
         <div className="modal__cart__box__content">
           <span
             className="modal__cart__box__content__close"
-            onPointerDown={handleContinue}
+            onClick={handleContinue}
           >
             &times;</span>
           <p className="modal__cart__box__content__message">
@@ -22,11 +22,11 @@ const Modal = ({ modal, handleContinue, toCartMessage }) => {
           <Link
             href="/cart"
             className="modal__cart__box__content__cart"
-            onPointerDown={removeStopScroll}
+            onClick={removeStopScroll}
           >
             Go to cart</Link>
           <button
-            onPointerDown={handleContinue}
+            onClick={handleContinue}
             className="modal__cart__box__content__continue"
           >Continue shopping
           </button>

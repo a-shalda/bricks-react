@@ -19,7 +19,7 @@ const ButtonDelete = ({ handleButton }) => {
   return (
     <button
       className={`cart__cont__product__quantity__delete ${buttonTouched}`}
-      onPointerDown={handleTouch}
+      onClick={handleTouch}
     >Delete</button>
   )
 }

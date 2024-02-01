@@ -34,8 +34,8 @@ const Slider = () => {
   return (
     <section className="slideshow cont">
       {slides.map(slide => slide)}
-      <button onPointerDown={() => changeIndex(-1)} className="slideshow__button--prev">❮</button>
-      <button onPointerDown={() => changeIndex(1)} className="slideshow__button--next">❯</button>
+      <button onClick={() => changeIndex(-1)} className="slideshow__button--prev">❮</button>
+      <button onClick={() => changeIndex(1)} className="slideshow__button--next">❯</button>
       <LowerButtons handlePointerDown={changeIndexDot} current={current} />
     </section>
   )
@@ -112,7 +112,7 @@ const LowerButton = ({ index, handlePointerDown, current }) => {
 
   let activeButton = ""
   if (index === current) activeButton = "active--button"
-  return <span className={`slideshow__dots__cont__dot ${activeButton}`} onPointerDown={() => handlePointerDown(index)}></span>
+  return <span className={`slideshow__dots__cont__dot ${activeButton}`} onClick={() => handlePointerDown(index)}></span>
 }
 
 export default Slider

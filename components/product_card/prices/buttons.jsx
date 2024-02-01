@@ -105,7 +105,7 @@ const Buttons = ({ product, quantity, setQuantity, setErrorAdding, handleModal }
   return (
     <div className="main__window__middle__top__buy">
       <button
-        onPointerDown={modifyWishlist}
+        onClick={modifyWishlist}
         className="main__window__middle__top__buy__button_wish"
       >
         <img src="/images/icons/heart.svg" className="main__window__middle__top__buy__button_wish__cont__heart"
@@ -116,7 +116,7 @@ const Buttons = ({ product, quantity, setQuantity, setErrorAdding, handleModal }
       </button>
 
       <button
-        onPointerDown={addToCart}
+        onClick={addToCart}
         className="main__window__middle__top__buy__button_add"
       >
         <img src="/images/icons/cart.svg" className="main__window__middle__top__buy__button_wish__cont__heart"

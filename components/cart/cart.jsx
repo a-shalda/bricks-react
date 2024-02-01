@@ -373,7 +373,7 @@ const Cart = () => {
         <p className="cart__modal__box__content__title">Checkout</p>
         <span
           className="cart__modal__box__content__close"
-          onPointerDown={switchModal}
+          onClick={switchModal}
         >&times;</span>
 
         <form
@@ -406,7 +406,7 @@ const Cart = () => {
 
         <button
           className="cart__modal__box__content__continue"
-          onPointerDown={switchModal}
+          onClick={switchModal}
         >Continue shopping</button>
         <p className="cart__modal__box__content__subtotal">
           {subtotalValue}
@@ -427,7 +427,7 @@ const Cart = () => {
           <Link
             href="/"
             className="cart__modal__box__content__placed__button"
-            onPointerDown={removeStopScroll}
+            onClick={removeStopScroll}
           >Go to home page</Link>
         </div>
       </div>
@@ -445,7 +445,7 @@ const Cart = () => {
           </p>
           <button
             className={`cart__checkout__proceed ${buttonProceed}`}
-            onPointerDown={switchModal}
+            onClick={switchModal}
           >Proceed to checkout</button>
           <Link href="/" className={`cart__checkout__continue ${buttonContinue}`}>Continue shopping</Link>
         </div>
