@@ -54,6 +54,7 @@ const Thumbnail = ({ image, index, alt, current, changeIndexThumbnail }) => {
         width="500" height="500"
         loading="lazy"
         onClick={() => changeIndexThumbnail(index)}
+        unoptimized={true}
       />
     </div>
   )

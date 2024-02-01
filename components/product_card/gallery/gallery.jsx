@@ -35,7 +35,10 @@ const ImageComp = ({ image, index, alt, current, handleModal }) => {
         alt={alt}
         width="1000" height="1000"
         itemProp="image"
-        priority={priority} />
+        priority={priority}
+        quality={100}
+        unoptimized={true}
+      />
     </div>
   )
 }
