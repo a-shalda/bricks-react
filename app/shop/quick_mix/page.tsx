@@ -6,6 +6,11 @@ const title = "Quick-Mix"
 const type = "Quick-Mix"
 const text = <></>
 
+export const metadata = {
+  title: `${title} - Bricks eCommerce Shop`,
+  description: "Bricks eCommerce Shop",
+};
+
 const ShopPage = () => {
 
   return (

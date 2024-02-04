@@ -3,6 +3,13 @@ import Shop from "@/components/general/shop"
 import { textKingKlinker } from "@/data/texts"
 
 const title = "All products"
+
+export const metadata = {
+  title: `${title} - Bricks eCommerce Shop`,
+  description: "Bricks eCommerce Shop",
+};
+
+
 const type = ""
 const text = <></>
 

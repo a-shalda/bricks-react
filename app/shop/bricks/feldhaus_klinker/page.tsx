@@ -6,6 +6,11 @@ const title = "Klinker bricks"
 const type = "Klinker brick"
 const text = <></>
 
+export const metadata = {
+  title: `${title} - Bricks eCommerce Shop`,
+  description: "Bricks eCommerce Shop",
+};
+
 const ShopPage = () => {
 
   return (

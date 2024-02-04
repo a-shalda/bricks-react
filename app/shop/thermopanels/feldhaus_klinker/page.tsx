@@ -6,6 +6,11 @@ const title = "Thermopanels"
 const type = "Thermopanel"
 const text = <></>
 
+export const metadata = {
+  title: `${title} - Bricks eCommerce Shop`,
+  description: "Bricks eCommerce Shop",
+};
+
 const ShopPage = () => {
 
   return (

@@ -6,6 +6,11 @@ const title = "Stair and floor tile"
 const type = "Klinker stair tile"
 const text = <></>
 
+export const metadata = {
+  title: `${title} - Bricks eCommerce Shop`,
+  description: "Bricks eCommerce Shop",
+};
+
 const ShopPage = () => {
 
   return (

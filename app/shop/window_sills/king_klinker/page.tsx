@@ -6,6 +6,11 @@ const title = "Window sills"
 const type = "Ceramic window sill"
 const text = <></>
 
+export const metadata = {
+  title: `${title} - Bricks eCommerce Shop`,
+  description: "Bricks eCommerce Shop",
+};
+
 const ShopPage = () => {
 
   return (

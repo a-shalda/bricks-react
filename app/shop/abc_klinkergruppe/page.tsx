@@ -6,6 +6,11 @@ const title = "Klinker brick slips ABC-Klinkergruppe"
 const type = "ABC-Klinkergruppe"
 const text = textAbc
 
+export const metadata = {
+  title: `${title} - Bricks eCommerce Shop`,
+  description: "Bricks eCommerce Shop",
+};
+
 const ShopPage = () => {
 
   return (

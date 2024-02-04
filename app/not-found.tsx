@@ -1,3 +1,7 @@
+export const metadata = {
+  title: "Bricks eCommerce Shop",
+  description: "Bricks eCommerce Shop",
+};
 
 export default function NotFound() {
   return (

@@ -6,6 +6,11 @@ const title = "Clay pavers"
 const type = "Klinker clay paver"
 const text = <></>
 
+export const metadata = {
+  title: `${title} - Bricks eCommerce Shop`,
+  description: "Bricks eCommerce Shop",
+};
+
 const ShopPage = () => {
 
   return (

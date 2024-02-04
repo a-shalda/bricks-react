@@ -6,6 +6,11 @@ const title = "Fence caps"
 const type = "Ceramic fence cap"
 const text = <></>
 
+export const metadata = {
+  title: `${title} - Bricks eCommerce Shop`,
+  description: "Bricks eCommerce Shop",
+};
+
 const ShopPage = () => {
 
   return (
