@@ -1,5 +1,4 @@
 import Categories from "@/components/main/categories";
-import styles from "./page.module.css";
 import Divider from "@/components/general/divider";
 import ShowProducts from "@/components/general/show-products";
 import Slider from "@/components/main/slider";
