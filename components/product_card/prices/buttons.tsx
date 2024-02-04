@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { useTriggerUseEffect } from "@/app/store"
-import { type ButtonsProps } from "@/lib/types"
+import { type ButtonsProps, countersCartType, countersWishType } from "@/lib/types"
 
 
 const Buttons = ({ product, quantity, setQuantity, setErrorAdding, handleModal }: ButtonsProps) => {
@@ -11,14 +11,8 @@ const Buttons = ({ product, quantity, setQuantity, setErrorAdding, handleModal }
 
   const [wishButton, setWishButton] = useState("Save")
 
-  let cart: {
-    id: string,
-    quantity: number
-  }[]
-
-  let wishlist: {
-    id: string,
-  }[]
+  let cart: countersCartType = []
+  let wishlist: countersWishType = []
 
   useEffect(() => {
     const notParsedCart = localStorage.getItem('cart')
@@ -26,7 +20,7 @@ const Buttons = ({ product, quantity, setQuantity, setErrorAdding, handleModal }
 
     if (notParsedCart) cart = JSON.parse(notParsedCart) || []
     if (notParsedWishlist) wishlist = JSON.parse(notParsedWishlist) || []
-    
+
     if (wishlist.length === 0) return
 
     const wish = {

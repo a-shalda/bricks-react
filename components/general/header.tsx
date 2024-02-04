@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import Link from 'next/link'
 import Image from "next/image"
 import { useTriggerUseEffect } from "@/app/store"
+import { type countersCartType, countersWishType } from "@/lib/types"
 
 const Dropdown = () => {
 
@@ -36,16 +37,17 @@ const Header = () => {
   const [headerUpperRight, setHeaderUpperRight] = useState("")
   const [headerUpperRightSaved, setHeaderUpperRightSaved] = useState("")
 
-  const [savedCounter, setSavedCounter] = useState("")
-  const [cartCounter, setCartCounter] = useState("")
+  const [savedCounter, setSavedCounter] = useState(0)
+  const [cartCounter, setCartCounter] = useState(0)
 
   const [savedCounterStyle, setSavedCounterStyle] = useState("")
   const [cartCounterStyle, setCartCounterStyle] = useState("")
 
   useEffect(() => {
 
-    let countersCart 
-    let countersWish 
+    let countersCart: countersCartType = []
+    let countersWish: countersWishType = []
+
     const notParsedCart = localStorage.getItem('cart')
     const notParsedWishlist = localStorage.getItem('wishlist')
 
@@ -61,8 +63,8 @@ const Header = () => {
       setHeaderUpperRightSaved("")
     }
 
-    let savedCounterNumber = countersWish.length
-    let cartCounterNumber = countersCart.length
+    let savedCounterNumber: number = countersWish.length
+    let cartCounterNumber: number = countersCart.length
 
     if (savedCounterNumber > 99) savedCounterNumber = 99
     if (cartCounterNumber > 99) cartCounterNumber = 99

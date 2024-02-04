@@ -185,3 +185,12 @@ export type LowerButtonProp = {
   handlePointerDown: (e: number) => void,
   current: number
 }
+
+export type countersCartType = {
+  id: string,
+  quantity: number
+}[]
+
+export type countersWishType = {
+  id: string
+}[]

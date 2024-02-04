@@ -191,8 +191,8 @@ const Cart = () => {
         if (totalPacksCart === 1) totalPacksCartMofified = totalPacksCart + ' pack'
         else totalPacksCartMofified = totalPacksCart + ' packs'
 
-        let totalCostCartLength = String(totalCostCart).length
-        let totalCostCartModified = String(totalCostCart)
+        let totalCostCartLength = totalCostCart.toFixed(2).length
+        let totalCostCartModified = totalCostCart.toFixed(2)
         if (totalCostCartLength > 6) totalCostCartModified = totalCostCartModified.replace(totalCostCartModified.slice(-6), ',' + totalCostCartModified.slice(-6))
 
         if (totalSquareMetersCart !== 0 && totalLinearMetersCart !== 0) {
