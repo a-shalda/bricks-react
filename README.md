@@ -6,8 +6,8 @@ https://bricks-moscow.ru
 
 Choose from a variety of fasade brick slips, effortlessly calculate packaging, send a pre-order for the chosen items. 
 
+* React.js, Next.js, TypeScript, SCSS, HTML
 * Design, development, content, SEO
-* React.js, Next.js, JavaScript, HTML, SCSS
 
 ## A fully responsive website where customers can shop for building materials.
 

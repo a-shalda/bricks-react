@@ -18,7 +18,7 @@ const Footer = () => {
               <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/shop/clay_pavers">Clay pavers</Link></li>
               <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/shop/stair_floor_tile">Stair and floor tile</Link></li>
               <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/shop/window_sills">Ceramic window sills</Link></li>
-              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/shop/mortar">Mortars</Link></li>
+              <li className="footer__upper__column__item"><Link className="footer__upper__column__item__a" href="/shop/mortar">Mortar</Link></li>
             </ul>
           </div>
 
