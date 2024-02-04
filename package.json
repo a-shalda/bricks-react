@@ -16,6 +16,9 @@
     "zustand": "^4.5.0"
   },
   "devDependencies": {
-    "sass": "^1.70.0"
+    "@types/react": "^18.2.51",
+    "@types/uuid": "^9.0.8",
+    "sass": "^1.70.0",
+    "typescript": "^5.3.3"
   }
 }
