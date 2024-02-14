@@ -1,11 +1,10 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import products from "@/data/products"
 import ShowProducts from "@/components/general/show-products"
 import { type ProductsProps } from "@/lib/types"
 
-const Saved = () => {
+const Saved = ({ products }: { products: ProductsProps | null | undefined}) => {
 
   const [savedProductsArr, setSavedProductsArr] = useState<ProductsProps>([])
 
@@ -17,9 +16,11 @@ const Saved = () => {
     parsedProducts && setSavedProductsArr(JSON.parse(parsedProducts) || [])
   }, [])
 
-  savedProductsArr.forEach(wish => {
-    savedProductsIds.push(wish["id"])
+  savedProductsArr && savedProductsArr.forEach(wish => {
+    savedProductsIds.push(wish["id"]!)
   })
+
+  if(!products) return null
 
   savedProductsIds.forEach(id => {
 

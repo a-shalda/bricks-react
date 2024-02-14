@@ -4,20 +4,20 @@ type PriceType = number
 type ProductType = string
 
 export type ProductProps = {
-  id: string,
-  type: ProductType,
-  name: string,
-  availability: string,
-  filepath: string,
+  id?: string,
+  type?: ProductType,
+  name?: string,
+  availability?: string,
+  filepath?: string,
   priceCentsM2?: number,
   priceCentsPc?: number,
-  supplierPriceType: string,
-  priceType: PriceType,
-  isM2: boolean,
-  isLinearMeter: boolean,
+  supplierPriceType?: string,
+  priceType?: PriceType,
+  isM2?: boolean,
+  isLinearMeter?: boolean,
   description?: string,
   specs: {
-    color: string,
+    color?: string,
     piecesInSquareMeterCm?: number,
     piecesInLinearMeterCm?: number,
     piecesInPack?: number,
@@ -25,46 +25,87 @@ export type ProductProps = {
     squareMetersInPallet?: number,
     recommendedJointSpacing?: string,
     thickness?: number,
-    format: string,
+    format?: string,
     recommendedDryMortarVolume?: string,
-    weightOf1PieceGramm: number,
+    weightOf1PieceGramm?: number,
     weightOf1SquareMeter?: number,
     weightOf1PackGramm?: number,
-    manufacturer: string,
-    countryOfOrigin: string,
+    manufacturer?: string,
+    countryOfOrigin?: string,
   },
   image_original: string[],
   image_thumbnail: string[]
 }
 
+export type ProductPropsFetchedRaw = {
+  id: string | null,
+  type: ProductType | null,
+  name: string | null,
+  availability: string | null,
+  filepath: string | null,
+  priceCentsM2?: number | null,
+  priceCentsPc?: number | null,
+  supplierPriceType: string | null,
+  priceType: PriceType | null,
+  isM2: boolean | null,
+  isLinearMeter: boolean | null,
+  description?: string | null,
+
+  specs__color?: string | null,
+  specs__piecesInSquareMeterCm?: number | null,
+  specs__piecesInLinearMeterCm?: number | null,
+  specs__piecesInPack?: number | null,
+  specs__piecesInPallet?: number | string | null,
+  specs__squareMetersInPallet?: number | null,
+  specs__recommendedJointSpacing?: string | null,
+  specs__thickness?: number | null,
+  specs__format?: string | null,
+  specs__recommendedDryMortarVolume?: string | null,
+  specs__weightOf1PieceGramm: number | null,
+  specs__weightOf1SquareMeter?: number | null,
+  specs__weightOf1PackGramm?: number | null,
+  specs__manufacturer?: string | null,
+  specs__countryOfOrigin?: string | null,
+
+  image_original__001?: string | null,
+  image_original__002?: string | null,
+  image_original__003?: string | null,
+  image_original__004?: string | null,
+  image_original__005?: string | null,
+  image_original__006?: string | null,
+  image_original__007?: string | null,
+  image_original__008?: string | null,
+  image_original__009?: string | null,
+  image_original__010?: string | null,
+  image_original__011?: string | null,
+  image_original__012?: string | null,
+  image_original__013?: string | null,
+  image_original__014?: string | null,
+  image_original__015?: string | null,
+  image_original__016?: string | null,
+  image_original__017?: string | null,
+  image_original__018?: string | null,
+  image_original__019?: string | null,
+  image_original__020?: string | null,
+  image_thumbnail__001?: string | null,
+  image_thumbnail__002?: string | null,
+}
+
+export type ProductsPropsFetchedRaw = ProductPropsFetchedRaw[]
+
+
 export type ProductsProps = ProductProps[]
 
 export const SampleProduct = {
-  id: 'r788nf9',
-  type: 'Klinker brick slip',
-  name: 'R788NF9 planto ardor venito',
-  availability: 'In Stock',
-  filepath: '/shop/feldhaus_klinker/r788nf9',
-  supplierPriceType: 'm2',
-  priceType: 1,
-  isM2: true,
-  isLinearMeter: false,
+  specs: {},
+  image_original: [],
+  image_thumbnail: []
+}
 
-  specs: {
-    color: 'red',
-    format: '240x71x9',
-    weightOf1PieceGramm: 36,
-    manufacturer: 'Feldhaus Klinker',
-    countryOfOrigin: 'Germany',
-  },
-
-  image_original: [
-    '/images/product_images/brick_slip/feldhaus_klinker/r788nf9/main/r788nf9_main.webp',
-  ],
-
-  image_thumbnail: [
-    '/images/product_images/brick_slip/feldhaus_klinker/r788nf9/thumbnail/r788nf9_thumbnail_main.webp',
-  ]
+export const SampleProductOneFetch = {
+  specs: {},
+  image_original: [],
+  image_thumbnail: []
 }
 
 export type OptionProps = {
@@ -88,7 +129,7 @@ export type SimilarProps = {
 }
 
 export type ShowProductsProps = {
-  products: ProductsProps,
+  products?: ProductsProps | null | undefined,
   product?: ProductProps,
   quantity?: number,
   type?: string,
@@ -187,10 +228,10 @@ export type LowerButtonProp = {
 }
 
 export type countersCartType = {
-  id: string,
+  id: string | undefined,
   quantity: number
 }[]
 
 export type countersWishType = {
-  id: string
+  id: string | undefined
 }[]

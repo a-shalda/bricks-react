@@ -26,6 +26,10 @@ const ShowProducts = ({ products, quantity, type, color, product }: ShowProducts
       else if (product) {
         if (products[i].id !== product.id) productsHTML.push(<GenerateProducts key={products[i].id} product={products[i]} index={i} />)
       }
+      else {
+        productsHTML.push(<GenerateProducts key={products[i].id} product={products[i]} index={i} />)
+      }
+
     }
   }
 
@@ -65,21 +69,23 @@ let timeOutBack: number
 
 
 const ProductCard = ({ product, index, priceM, pricePc }: ProductCardProps) => {
-
-  if (!product) return null
+  
   const indexOfDot = (number: string) => number.indexOf('.')
 
   const [contBlurred, setContBlurred] = useState("cont_blurred")
   const [imgUnloaded, setImgUnloaded] = useState("img_unloaded")
 
+  const [opacity, setOpacity] = useState("")
+  const [moveLeft, setMoveLeft] = useState("")
+  const [moveRight, setMoveRight] = useState("")
+
+  if (!product) return null
+  else if (!product.id) return null
+
   const handleLoad = () => {
     setContBlurred("")
     setImgUnloaded("")
   }
-
-  const [opacity, setOpacity] = useState("")
-  const [moveLeft, setMoveLeft] = useState("")
-  const [moveRight, setMoveRight] = useState("")
 
   const handlePointerEnter = () => {
     setOpacity("opacity")
@@ -142,7 +148,7 @@ const ProductCard = ({ product, index, priceM, pricePc }: ProductCardProps) => {
       onPointerLeave={handlePointerLeave}>
 
       <div className="product__top">
-        <Link href={product.filepath}>
+        <Link href={product.filepath!}>
           <div className={`product__top__cont ${contBlurred}`}>
             <Image
               onLoad={handleLoad}
@@ -189,7 +195,7 @@ const ProductCard = ({ product, index, priceM, pricePc }: ProductCardProps) => {
       </div>
 
       <div className="product__bottom">
-        <Link href={product.filepath}>
+        <Link href={product.filepath!}>
           <p className="product__bottom__title">{product.type + ' ' + product.name}</p>
         </Link>
         <div className="product__bottom__desc">

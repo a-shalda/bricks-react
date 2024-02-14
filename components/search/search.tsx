@@ -1,13 +1,13 @@
 "use client"
 
-import { useState } from "react"
 import Image from "next/image"
-import products from "@/data/products"
 import ShowProducts from "@/components/general/show-products"
+
+import { useState } from "react"
 import { type ProductsProps } from "@/lib/types"
 
 
-const Search = () => {
+const Search = ({ products }: { products: ProductsProps | null | undefined }) => {
 
   const [inputFocus, setInputFocus] = useState("")
   const handleOnFocus = () => setInputFocus("search__focus")
@@ -16,6 +16,8 @@ const Search = () => {
   const [productsBlurred, setProductsBlurred] = useState("")
 
   const [foundProductsDisplay, setFoundProductsDisplay] = useState<ProductsProps>([])
+
+  if (!products) return null
 
   const searchLimit = 30
   let foundProducts: ProductsProps = []
@@ -33,11 +35,12 @@ const Search = () => {
       for (let i = 0; i < products.length; i++) {
 
         input = ((e.target as HTMLInputElement).value).toLowerCase()
-        const id = (products[i].id).toLowerCase()
-        const name = (products[i].name).toLowerCase()
-        const manufacturer = (products[i].specs?.manufacturer).toLowerCase()
-        const format = (products[i].specs?.format).toLowerCase()
-        const type = (products[i].type).toLowerCase()
+        
+        const id = (products[i].id!).toLowerCase()
+        const name = (products[i].name!).toLowerCase()
+        const manufacturer = (products[i].specs?.manufacturer!).toLowerCase()
+        const format = (products[i].specs?.format!).toLowerCase()
+        const type = (products[i].type!).toLowerCase()
 
         if (id.includes(`${input}`) || name.includes(`${input}`) || manufacturer.includes(`${input}`) || format.includes(`${input}`) || type.includes(`${input}`)) {
           foundProducts.push(products[i])

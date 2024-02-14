@@ -6,7 +6,7 @@ type ShopProps = {
   title: string,
   type: string,
   text: React.JSX.Element,
-  products: ProductsProps
+  products: ProductsProps | null | undefined
 }
 
 const Shop = ({ title, products, type, text }: ShopProps) => {

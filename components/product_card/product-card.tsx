@@ -1,6 +1,5 @@
 "use client"
 
-import products from "@/data/products"
 import Gallery from "@/components/product_card/gallery/gallery"
 import Prices from "@/components/product_card/prices/prices"
 import PricesOptions from "@/components/product_card/prices/prices-options"
@@ -11,30 +10,11 @@ import Specs from "@/components/product_card/specs"
 import Similar from "@/components/product_card/similar"
 import Additional from "@/components/product_card/additional"
 
-import { type ProductProps } from "@/lib/types"
-import { SampleProduct } from "@/lib/types"
-
 import { useState } from "react"
+import { type ProductProps, type ProductsProps } from "@/lib/types"
 
-const ProductComponent = ({ productId }: { productId: string }) => {
 
-  if (!productId) return null
-  if (!products) return null
-
-  let array: string[] = []
-
-  let product: ProductProps = SampleProduct
-
-  products.forEach(item => {
-    if (item) {
-      array.push(item.id)
-      if (item.id === productId) {
-        product = item
-      }
-    }
-  })
-
-  if(!(array.includes(productId))) return null
+const ProductComponent = ({ product, products }: { product: ProductProps, products: ProductsProps }) => {
 
   const [quantity, setQuantity] = useState(0)
   const [errorAdding, setErrorAdding] = useState("")

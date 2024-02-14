@@ -4,7 +4,6 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 
-import products from "@/data/products"
 import calculateOptions from "@/helpers/calculateOptions"
 
 import CartProduct from "@/components/cart/cart-product"
@@ -15,7 +14,10 @@ import ButtonDelete from "@/components/cart/buttons/button-delete"
 
 import { useTriggerUseEffect } from "@/app/store"
 
-const Cart = () => {
+import { type ProductsProps } from "@/lib/types"
+
+
+const Cart = ({ products }: {products: ProductsProps | null | undefined}) => {
 
   const updateCounters = useTriggerUseEffect(state => state.change)
 
@@ -152,7 +154,7 @@ const Cart = () => {
 
   cart && cart.forEach(item => {
 
-    products.forEach(product => {
+    products && products.forEach(product => {
       if (product.id === item.id) {
 
         const dataArr: (string | number)[] | React.JSX.Element[] | undefined = calculateOptions(product, item.quantity)
@@ -250,18 +252,18 @@ const Cart = () => {
             </a>
           )
           isTitleImageLink = (
-            <Link href={product.filepath}>
+            <Link href={product.filepath!}>
               <p className="cart__cont__product__title__name">{productTitle}</p>
             </Link>
           )
           areButtons = (
             <div className="cart__cont__product__quantity__buttons">
-              <ButtonMinus handleButton={() => minusButton(product.id)} />
-              <ButtonPlus handleButton={() => plusButton(product.id)} />
+              <ButtonMinus handleButton={() => minusButton(product.id!)} />
+              <ButtonPlus handleButton={() => plusButton(product.id!)} />
             </div>
           )
           isDelete = (
-            <ButtonDelete handleButton={() => deleteButton(product.id)} />
+            <ButtonDelete handleButton={() => deleteButton(product.id!)} />
           )
         }
         else {

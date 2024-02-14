@@ -3,7 +3,6 @@ import ShowProducts from "@/components/general/show-products"
 import { type SimilarProps } from "@/lib/types"
 
 const Similar = ({ products, type, color, product, quantity }: SimilarProps) => {
-
   return (
     <>
       <Divider label={"Similar products"} />

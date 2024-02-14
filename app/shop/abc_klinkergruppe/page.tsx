@@ -1,6 +1,8 @@
-import products from "@/data/products"
 import Shop from "@/components/general/shop"
 import { textAbc } from "@/data/texts"
+
+import fetchAllProducts from "@/helpers/fetchAllProducts"
+import { type ProductsProps } from "@/lib/types"
 
 const title = "Klinker brick slips ABC-Klinkergruppe"
 const type = "ABC-Klinkergruppe"
@@ -11,12 +13,14 @@ export const metadata = {
   description: "Bricks eCommerce Shop",
 };
 
-const ShopPage = () => {
+const ShopPage = async () => {
+
+  const fetchedProducts: ProductsProps | null | undefined = await fetchAllProducts()
 
   return (
     <Shop
       title={title}
-      products={products}
+      products={fetchedProducts}
       type={type}
       text={text}
     />

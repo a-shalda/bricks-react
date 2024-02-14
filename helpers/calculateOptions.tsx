@@ -42,7 +42,8 @@ const calculateOptions = (product: ProductProps, cartPacks?: number) => {
   let totalPacks = 0
   let weight
   if (product.specs.weightOf1PackGramm) weight = product.specs.weightOf1PackGramm / 100
-  let weightOf1Piece = product.specs.weightOf1PieceGramm / 100 //For bricks and mortar
+  let weightOf1Piece: number = 0
+  product.specs.weightOf1PieceGramm && product.specs.weightOf1PieceGramm / 100 //For bricks and mortar
   let totalWeight = 0
   let piecesInPallet = product.specs.piecesInPallet
   let squareMetersInPallet = product.specs.squareMetersInPallet

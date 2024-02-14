@@ -4,8 +4,6 @@ import Header from "@/components/general/header";
 import Footer from "@/components/general/footer";
 import { ReactNode } from "react";
 
-const inter = Inter({ subsets: ["latin"] });
-
 export const metadata = {
   title: "Bricks eCommerce Shop",
   description: "Bricks eCommerce Shop",
