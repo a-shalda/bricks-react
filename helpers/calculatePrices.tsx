@@ -1,6 +1,6 @@
-import { type ProductProps } from "@/lib/types"
+import { type ProductPropsAll } from "@/lib/types"
 
-const calculatePrices = (product: ProductProps) => {
+const calculatePrices = (product: ProductPropsAll) => {
 
   if (product.priceType === 1 && product.priceCentsM2 && product.specs.piecesInSquareMeterCm) {
 

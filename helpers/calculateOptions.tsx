@@ -1,5 +1,5 @@
 import calculatePrices from "@/helpers/calculatePrices"
-import { type ProductProps, OptionProps } from "@/lib/types"
+import { type ProductPropsAll, OptionProps } from "@/lib/types"
 
 
 const Option = ({ order, product, totalPacks, totalVolume, priceModified, totalPacksModified, piecesModified, totalWeight, totalPallets }: OptionProps) => {
@@ -22,7 +22,7 @@ const Option = ({ order, product, totalPacks, totalVolume, priceModified, totalP
   else if (p === 4) return <option value={totalPacks}>{piecesModified}&nbsp; = &nbsp;€{priceModified} &nbsp;({totalPacksModified}, {totalWeight} kg, {totalPallets} pal)</option>
 }
 
-const calculateOptions = (product: ProductProps, cartPacks?: number) => {
+const calculateOptions = (product: ProductPropsAll, cartPacks?: number) => {
 
   let priceTotalLimit = 9000
   let piecesInSquareMeter

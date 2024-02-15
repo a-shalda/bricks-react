@@ -11,6 +11,7 @@ export type Database = {
     Tables: {
       products: {
         Row: {
+          productTypeNumber: number | null
           availability: string | null
           description: string | null
           filepath: string | null
@@ -62,6 +63,7 @@ export type Database = {
           type: string | null
         }
         Insert: {
+          productTypeNumber: number | null
           availability?: string | null
           description?: string | null
           filepath?: string | null
@@ -113,6 +115,7 @@ export type Database = {
           type?: string | null
         }
         Update: {
+          productTypeNumber: number | null
           availability?: string | null
           description?: string | null
           filepath?: string | null

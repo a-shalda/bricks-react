@@ -1,4 +1,4 @@
-import { type ProductsProps, type ProductProps, SampleProduct } from "@/lib/types"
+import { type ProductProps, type ProductsProps, SampleProduct } from "@/lib/types"
 
 
 export default function selectOneProduct(fetchedProducts: ProductsProps, productId: string) {

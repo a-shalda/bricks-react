@@ -3,7 +3,7 @@
 type PriceType = number
 type ProductType = string
 
-export type ProductProps = {
+export type ProductPropsAll = {
   id?: string,
   type?: ProductType,
   name?: string,
@@ -16,6 +16,7 @@ export type ProductProps = {
   isM2?: boolean,
   isLinearMeter?: boolean,
   description?: string,
+  productTypeNumber?: number,
   specs: {
     color?: string,
     piecesInSquareMeterCm?: number,
@@ -36,65 +37,158 @@ export type ProductProps = {
   image_original: string[],
   image_thumbnail: string[]
 }
+export type ProductsPropsAll = ProductPropsAll[]
 
-export type ProductPropsFetchedRaw = {
-  id: string | null,
-  type: ProductType | null,
-  name: string | null,
-  availability: string | null,
-  filepath: string | null,
-  priceCentsM2?: number | null,
-  priceCentsPc?: number | null,
-  supplierPriceType: string | null,
-  priceType: PriceType | null,
-  isM2: boolean | null,
-  isLinearMeter: boolean | null,
-  description?: string | null,
 
-  specs__color?: string | null,
-  specs__piecesInSquareMeterCm?: number | null,
-  specs__piecesInLinearMeterCm?: number | null,
-  specs__piecesInPack?: number | null,
-  specs__piecesInPallet?: number | string | null,
-  specs__squareMetersInPallet?: number | null,
-  specs__recommendedJointSpacing?: string | null,
-  specs__thickness?: number | null,
-  specs__format?: string | null,
-  specs__recommendedDryMortarVolume?: string | null,
-  specs__weightOf1PieceGramm: number | null,
-  specs__weightOf1SquareMeter?: number | null,
-  specs__weightOf1PackGramm?: number | null,
-  specs__manufacturer?: string | null,
-  specs__countryOfOrigin?: string | null,
-
-  image_original__001?: string | null,
-  image_original__002?: string | null,
-  image_original__003?: string | null,
-  image_original__004?: string | null,
-  image_original__005?: string | null,
-  image_original__006?: string | null,
-  image_original__007?: string | null,
-  image_original__008?: string | null,
-  image_original__009?: string | null,
-  image_original__010?: string | null,
-  image_original__011?: string | null,
-  image_original__012?: string | null,
-  image_original__013?: string | null,
-  image_original__014?: string | null,
-  image_original__015?: string | null,
-  image_original__016?: string | null,
-  image_original__017?: string | null,
-  image_original__018?: string | null,
-  image_original__019?: string | null,
-  image_original__020?: string | null,
-  image_thumbnail__001?: string | null,
-  image_thumbnail__002?: string | null,
+export type ProductPropsTypeOne = {
+  id: string,
+  type: ProductType,
+  name: string,
+  availability: string,
+  filepath: string,
+  priceCentsM2: number,
+  supplierPriceType: string,
+  priceType: PriceType,
+  isM2: boolean,
+  isLinearMeter: boolean,
+  description?: string,
+  productTypeNumber: number,
+  specs: {
+    color: string,
+    piecesInSquareMeterCm: number,
+    piecesInPack: number,
+    squareMetersInPallet: number,
+    recommendedJointSpacing: string,
+    thickness: number,
+    format: string,
+    recommendedDryMortarVolume: string,
+    weightOf1PieceGramm: number,
+    weightOf1SquareMeter: number,
+    weightOf1PackGramm: number,
+    manufacturer: string,
+    countryOfOrigin: string,
+  },
+  image_original: string[],
+  image_thumbnail: string[]
 }
+export type ProductPropsTypeOnePallet = {
+  id: string,
+  type: ProductType,
+  name: string,
+  availability: string,
+  filepath: string,
+  priceCentsPc: number,
+  supplierPriceType: string,
+  priceType: PriceType,
+  isM2: boolean,
+  isLinearMeter: boolean,
+  description?: string,
+  productTypeNumber: number,
+  specs: {
+    color: string,
+    piecesInSquareMeterCm: number,
+    piecesInPack: number,
+    piecesInPallet: number,
+    recommendedJointSpacing: string,
+    thickness: number,
+    format: string,
+    recommendedDryMortarVolume: string,
+    weightOf1PieceGramm: number,
+    weightOf1SquareMeter: number,
+    weightOf1PackGramm: number,
+    manufacturer: string,
+    countryOfOrigin: string,
+  },
+  image_original: string[],
+  image_thumbnail: string[]
+}
+export type ProductPropsTypeTwo = {
+  id: string,
+  type: ProductType,
+  name: string,
+  availability: string,
+  filepath: string,
+  priceCentsPc: number,
+  supplierPriceType: string,
+  priceType: PriceType,
+  isM2: boolean,
+  isLinearMeter: boolean,
+  description?: string,
+  productTypeNumber: number,
 
-export type ProductsPropsFetchedRaw = ProductPropsFetchedRaw[]
-
-
+  specs: {
+    color: string,
+    piecesInSquareMeterCm: number,
+    piecesInPallet: number,
+    recommendedJointSpacing: string,
+    thickness: number,
+    format: string,
+    recommendedDryMortarVolume: string,
+    weightOf1PieceGramm: number,
+    manufacturer: string,
+    countryOfOrigin: string,
+  },
+  image_original: string[],
+  image_thumbnail: string[]
+}
+export type ProductPropsTypeThree = {
+  id: string,
+  type: ProductType,
+  name: string,
+  availability: string,
+  filepath: string,
+  priceCentsPc: number,
+  supplierPriceType: string,
+  priceType: PriceType,
+  isM2: boolean,
+  isLinearMeter: boolean,
+  description?: string,
+  productTypeNumber: number,
+  specs: {
+    color: string,
+    piecesInLinearMeterCm: number,
+    piecesInPack: number,
+    piecesInPallet: number,
+    recommendedJointSpacing: string,
+    thickness: number,
+    format: string,
+    recommendedDryMortarVolume: string,
+    weightOf1PieceGramm: number,
+    weightOf1PackGramm: number,
+    manufacturer: string,
+    countryOfOrigin: string,
+  },
+  image_original: string[],
+  image_thumbnail: string[]
+}
+export type ProductPropsTypeFour = {
+  id: string,
+  type: ProductType,
+  name: string,
+  availability: string,
+  filepath: string,
+  priceCentsPc: number,
+  supplierPriceType: string,
+  priceType: PriceType,
+  isM2: boolean,
+  isLinearMeter: boolean,
+  description?: string,
+  productTypeNumber: number,
+  specs: {
+    color: string,
+    piecesInPallet: number,
+    format: string,
+    weightOf1PieceGramm: number,
+    weightOf1PackGramm: number,
+    manufacturer: string,
+    countryOfOrigin: string,
+  },
+  image_original: string[],
+  image_thumbnail: string[]
+}
+export type ProductProps = ProductPropsTypeOne | ProductPropsTypeOnePallet | ProductPropsTypeTwo | ProductPropsTypeThree | ProductPropsTypeFour
 export type ProductsProps = ProductProps[]
+
 
 export const SampleProduct = {
   specs: {},
@@ -102,15 +196,9 @@ export const SampleProduct = {
   image_thumbnail: []
 }
 
-export const SampleProductOneFetch = {
-  specs: {},
-  image_original: [],
-  image_thumbnail: []
-}
-
 export type OptionProps = {
   order?: string,
-  product: ProductProps,
+  product: ProductPropsAll,
   totalPacks?: number,
   totalVolume?: number,
   priceModified?: string,

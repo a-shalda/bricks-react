@@ -1,6 +1,6 @@
 import { supabase } from "@/lib/db";
-import { type ProductProps, type ProductsProps, SampleProductOneFetch } from "@/lib/types";
-
+import { type ProductProps, type ProductsProps, type ProductPropsAll, SampleProduct } from "@/lib/types";
+import { productIsValid } from "@/helpers/productIsValid";
 
 export default async function getAllProducts() {
 
@@ -10,7 +10,7 @@ export default async function getAllProducts() {
   if (data !== null) {
     for (let i = 0; i < data.length; i++) {
 
-      let newProduct: ProductProps = JSON.parse(JSON.stringify(SampleProductOneFetch))
+      let newProduct: ProductPropsAll = JSON.parse(JSON.stringify(SampleProduct))
 
       if (data[i].id) newProduct.id = data[i].id!
       else return null
@@ -26,6 +26,7 @@ export default async function getAllProducts() {
       if (data[i].isM2) newProduct.isM2 = data[i].isM2!
       if (data[i].isLinearMeter) newProduct.isLinearMeter = data[i].isLinearMeter!
       if (data[i].description) newProduct.description = data[i].description!
+      if (data[i].productTypeNumber) newProduct.productTypeNumber = data[i].productTypeNumber!
 
       if (data[i].specs__color) newProduct.specs.color = data[i].specs__color!
       if (data[i].specs__piecesInSquareMeterCm) newProduct.specs.piecesInSquareMeterCm = data[i].specs__piecesInSquareMeterCm!
@@ -67,8 +68,13 @@ export default async function getAllProducts() {
       if (data[i].image_thumbnail__001) newProduct.image_thumbnail[0] = data[i].image_thumbnail__001!
       if (data[i].image_thumbnail__002) newProduct.image_thumbnail[1] = data[i].image_thumbnail__002!
 
-      updatedProducts.push(newProduct)
+      if(!productIsValid(newProduct)) continue
+
+      const specificProduct: ProductProps = JSON.parse(JSON.stringify(newProduct))
+
+      updatedProducts.push(specificProduct)
     }
     return updatedProducts
   }
+  else return null
 }

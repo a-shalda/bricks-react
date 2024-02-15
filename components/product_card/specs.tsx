@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid'
-import { type ProductProps, SpecProps, specsObjProps } from "@/lib/types"
+import { type ProductPropsAll, SpecProps, specsObjProps } from "@/lib/types"
 
 
 const Spec = ({ leftProp, rightProp }: SpecProps) => {
@@ -18,7 +18,7 @@ const Spec = ({ leftProp, rightProp }: SpecProps) => {
   )
 }
 
-const Specs = ({ product }: { product: ProductProps }) => {
+const Specs = ({ product }: { product: ProductPropsAll }) => {
 
   let specs = product.specs
   let specsHTML = []
