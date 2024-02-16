@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useTriggerUseEffect } from "@/app/store"
+import { useTriggerUseEffect } from "@/app/[lang]/store"
 import { type ButtonsProps, countersCartType, countersWishType } from "@/lib/types"
 
 

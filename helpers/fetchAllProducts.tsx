@@ -2,7 +2,7 @@ import { supabase } from "@/lib/db";
 import { type ProductProps, type ProductsProps, type ProductPropsAll, SampleProduct } from "@/lib/types";
 import { productIsValid } from "@/helpers/productIsValid";
 
-export default async function getAllProducts() {
+export default async function getAllProducts(lang: string) {
 
   let updatedProducts: ProductsProps = []
   const { data } = await supabase.from('products').select()
@@ -15,10 +15,19 @@ export default async function getAllProducts() {
       if (data[i].id) newProduct.id = data[i].id!
       else return null
 
+
       if (data[i].type) newProduct.type = data[i].type!
       if (data[i].name) newProduct.name = data[i].name!
       if (data[i].availability) newProduct.availability = data[i].availability!
       if (data[i].filepath) newProduct.filepath = data[i].filepath!
+
+      if (lang === "ru") {
+        newProduct.filepath = "/ru" + newProduct.filepath
+      }
+      else if (lang === "en") {
+        newProduct.filepath = "/en" + newProduct.filepath
+      }
+
       if (data[i].priceCentsM2) newProduct.priceCentsM2 = data[i].priceCentsM2!
       if (data[i].priceCentsPc) newProduct.priceCentsPc = data[i].priceCentsPc!
       if (data[i].supplierPriceType) newProduct.supplierPriceType = data[i].supplierPriceType!

@@ -196,6 +196,15 @@ export const SampleProduct = {
   image_thumbnail: []
 }
 
+export type SliderProps = {
+  img: string,
+  title: string,
+  desc: string,
+  path: string,
+  linkText: string,
+  id: number
+}
+
 export type OptionProps = {
   order?: string,
   product: ProductPropsAll,
@@ -291,10 +300,10 @@ export type ImageCompProps = {
 
 type sliderItemsProps = {
   img: string,
-  img_800: string,
   title: string,
   desc: string,
   path: string,
+  linkText: string,
   id: number,
 }
 
@@ -304,9 +313,19 @@ export type SlideProps = {
   current: number
 }
 
+export type CategoryProps = {
+  id: string,
+  img: string,
+  title: string,
+  path: string,
+}
+
+export type CategoriesProps = CategoryProps[]
+
 export type LowerButtonsProps = {
   handlePointerDown: (e: number) => void
-  current: number
+  current: number,
+  dictionary: any
 }
 
 export type LowerButtonProp = {

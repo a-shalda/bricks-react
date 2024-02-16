@@ -12,12 +12,12 @@ import ButtonPlus from "@/components/cart/buttons/button-plus"
 import ButtonMinus from "@/components/cart/buttons/button-minus"
 import ButtonDelete from "@/components/cart/buttons/button-delete"
 
-import { useTriggerUseEffect } from "@/app/store"
+import { useTriggerUseEffect } from "@/app/[lang]/store"
 
 import { type ProductsProps } from "@/lib/types"
 
 
-const Cart = ({ products }: {products: ProductsProps | null | undefined}) => {
+const Cart = ({ products }: { products: ProductsProps | null | undefined }) => {
 
   const updateCounters = useTriggerUseEffect(state => state.change)
 

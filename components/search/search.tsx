@@ -7,7 +7,7 @@ import { useState } from "react"
 import { type ProductsProps } from "@/lib/types"
 
 
-const Search = ({ products }: { products: ProductsProps | null | undefined }) => {
+const Search = ({ products, dictionary }: { products: ProductsProps | null | undefined, dictionary: any }) => {
 
   const [inputFocus, setInputFocus] = useState("")
   const handleOnFocus = () => setInputFocus("search__focus")
@@ -35,7 +35,7 @@ const Search = ({ products }: { products: ProductsProps | null | undefined }) =>
       for (let i = 0; i < products.length; i++) {
 
         input = ((e.target as HTMLInputElement).value).toLowerCase()
-        
+
         const id = (products[i].id!).toLowerCase()
         const name = (products[i].name!).toLowerCase()
         const manufacturer = (products[i].specs?.manufacturer!).toLowerCase()
@@ -64,7 +64,7 @@ const Search = ({ products }: { products: ProductsProps | null | undefined }) =>
   return (
     <main>
       <section className="cont">
-        <h1 className="section__title">Search</h1>
+        <h1 className="section__title">{dictionary["Search"]["title"]}</h1>
 
         <div className={`search ${inputFocus}`}>
           <Image
@@ -80,7 +80,7 @@ const Search = ({ products }: { products: ProductsProps | null | undefined }) =>
             onKeyDown={handleKeyDown}
             className="search__form"
             type="text"
-            placeholder="example: r685nf14"
+            placeholder={dictionary["Search"]["input_placeholder"]}
           />
         </div>
 

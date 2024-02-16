@@ -1,19 +1,17 @@
 "use client"
 
-import sliderItems from "@/data/slider-items"
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from 'next/link'
-import { type SlideProps, LowerButtonsProps, LowerButtonProp } from "@/lib/types"
+import { type SlideProps, type SliderProps, LowerButtonsProps, LowerButtonProp } from "@/lib/types"
 
-
-const Slider = () => {
-
-  let slides: React.JSX.Element[] = []
+const Slider = ({ dictionary }: { dictionary: any}) => {
 
   const [current, setCurrent] = useState(0)
 
-  sliderItems.forEach((item, index) => {
+  let slides: React.JSX.Element[] = []
+
+  dictionary["Main"]["slider"].forEach((item: SliderProps, index: number) => {
     slides.push(<Slide key={item.id} item={item} index={index} current={current} />);
   })
 
@@ -37,7 +35,7 @@ const Slider = () => {
       {slides.map(slide => slide)}
       <button onClick={() => changeIndex(-1)} className="slideshow__button--prev">❮</button>
       <button onClick={() => changeIndex(1)} className="slideshow__button--next">❯</button>
-      <LowerButtons handlePointerDown={changeIndexDot} current={current} />
+      <LowerButtons handlePointerDown={changeIndexDot} current={current} dictionary={dictionary} />
     </section>
   )
 }
@@ -83,18 +81,18 @@ const Slide = ({ item, index, current }: SlideProps) => {
         <div className="slideshow__slide__abs__box__cont">
           <p className="slideshow__slide__abs__box__cont__title">{item.title}</p>
           <p className="slideshow__slide__abs__box__cont__desc">{item.desc}</p>
-          <Link href={item.path}><button className="slideshow__slide__abs__box__cont__button">Explore</button></Link>
+          <Link href={item.path}><button className="slideshow__slide__abs__box__cont__button">{item.linkText}</button></Link>
         </div>
       </div>
     </div>
   )
 }
 
-const LowerButtons = ({ handlePointerDown, current }: LowerButtonsProps) => {
+const LowerButtons = ({ handlePointerDown, current, dictionary }: LowerButtonsProps) => {
 
   let lowerButtons: React.JSX.Element[] = []
 
-  sliderItems.forEach((item, index) => {
+  dictionary["Main"]["slider"].forEach((item: SliderProps, index: number) => {
     lowerButtons.push(<LowerButton key={item.id} handlePointerDown={handlePointerDown} index={index} current={current} />)
   })
 

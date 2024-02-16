@@ -1,12 +1,10 @@
 "use client"
 
-import categoriesData from "@/data/categories"
 import { useState } from "react"
 import Image from "next/image";
 import Link from 'next/link'
 
-
-const Category = ({ i }: { i: number }) => {
+const Category = ({ i, categoriesData }: { i: number, categoriesData: any }) => {
 
   const [enlarge, setEnlarge] = useState("")
   const [contBlurred, setContBlurred] = useState("cont_blurred")
@@ -20,32 +18,32 @@ const Category = ({ i }: { i: number }) => {
   const handlePointerLeave = () => setEnlarge("")
 
   return (
-    <div 
-      onPointerEnter={handlePointerEnter} 
-      onPointerLeave={handlePointerLeave} 
-      className={`categories__box ${categoriesData[i].id} ${contBlurred}`}
+    <div
+      onPointerEnter={handlePointerEnter}
+      onPointerLeave={handlePointerLeave}
+      className={`categories__box ${categoriesData["Main"]["categories"][i].id} ${contBlurred}`}
     >
-        <Link href={categoriesData[i].path}>
-          <Image 
-            onLoad={handleLoad}
-            className={`categories__box__img cat_img${[i]} ${enlarge} ${imgUnloaded}`} 
-            src={categoriesData[i].img} alt={`Category ${categoriesData[i]}`} 
-            loading="lazy" width="575" height="260"
-          />
-          <div className="categories__box__title">
-              <h2 className="categories__box__title__h2">{categoriesData[i].title}</h2>
-          </div>
-        </Link>
+      <Link href={categoriesData["Main"]["categories"][i].path}>
+        <Image
+          onLoad={handleLoad}
+          className={`categories__box__img cat_img${[i]} ${enlarge} ${imgUnloaded}`}
+          src={categoriesData["Main"]["categories"][i].img} alt={`Category ${categoriesData["Main"]["categories"][i]}`}
+          loading="lazy" width="575" height="260"
+        />
+        <div className="categories__box__title">
+          <h2 className="categories__box__title__h2">{categoriesData["Main"]["categories"][i].title}</h2>
+        </div>
+      </Link>
     </div>
   )
 }
 
-const Categories = () => {
+const Categories = ({ dictionary }: { dictionary: any}) => {
 
   const categories = []
 
-  for (let i = 0; i < categoriesData.length; i++) {
-    categories.push(<Category key={i} i={i}/>)
+  for (let i = 0; i < dictionary["Main"]["categories"].length; i++) {
+    categories.push(<Category key={i} i={i} categoriesData={dictionary} />)
   }
 
   return (

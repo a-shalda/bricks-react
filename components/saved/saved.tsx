@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import ShowProducts from "@/components/general/show-products"
 import { type ProductsProps } from "@/lib/types"
 
-const Saved = ({ products }: { products: ProductsProps | null | undefined}) => {
+const Saved = ({ products, dictionary }: { products: ProductsProps | null | undefined, dictionary: any }) => {
 
   const [savedProductsArr, setSavedProductsArr] = useState<ProductsProps>([])
 
@@ -38,7 +38,7 @@ const Saved = ({ products }: { products: ProductsProps | null | undefined}) => {
   return (
     <main>
       <section className="cont">
-        <h1 className="section__title">Saved products</h1>
+        <h1 className="section__title">{dictionary["Saved"]["title"]}</h1>
         <div className="products">
           <ShowProducts
             products={savedProducts}

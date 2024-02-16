@@ -1,0 +1,187 @@
+{
+  "Language": "ru",
+  "Header": {
+    "all_products": "Все товары",
+    "brick_slips": "Клинкерная плитка под кирпич",
+    "bricks": "Клинкерный кирпич",
+    "thermopanels": "Термопанели",
+    "fence_caps": "Шляпы для забора",
+    "clay_pavers": "Клинкерная брусчатка",
+    "stair_floor_tile": "Клинкерные ступени",
+    "window_sills": "Керамические подоконники",
+    "mortar": "Сухие смеси"
+  },
+  "Footer": {
+    "one": {
+      "title": "Каталог",
+      "brick_slips": "Клинкерная плитка под кирпич",
+      "bricks": "Клинкерный кирпич",
+      "thermopanels": "Термопанели с клинкерной плиткой",
+      "fence_caps": "Керамические шляпы для забора",
+      "clay_pavers": "Клинкерная брусчатка",
+      "stair_floor_tile": "Клинкерные ступени",
+      "window_sills": "Керамические подоконники",
+      "mortar": "Сухие смеси"
+    },
+    "two": {
+      "title": "Производители",
+      "one": "Feldhaus Klinker",
+      "two": "Stroeher",
+      "three": "Roben",
+      "four": "ABC-Klinkergruppe",
+      "five": "King Klinker",
+      "six": "ZG Clinker",
+      "seven": "Quick Mix",
+      "eight": "Perel"
+    },
+    "contacts": {
+      "title": "Контакты",
+      "one": "ООО Клинкерная плитка",
+      "two": "Москва, Россия",
+      "three": "ТЦ Мичуринский",
+      "four": "Озёрная ул., 42",
+      "five": "Пн-Вс 09:00-18:00"
+    }
+  },
+  "Main": {
+    "slider": [
+      {
+        "img": "/images/slider/klinker_mix.jpg",
+        "title": "Клинкерная плитка",
+        "desc": "Придайте вашим стенам стиль",
+        "path": "/ru/shop/brick_slips",
+        "linkText": "Смотреть",
+        "id": 1
+      },
+      {
+        "img": "/images/slider/336_06_slider.jpg",
+        "title": "Кирпич для фасада",
+        "desc": "Основательное решение",
+        "path": "/ru/shop/bricks",
+        "linkText": "Смотреть",
+        "id": 2
+      },
+      {
+        "img": "/images/slider/7750_455_slider.jpg",
+        "title": "Длинный формат",
+        "desc": "Модно и современно",
+        "path": "/ru/shop/brick_slips",
+        "linkText": "Смотреть",
+        "id": 3
+      }
+    ],
+    "categories": [
+      {
+        "id": "one",
+        "img": "/images/categories/img_fasade-one.jpg",
+        "title": "Клинкерная плитка под кирпич",
+        "path": "/ru/shop/brick_slips"
+      },
+      {
+        "id": "two",
+        "img": "/images/categories/img-fasade-two.jpg",
+        "title": "Клинкерный кирпич",
+        "path": "/ru/shop/bricks"
+      },
+      {
+        "id": "three",
+        "img": "/images/categories/img_fasade-three.jpg",
+        "title": "Термопанели с клинкерной плиткой",
+        "path": "/ru/shop/thermopanels"
+      },
+      {
+        "id": "four",
+        "img": "/images/categories/img_cover_small.jpg",
+        "title": "Керамические шляпы для забора",
+        "path": "/ru/shop/fence_caps"
+      },
+      {
+        "id": "five",
+        "img": "/images/categories/img_mosaic.jpg",
+        "title": "Клинкерная брусчатка",
+        "path": "/ru/shop/clay_pavers"
+      },
+      {
+        "id": "six",
+        "img": "/images/categories/img_long-stairs.jpg",
+        "title": "Клинкерные ступени",
+        "path": "/ru/shop/stair_floor_tile"
+      },
+      {
+        "id": "seven",
+        "img": "/images/categories/img_cover.jpg",
+        "title": "Керамические подоконники",
+        "path": "/ru/shop/window_sills"
+      },
+      {
+        "id": "eight",
+        "img": "/images/categories/mortar.jpg",
+        "title": "Сухие смеси",
+        "path": "/ru/shop/mortar"
+      }
+    ],
+    "first_divider": "Каталог",
+    "second_divider": "Товары",
+    "third_divider": "О компании и товарах"
+  },
+  "Search": {
+    "title": "Поиск",
+    "input_placeholder": "например: r685nf14"
+  },
+  "Saved": {
+    "title": "Сохраненные товары"
+  },
+  "Categories": {
+    "shop": {
+      "title": "Все товары"
+    },
+    "brick_slips": {
+      "title": "Клинкерная плитка под кирпич"
+    },
+    "bricks": {
+      "title": "Клинкерный кирпич"
+    },
+    "thermopanels": {
+      "title": "Термопанели с клинкерной плиткой"
+    },
+    "fence_caps": {
+      "title": "Керамические шляпы для забора"
+    },
+    "clay_pavers": {
+      "title": "Клинкерная брусчатка"
+    },
+    "stair_floor_tile": {
+      "title": "Клинкерные ступени и напольная плитка"
+    },
+    "window_sills": {
+      "title": "Керамические подоконники"
+    },
+    "mortar": {
+      "title": "Сухие смеси"
+    },
+    "one": {
+      "title": "Клинкерная плитка Feldhaus Klinker"
+    },
+    "two": {
+      "title": "Клинкерная плитка Stroeher"
+    },
+    "three": {
+      "title": "Клинкерная плитка Roben"
+    },
+    "four": {
+      "title": "Клинкерная плитка ABC-Klinkergruppe"
+    },
+    "five": {
+      "title": "Клинкерная плитка King Klinker"
+    },
+    "six": {
+      "title": "ZG Clinker"
+    },
+    "seven": {
+      "title": "Сухие смеси Quick-Mix"
+    },
+    "eight": {
+      "title": "Сухие смеси Perel"
+    }
+  }
+}

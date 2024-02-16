@@ -31,8 +31,15 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "components/general/shop.tsx", "app/page.tsx", "components/saved/saved.tsx", "components/product_card/prices/prices-options.tsx", "app/shop/quick_mix/page.tsx", "app/saved/page.tsx", "app/cart/page.tsx"  ],
+    "**/*.tsx",
+    "components/general/shop.tsx",
+    "app/[lang]/page.tsx",
+    "components/saved/saved.tsx",
+    "components/product_card/prices/prices-options.tsx",
+    "app/[lang]/shop/quick_mix/page.tsx",
+    "app/[lang]/saved/page.tsx",
+    "app/[lang]/cart/page.tsx"
+  ],
   "exclude": [
     "node_modules"
   ]
