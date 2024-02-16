@@ -13,8 +13,11 @@ export type Database = {
         Row: {
           productTypeNumber: number | null
           availability: string | null
+          availability_en: string | null
           description: string | null
+          description_en: string | null
           filepath: string | null
+          type_ru: string
           id: string
           image_original__001: string | null
           image_original__002: string | null
@@ -46,6 +49,7 @@ export type Database = {
           priceType: number | null
           specs__color: string | null
           specs__countryOfOrigin: string | null
+          specs__countryOfOrigin_en: string | null
           specs__format: string | null
           specs__manufacturer: string | null
           specs__piecesInLinearMeterCm: number | null
@@ -65,9 +69,12 @@ export type Database = {
         Insert: {
           productTypeNumber: number | null
           availability?: string | null
+          availability_en?: string | null
           description?: string | null
+          description_en?: string | null
           filepath?: string | null
           id: string
+          type_ru: string
           image_original__001?: string | null
           image_original__002?: string | null
           image_original__003?: string | null
@@ -113,13 +120,17 @@ export type Database = {
           specs__weightOf1SquareMeter?: number | null
           supplierPriceType?: string | null
           type?: string | null
+          specs__countryOfOrigin_en: string | null
         }
         Update: {
           productTypeNumber: number | null
           availability?: string | null
+          availability_en?: string | null
           description?: string | null
+          description_en?: string | null
           filepath?: string | null
           id?: string
+          type_ru: string
           image_original__001?: string | null
           image_original__002?: string | null
           image_original__003?: string | null
@@ -165,6 +176,7 @@ export type Database = {
           specs__weightOf1SquareMeter?: number | null
           supplierPriceType?: string | null
           type?: string | null
+          specs__countryOfOrigin_en: string | null
         }
         Relationships: []
       }

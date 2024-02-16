@@ -25,8 +25,10 @@ const Product = async ({ params: { lang } }: { params: { lang: Locale } }) => {
   const selectedProduct = selectOneProduct(fetchedProducts, productId)
   if (!selectedProduct) return null
 
+  const dictionary = await getDictionary(lang)
+
   return (
-    <ProductComponent product={selectedProduct} products={fetchedProducts} />
+    <ProductComponent product={selectedProduct} products={fetchedProducts} dictionary={dictionary} />
   )
 }
 

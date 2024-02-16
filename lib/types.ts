@@ -17,6 +17,7 @@ export type ProductPropsAll = {
   isLinearMeter?: boolean,
   description?: string,
   productTypeNumber?: number,
+  type_ru?: string,
   specs: {
     color?: string,
     piecesInSquareMeterCm?: number,
@@ -53,6 +54,7 @@ export type ProductPropsTypeOne = {
   isLinearMeter: boolean,
   description?: string,
   productTypeNumber: number,
+  type_ru: string,
   specs: {
     color: string,
     piecesInSquareMeterCm: number,
@@ -84,6 +86,7 @@ export type ProductPropsTypeOnePallet = {
   isLinearMeter: boolean,
   description?: string,
   productTypeNumber: number,
+  type_ru: string,
   specs: {
     color: string,
     piecesInSquareMeterCm: number,
@@ -115,7 +118,7 @@ export type ProductPropsTypeTwo = {
   isLinearMeter: boolean,
   description?: string,
   productTypeNumber: number,
-
+  type_ru: string,
   specs: {
     color: string,
     piecesInSquareMeterCm: number,
@@ -144,6 +147,7 @@ export type ProductPropsTypeThree = {
   isLinearMeter: boolean,
   description?: string,
   productTypeNumber: number,
+  type_ru: string,
   specs: {
     color: string,
     piecesInLinearMeterCm: number,
@@ -174,6 +178,7 @@ export type ProductPropsTypeFour = {
   isLinearMeter: boolean,
   description?: string,
   productTypeNumber: number,
+  type_ru: string,
   specs: {
     color: string,
     piecesInPallet: number,
@@ -214,7 +219,8 @@ export type OptionProps = {
   totalPacksModified?: string,
   piecesModified?: string,
   totalWeight?: number,
-  totalPallets?: number
+  totalPallets?: number,
+  dictionary: any
 }
 
 export type SimilarProps = {
@@ -222,7 +228,8 @@ export type SimilarProps = {
   type: string | undefined,
   color: string | undefined,
   product: ProductProps,
-  quantity: number
+  quantity: number,
+  dictionary: any
 }
 
 export type ShowProductsProps = {
@@ -231,23 +238,26 @@ export type ShowProductsProps = {
   quantity?: number,
   type?: string,
   color?: string,
+  dictionary: any
 }
 
 export type GenerateProductsProps = {
   product: ProductProps,
-  index: number
+  index: number,
+  dictionary: any
 }
 
 export type ProductCardProps = {
   product: ProductProps,
   index: number,
   priceM?: string,
-  pricePc: string
+  pricePc: string,
+  dictionary: any
 }
 
 export type SpecProps = {
   leftProp: string | number,
-  rightProp: string | number | undefined
+  rightProp: string | number | undefined,
 }
 
 export interface specsObjProps {
@@ -260,6 +270,7 @@ export type PricesOptionsProps = {
   quantity: number,
   errorAdding: string,
   setToCartMessage: (e: string) => void,
+  dictionary: any
 }
 
 export type ModalProps = {
@@ -274,6 +285,7 @@ export type ButtonsProps = {
   setQuantity: (e: number) => void,
   setErrorAdding: (e: string) => void,
   handleModal: () => void,
+  dictionary: any
 }
 
 export type ThumbnailProps = {
@@ -342,3 +354,17 @@ export type countersCartType = {
 export type countersWishType = {
   id: string | undefined
 }[]
+
+export type PricesProps = {
+  product: ProductProps,
+  cartType?: boolean,
+  dictionary: any
+}
+
+export type ShopProps = {
+  title: string,
+  type: string,
+  text: React.JSX.Element,
+  products: ProductsProps | null | undefined,
+  dictionary: any
+}

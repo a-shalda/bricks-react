@@ -18,9 +18,10 @@ export async function generateStaticParams() {
 const CartPage = async ({ params: { lang } }: { params: { lang: Locale } }) => {
 
   const fetchedProducts: ProductsProps | null | undefined = await fetchAllProducts(lang)
+  const dictionary = await getDictionary(lang);
 
   return (
-    <Cart products={fetchedProducts} />
+    <Cart products={fetchedProducts} dictionary={dictionary}/>
   )
 }
 

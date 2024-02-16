@@ -18,7 +18,7 @@ const Spec = ({ leftProp, rightProp }: SpecProps) => {
   )
 }
 
-const Specs = ({ product }: { product: ProductPropsAll }) => {
+const Specs = ({ product, dictionary }: { product: ProductPropsAll, dictionary: any }) => {
 
   let specs = product.specs
   let specsHTML = []
@@ -34,22 +34,42 @@ const Specs = ({ product }: { product: ProductPropsAll }) => {
   if (product.specs.weightOf1PackGramm) weight = product.specs.weightOf1PackGramm / 100
   if (product.specs.weightOf1PieceGramm) weightOf1Piece = product.specs.weightOf1PieceGramm / 100 //For bricks and mortars
 
-  const specsObj: specsObjProps = {
-    0: ["Pieces in a pack", specs.piecesInPack],
-    1: ["Pieces in a linear meter", piecesInLinearMeter],
-    2: ["Pieces in a square meter", piecesInSquareMeter],
-    3: ["Square meters in a pallet", specs.squareMetersInPallet],
-    4: ["Pieces in a pallet", specs.piecesInPallet],
-    5: ["Recommended joint spacing (mm)", specs.recommendedJointSpacing],
-    6: ["Thickness (mm)", specs.thickness],
-    7: ["Format (mm)", specs.format],
-    8: ["Recommended dry mortar volume (kg)", specs.recommendedDryMortarVolume],
-    9: ["Weight of 1 piece (kg)", weightOf1Piece],
-    10: ["Weight of 1 square meter (kg)", specs.weightOf1SquareMeter],
-    11: ["Weight of 1 linear meter (kg)", Number(Number(weightOf1Piece * piecesInLinearMeter).toFixed(2))],
-    12: ["Weight of 1 pack (kg)", weight],
-    13: ["Manufacturer", specs.manufacturer],
-    14: ["Country of origin", specs.countryOfOrigin]
+  let specsObj: specsObjProps = {
+    0: ["Шт в упаковке", specs.piecesInPack],
+    1: ["Шт в погонном метре", piecesInLinearMeter],
+    2: ["Шт в кв.м.", piecesInSquareMeter],
+    3: ["Кв.м. в палете", specs.squareMetersInPallet],
+    4: ["Шт в палете", specs.piecesInPallet],
+    5: ["Рекомендуемая толщина шва (мм)", specs.recommendedJointSpacing],
+    6: ["Толщина (мм)", specs.thickness],
+    7: ["Размер (мм)", specs.format],
+    8: ["Рекомендуемый объем сухой смеси (кг)", specs.recommendedDryMortarVolume],
+    9: ["Вес 1 шт (кг)", weightOf1Piece],
+    10: ["Вес 1 кв.м. (кг)", specs.weightOf1SquareMeter],
+    11: ["Вес 1 погонного метра (кг)", Number(Number(weightOf1Piece * piecesInLinearMeter).toFixed(2))],
+    12: ["Вес 1 упаковки (кг)", weight],
+    13: ["Производитель", specs.manufacturer],
+    14: ["Страна производства", specs.countryOfOrigin]
+  }
+
+  if (dictionary["Language"] === "en") {
+    specsObj = {
+      0: ["Pieces in a pack", specs.piecesInPack],
+      1: ["Pieces in a linear meter", piecesInLinearMeter],
+      2: ["Pieces in a square meter", piecesInSquareMeter],
+      3: ["Square meters in a pallet", specs.squareMetersInPallet],
+      4: ["Pieces in a pallet", specs.piecesInPallet],
+      5: ["Recommended joint spacing (mm)", specs.recommendedJointSpacing],
+      6: ["Thickness (mm)", specs.thickness],
+      7: ["Format (mm)", specs.format],
+      8: ["Recommended dry mortar volume (kg)", specs.recommendedDryMortarVolume],
+      9: ["Weight of 1 piece (kg)", weightOf1Piece],
+      10: ["Weight of 1 square meter (kg)", specs.weightOf1SquareMeter],
+      11: ["Weight of 1 linear meter (kg)", Number(Number(weightOf1Piece * piecesInLinearMeter).toFixed(2))],
+      12: ["Weight of 1 pack (kg)", weight],
+      13: ["Manufacturer", specs.manufacturer],
+      14: ["Country of origin", specs.countryOfOrigin]
+    }
   }
 
   for (let spec in specsObj) {

@@ -1,7 +1,6 @@
 import "@/scss/styles.scss";
 import Header from "@/components/general/header";
 import Footer from "@/components/general/footer";
-import { ReactNode } from "react";
 import { getDictionary } from "@/get-dictionary";
 
 

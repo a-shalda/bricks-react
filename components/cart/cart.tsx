@@ -17,7 +17,7 @@ import { useTriggerUseEffect } from "@/app/[lang]/store"
 import { type ProductsProps } from "@/lib/types"
 
 
-const Cart = ({ products }: { products: ProductsProps | null | undefined }) => {
+const Cart = ({ products, dictionary }: { products: ProductsProps | null | undefined, dictionary: any }) => {
 
   const updateCounters = useTriggerUseEffect(state => state.change)
 
@@ -288,6 +288,7 @@ const Cart = ({ products }: { products: ProductsProps | null | undefined }) => {
               <Prices
                 product={product}
                 cartType={true}
+                dictionary={dictionary}
               />
             </div>
             <div className="cart__cont__product__vendor">

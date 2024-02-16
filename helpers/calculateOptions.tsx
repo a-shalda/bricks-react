@@ -2,27 +2,27 @@ import calculatePrices from "@/helpers/calculatePrices"
 import { type ProductPropsAll, OptionProps } from "@/lib/types"
 
 
-const Option = ({ order, product, totalPacks, totalVolume, priceModified, totalPacksModified, piecesModified, totalWeight, totalPallets }: OptionProps) => {
+const Option = ({ order, product, totalPacks, totalVolume, priceModified, totalPacksModified, piecesModified, totalWeight, totalPallets, dictionary }: OptionProps) => {
 
   let spec: React.JSX.Element = <></>
   const p = product.priceType;
 
-  (p === 1 || p === 2) ? spec = <>m&sup2;</> :
-    (p === 3) ? spec = <>lin.m</> :
-      (p === 3) ? spec = <>pcs</> : null
+  (p === 1 || p === 2) ? spec = <>{dictionary["calculate_options"]["option"]["m2"]}&sup2;</> :
+    (p === 3) ? spec = <>{dictionary["calculate_options"]["option"]["lin"]}</> :
+      (p === 3) ? spec = <>{dictionary["calculate_options"]["option"]["pcs"]}</> : null
 
-  if (order === "first") return <option value="0">select quantity...</option>
-  else if (order === "last") return <option value={totalPacks}>&gt;{totalVolume} {spec} specify in the cart</option>
+  if (order === "first") return <option value="0">{dictionary["calculate_options"]["option"]["select_quantity"]}</option>
+  else if (order === "last") return <option value={totalPacks}>&gt;{totalVolume} {spec} {dictionary["calculate_options"]["option"]["specify_in_the_cart"]}</option>
 
   if (p === 1 || p === 2) {
-    if (product.type === 'Klinker brick' || product.type === 'Klinker clay paver') return <option value={totalPacks}>{totalVolume} {spec}&nbsp; = &nbsp;€{priceModified} &nbsp;({piecesModified}, {totalWeight} kg, {totalPallets} pal)</option>
-    else return <option value={totalPacks}>{totalVolume} {spec}&nbsp; = &nbsp;€{priceModified} &nbsp;({totalPacksModified}, {piecesModified}, {totalWeight} kg, {totalPallets} pal)</option>
+    if (product.type === 'Klinker brick' || product.type === 'Klinker clay paver') return <option value={totalPacks}>{totalVolume} {spec}&nbsp; = &nbsp;{dictionary["Currency_symbol"]}{priceModified} &nbsp;({piecesModified}, {totalWeight} {dictionary["calculate_options"]["option"]["kg"]}, {totalPallets} {dictionary["calculate_options"]["option"]["pal"]})</option>
+    else return <option value={totalPacks}>{totalVolume} {spec}&nbsp; = &nbsp;{dictionary["Currency_symbol"]}{priceModified} &nbsp;({totalPacksModified}, {piecesModified}, {totalWeight} {dictionary["calculate_options"]["option"]["kg"]}, {totalPallets} {dictionary["calculate_options"]["option"]["pal"]})</option>
   }
-  else if (p === 3) return <option value={totalPacks}>{totalVolume} {spec}&nbsp;&nbsp; = &nbsp;€{priceModified} &nbsp;({totalPacksModified}, {piecesModified}, {totalWeight} kg, {totalPallets} pal)</option>
-  else if (p === 4) return <option value={totalPacks}>{piecesModified}&nbsp; = &nbsp;€{priceModified} &nbsp;({totalPacksModified}, {totalWeight} kg, {totalPallets} pal)</option>
+  else if (p === 3) return <option value={totalPacks}>{totalVolume} {spec}&nbsp; = &nbsp;{dictionary["Currency_symbol"]}{priceModified} &nbsp;({totalPacksModified}, {piecesModified}, {totalWeight} {dictionary["calculate_options"]["option"]["kg"]}, {totalPallets} {dictionary["calculate_options"]["option"]["pal"]})</option>
+  else if (p === 4) return <option value={totalPacks}>{piecesModified}&nbsp; = &nbsp;{dictionary["Currency_symbol"]}{priceModified} &nbsp;({totalPacksModified}, {totalWeight} {dictionary["calculate_options"]["option"]["kg"]}, {totalPallets} {dictionary["calculate_options"]["option"]["pal"]})</option>
 }
 
-const calculateOptions = (product: ProductPropsAll, cartPacks?: number) => {
+const calculateOptions = (product: ProductPropsAll, dictionary: any, cartPacks?: number) => {
 
   let priceTotalLimit = 9000
   let piecesInSquareMeter
@@ -43,7 +43,7 @@ const calculateOptions = (product: ProductPropsAll, cartPacks?: number) => {
   let weight
   if (product.specs.weightOf1PackGramm) weight = product.specs.weightOf1PackGramm / 100
   let weightOf1Piece: number = 0
-  product.specs.weightOf1PieceGramm && product.specs.weightOf1PieceGramm / 100 //For bricks and mortar
+  product.specs.weightOf1PieceGramm && (weightOf1Piece = product.specs.weightOf1PieceGramm / 100) //For bricks and mortar
   let totalWeight = 0
   let piecesInPallet = product.specs.piecesInPallet
   let squareMetersInPallet = product.specs.squareMetersInPallet
@@ -89,7 +89,7 @@ const calculateOptions = (product: ProductPropsAll, cartPacks?: number) => {
     }
   }
 
-  if (!cartPacks) optionsHTML.push(<Option key={"first"} order={"first"} product={product} />)
+  if (!cartPacks) optionsHTML.push(<Option key={"first"} order={"first"} product={product} dictionary={dictionary} />)
 
   let generalLimit = 0
   let brickLimit = 0
@@ -119,7 +119,7 @@ const calculateOptions = (product: ProductPropsAll, cartPacks?: number) => {
       if (piecesInPallet) totalPallets = Number((pieces / piecesInPallet).toFixed(2))
       totalPacks = totalPallets
       if (piecesInPallet) totalWeight = Number((totalWeight + (weightOf1Piece * piecesInPallet)).toFixed(2))
-      piecesModified = pieces + ` pcs`
+      piecesModified = pieces + dictionary["calculate_options"]["pcs"]
       totalPalletsNumber = totalPallets
     }
     else {
@@ -139,11 +139,11 @@ const calculateOptions = (product: ProductPropsAll, cartPacks?: number) => {
       totalPacks++
       if (weight) totalWeight = Number((totalWeight + weight).toFixed(2))
 
-      if (totalPacks === 1) { totalPacksModified = totalPacks + ` pack` }
-      else { totalPacksModified = totalPacks + ` packs` }
+      if (totalPacks === 1) { totalPacksModified = totalPacks + dictionary["calculate_options"]["pack"] }
+      else { totalPacksModified = totalPacks + dictionary["calculate_options"]["packs"] }
 
-      if (pieces === 1) { piecesModified = pieces + ` pc` }
-      else { piecesModified = pieces + ` pcs` }
+      if (pieces === 1) { piecesModified = pieces + dictionary["calculate_options"]["pc"] }
+      else { piecesModified = pieces + dictionary["calculate_options"]["pcs"] }
 
       if (product.priceType === 1) {
         price = (totalVolume * Number(priceM2)).toFixed(2)
@@ -159,7 +159,7 @@ const calculateOptions = (product: ProductPropsAll, cartPacks?: number) => {
     let priceModified = String(price)
     if (priceLength > 6) { priceModified = priceModified.replace(priceModified.slice(-6), ',' + priceModified.slice(-6)) }
 
-    if (!cartPacks) optionsHTML.push(<Option key={totalPacks} product={product} totalPacks={totalPacks} totalVolume={totalVolume} priceModified={priceModified} totalPacksModified={totalPacksModified} piecesModified={piecesModified} totalWeight={totalWeight} totalPallets={totalPallets} />)
+    if (!cartPacks) optionsHTML.push(<Option key={totalPacks} product={product} totalPacks={totalPacks} totalVolume={totalVolume} priceModified={priceModified} totalPacksModified={totalPacksModified} piecesModified={piecesModified} totalWeight={totalWeight} totalPallets={totalPallets} dictionary={dictionary}/>)
     else {
 
       if (totalPacks === quantityPacks) {
@@ -169,7 +169,7 @@ const calculateOptions = (product: ProductPropsAll, cartPacks?: number) => {
   }
 
   if (!cartPacks) {
-    optionsHTML.push(<Option key={"last"} order={"last"} product={product} totalPacks={totalPacks} totalVolume={totalVolume} />)
+    optionsHTML.push(<Option key={"last"} order={"last"} product={product} totalPacks={totalPacks} totalVolume={totalVolume} dictionary={dictionary}/>)
     return optionsHTML
   }
 }

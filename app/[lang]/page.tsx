@@ -28,7 +28,12 @@ export default async function Home({ params: { lang } }: { params: { lang: Local
       <Divider label={dictionary["Main"]["second_divider"]} />
 
       <section className="products cont">
-        <ShowProducts products={fetchedProducts} quantity={10} type={'Klinker brick slip'} />
+        <ShowProducts
+          products={fetchedProducts}
+          quantity={10}
+          type={'Klinker brick slip'}
+          dictionary={dictionary}
+        />
       </section>
 
       <Divider label={dictionary["Main"]["third_divider"]} />

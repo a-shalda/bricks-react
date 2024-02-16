@@ -14,7 +14,7 @@ import { useState } from "react"
 import { type ProductProps, type ProductsProps } from "@/lib/types"
 
 
-const ProductComponent = ({ product, products }: { product: ProductProps, products: ProductsProps }) => {
+const ProductComponent = ({ product, products, dictionary }: { product: ProductProps, products: ProductsProps, dictionary: any }) => {
 
   const [quantity, setQuantity] = useState(0)
   const [errorAdding, setErrorAdding] = useState("")
@@ -37,13 +37,13 @@ const ProductComponent = ({ product, products }: { product: ProductProps, produc
     <main itemScope itemType="https://schema.org/Product">
       <section className="main cont">
 
-        <ProductCardTitle product={product} />
+        <ProductCardTitle product={product} dictionary={dictionary} />
 
         <div className="main__window">
           <Gallery product={product} />
 
           <div className="main__window__middle__top">
-            <Prices product={product} />
+            <Prices product={product} dictionary={dictionary} />
 
             <PricesOptions
               product={product}
@@ -51,6 +51,7 @@ const ProductComponent = ({ product, products }: { product: ProductProps, produc
               quantity={quantity}
               errorAdding={errorAdding}
               setToCartMessage={setToCartMessage}
+              dictionary={dictionary}
             />
 
             <Buttons
@@ -59,10 +60,11 @@ const ProductComponent = ({ product, products }: { product: ProductProps, produc
               setQuantity={setQuantity}
               setErrorAdding={setErrorAdding}
               handleModal={handleModal}
+              dictionary={dictionary}
             />
           </div>
 
-          <Specs product={product} />
+          <Specs product={product} dictionary={dictionary} />
 
           <div className="main__window__right__top"></div>
           <div className="main__window__right__bottom"></div>
@@ -77,6 +79,7 @@ const ProductComponent = ({ product, products }: { product: ProductProps, produc
 
       <Additional
         product={product}
+        dictionary={dictionary}
       />
 
       <Similar
@@ -85,6 +88,7 @@ const ProductComponent = ({ product, products }: { product: ProductProps, produc
         color={product?.specs.color}
         product={product}
         quantity={5}
+        dictionary={dictionary}
       />
 
     </main>

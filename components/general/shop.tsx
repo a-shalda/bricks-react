@@ -1,15 +1,8 @@
 import ShowProducts from "@/components/general/show-products"
-import { type ProductsProps } from "@/lib/types"
+import { type ProductsProps, type ShopProps } from "@/lib/types"
 
 
-type ShopProps = {
-  title: string,
-  type: string,
-  text: React.JSX.Element,
-  products: ProductsProps | null | undefined
-}
-
-const Shop = ({ title, products, type, text }: ShopProps) => {
+const Shop = ({ title, products, type, text, dictionary }: ShopProps) => {
 
   return (
     <main>
@@ -21,6 +14,7 @@ const Shop = ({ title, products, type, text }: ShopProps) => {
           <ShowProducts
             products={products}
             type={type}
+            dictionary={dictionary}
           />
         </div>
       </section>

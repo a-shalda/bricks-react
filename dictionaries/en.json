@@ -1,5 +1,6 @@
 {
   "Language": "en",
+  "Currency_symbol": "€",
   "Header": {
     "all_products": "All products",
     "brick_slips": "Klinker brick slips",
@@ -182,6 +183,45 @@
     },
     "eight": {
       "title": "Perel"
+    }
+  },
+  "Product_Card": {
+    "about": "About",
+    "first_divider": "Similar products",
+    "measures": {
+      "m2": "m",
+      "pc": "pc",
+      "lin": "lin.m"
+    },
+    "buttons": {
+      "save": "Save",
+      "unsave": "Unsave",
+      "add": "Add"
+    }
+  },
+  "calculate_options": {
+    "packs": " packs",
+    "pack": " pack",
+    "pcs": " pcs",
+    "pc": " pc",
+    "option": {
+      "select_quantity": "select quantity...",
+      "specify_in_the_cart": "specify in the cart",
+      "m2": "m",
+      "pcs": "pcs",
+      "lin": "lin.m",
+      "kg": "kg",
+      "pal": "pal"
+    }
+  },
+  "show_products": {
+    "m2": "m",
+    "pc": "pc",
+    "lin": "lm",
+    "specs": {
+      "manufacturer": "Manufacturer",
+      "country": "Country",
+      "size": "Size (mm)"
     }
   }
 }

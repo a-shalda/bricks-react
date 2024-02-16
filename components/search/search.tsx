@@ -87,6 +87,7 @@ const Search = ({ products, dictionary }: { products: ProductsProps | null | und
         <div className={`products search--blurred ${productsBlurred}`}>
           <ShowProducts
             products={foundProductsDisplay}
+            dictionary={dictionary}
           />
         </div>
       </section>

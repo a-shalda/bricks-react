@@ -5,11 +5,11 @@ import { useTriggerUseEffect } from "@/app/[lang]/store"
 import { type ButtonsProps, countersCartType, countersWishType } from "@/lib/types"
 
 
-const Buttons = ({ product, quantity, setQuantity, setErrorAdding, handleModal }: ButtonsProps) => {
+const Buttons = ({ product, quantity, setQuantity, setErrorAdding, handleModal, dictionary }: ButtonsProps) => {
 
   const packsTotalLimit = 1000
 
-  const [wishButton, setWishButton] = useState("Save")
+  const [wishButton, setWishButton] = useState(dictionary["Product_Card"]["buttons"]["save"])
 
   let cart: countersCartType = []
   let wishlist: countersWishType = []
@@ -29,7 +29,7 @@ const Buttons = ({ product, quantity, setQuantity, setErrorAdding, handleModal }
 
     wishlist.filter(item => {
       if (item.id === wish.id) {
-        setWishButton("Unsave")
+        setWishButton(dictionary["Product_Card"]["buttons"]["unsave"])
       }
     })
   })
@@ -53,12 +53,12 @@ const Buttons = ({ product, quantity, setQuantity, setErrorAdding, handleModal }
     if (mathingIndex === undefined) {
       wishlist.push(wish)
       localStorage.setItem('wishlist', JSON.stringify(wishlist))
-      setWishButton("Unsave")
+      setWishButton(dictionary["Product_Card"]["buttons"]["unsave"])
     }
     else {
       wishlist.splice(mathingIndex, 1)
       localStorage.setItem('wishlist', JSON.stringify(wishlist))
-      setWishButton("Save")
+      setWishButton(dictionary["Product_Card"]["buttons"]["save"])
     }
     updateCounters()
   }
@@ -126,7 +126,7 @@ const Buttons = ({ product, quantity, setQuantity, setErrorAdding, handleModal }
       >
         <img src="/images/icons/cart.svg" className="main__window__middle__top__buy__button_wish__cont__heart"
           width="18" height="18" alt="heart" />
-        <span className="main__window__middle__top__buy__button_wish__text">Add</span>
+        <span className="main__window__middle__top__buy__button_wish__text">{dictionary["Product_Card"]["buttons"]["add"]}</span>
       </button>
     </div>
   )

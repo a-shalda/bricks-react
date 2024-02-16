@@ -15,18 +15,18 @@ export default async function getAllProducts(lang: string) {
       if (data[i].id) newProduct.id = data[i].id!
       else return null
 
-
       if (data[i].type) newProduct.type = data[i].type!
       if (data[i].name) newProduct.name = data[i].name!
+
       if (data[i].availability) newProduct.availability = data[i].availability!
+      if (lang === "en") {
+        if (data[i].availability_en) newProduct.availability = data[i].availability_en!
+      }
+
       if (data[i].filepath) newProduct.filepath = data[i].filepath!
 
-      if (lang === "ru") {
-        newProduct.filepath = "/ru" + newProduct.filepath
-      }
-      else if (lang === "en") {
-        newProduct.filepath = "/en" + newProduct.filepath
-      }
+      if(lang === "ru") newProduct.filepath = "/ru" + newProduct.filepath
+      else if (lang === "en") newProduct.filepath = "/en" + newProduct.filepath
 
       if (data[i].priceCentsM2) newProduct.priceCentsM2 = data[i].priceCentsM2!
       if (data[i].priceCentsPc) newProduct.priceCentsPc = data[i].priceCentsPc!
@@ -34,9 +34,14 @@ export default async function getAllProducts(lang: string) {
       if (data[i].priceType) newProduct.priceType = data[i].priceType!
       if (data[i].isM2) newProduct.isM2 = data[i].isM2!
       if (data[i].isLinearMeter) newProduct.isLinearMeter = data[i].isLinearMeter!
+      
       if (data[i].description) newProduct.description = data[i].description!
-      if (data[i].productTypeNumber) newProduct.productTypeNumber = data[i].productTypeNumber!
+      if (lang === "en") {
+        if (data[i].description_en) newProduct.description = data[i].description_en!
+      }
 
+      if (data[i].type_ru) newProduct.type_ru = data[i].type_ru!
+      if (data[i].productTypeNumber) newProduct.productTypeNumber = data[i].productTypeNumber!
       if (data[i].specs__color) newProduct.specs.color = data[i].specs__color!
       if (data[i].specs__piecesInSquareMeterCm) newProduct.specs.piecesInSquareMeterCm = data[i].specs__piecesInSquareMeterCm!
       if (data[i].specs__piecesInLinearMeterCm) newProduct.specs.piecesInLinearMeterCm = data[i].specs__piecesInLinearMeterCm!
@@ -51,7 +56,11 @@ export default async function getAllProducts(lang: string) {
       if (data[i].specs__weightOf1SquareMeter) newProduct.specs.weightOf1SquareMeter = data[i].specs__weightOf1SquareMeter!
       if (data[i].specs__weightOf1PackGramm) newProduct.specs.weightOf1PackGramm = data[i].specs__weightOf1PackGramm!
       if (data[i].specs__manufacturer) newProduct.specs.manufacturer = data[i].specs__manufacturer!
+
       if (data[i].specs__countryOfOrigin) newProduct.specs.countryOfOrigin = data[i].specs__countryOfOrigin!
+      if (lang === "en") {
+        if (data[i].specs__countryOfOrigin_en) newProduct.specs.countryOfOrigin = data[i].specs__countryOfOrigin_en!
+      }
 
       if (data[i].image_original__001) newProduct.image_original[0] = data[i].image_original__001!
       if (data[i].image_original__002) newProduct.image_original[1] = data[i].image_original__002!

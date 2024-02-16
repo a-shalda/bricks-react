@@ -1,12 +1,9 @@
 import calculatePrices from "@/helpers/calculatePrices"
-import { type ProductProps } from "@/lib/types"
+import { type ProductProps, type PricesProps } from "@/lib/types"
 
-type PricesProps = {
-  product: ProductProps,
-  cartType?: boolean
-}
 
-const Prices = ({ product, cartType }: PricesProps) => {
+
+const Prices = ({ product, cartType, dictionary }: PricesProps) => {
 
   const indexOfDot = (number: string) => number.indexOf('.')
 
@@ -27,15 +24,15 @@ const Prices = ({ product, cartType }: PricesProps) => {
 
     priceMHtml = (
       <>
-        <sup itemProp="priceCurrency" content="EUR">€</sup>
+        <sup itemProp="priceCurrency" content="EUR">{dictionary["Currency_symbol"]}</sup>
         {priceM.slice(0, indexOfDot(priceM))}
         <span className="price-small"
           itemProp="price" content={contentProp}>
           {priceM.slice(indexOfDot(priceM))}</span>
         <span className="price-desc">
           {(product.priceType !== 3) ?
-            <>&nbsp;m<sup>2</sup></> :
-            <>&nbsp;lin.m</>
+            <>&nbsp;{dictionary["Product_Card"]["measures"]["m2"]}<sup>2</sup></> :
+            <>&nbsp;{dictionary["Product_Card"]["measures"]["lin"]}</>
           }
         </span>
       </>
@@ -48,13 +45,13 @@ const Prices = ({ product, cartType }: PricesProps) => {
 
   let pricePcHtml = (
     <>
-      <sup>€</sup>
+      <sup>{dictionary["Currency_symbol"]}</sup>
       {pricePc.slice(0, indexOfDot(pricePc))}
       <span className="price-small">
         {pricePc.slice(indexOfDot(pricePc))}
       </span>
       <span className="price-desc">
-        &nbsp;pc
+        &nbsp;{dictionary["Product_Card"]["measures"]["pc"]}
       </span>
     </>
   )

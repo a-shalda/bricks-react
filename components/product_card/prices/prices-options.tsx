@@ -2,9 +2,9 @@ import calculateOptions from "@/helpers/calculateOptions"
 import { type PricesOptionsProps } from "@/lib/types"
 
 
-const PricesOptions = ({ product, setQuantity, quantity, errorAdding, setToCartMessage }: PricesOptionsProps) => {
+const PricesOptions = ({ product, setQuantity, quantity, errorAdding, setToCartMessage, dictionary }: PricesOptionsProps) => {
 
-  const options = calculateOptions(product)
+  const options = calculateOptions(product, dictionary)
 
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setQuantity(Number(e.currentTarget.value))

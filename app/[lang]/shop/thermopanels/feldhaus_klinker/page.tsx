@@ -32,6 +32,7 @@ const ShopPage = async ({ params: { lang } }: { params: { lang: Locale } }) => {
       products={fetchedProducts}
       type={type}
       text={text}
+      dictionary={dictionary}
     />
   )
 }

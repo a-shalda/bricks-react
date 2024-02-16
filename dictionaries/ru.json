@@ -1,5 +1,6 @@
 {
   "Language": "ru",
+  "Currency_symbol": "€",
   "Header": {
     "all_products": "Все товары",
     "brick_slips": "Клинкерная плитка под кирпич",
@@ -182,6 +183,45 @@
     },
     "eight": {
       "title": "Сухие смеси Perel"
+    }
+  },
+  "Product_Card": {
+    "about": "Описание",
+    "first_divider": "Похожие",
+    "measures": {
+      "m2": "м",
+      "pc": "шт",
+      "lin": "п.м."
+    },
+    "buttons": {
+      "save": "Сохранить",
+      "unsave": "Убрать",
+      "add": "В корзину"
+    }
+  },
+  "calculate_options": {
+    "packs": " уп",
+    "pack": " уп",
+    "pcs": " шт",
+    "pc": " шт",
+    "option": {
+      "select_quantity": "выберите количество...",
+      "specify_in_the_cart": "выбрать и указать в корзине",
+      "m2": "м",
+      "pcs": "шт",
+      "lin": "п.м.",
+      "kg": "кг",
+      "pal": "палета"
+    }
+  },
+  "show_products": {
+    "m2": "м",
+    "pc": "шт",
+    "lin": "п.м.",
+    "specs": {
+      "manufacturer": "Производитель",
+      "country": "Страна",
+      "size": "Размер (мм)"
     }
   }
 }

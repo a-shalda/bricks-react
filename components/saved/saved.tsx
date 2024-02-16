@@ -42,6 +42,7 @@ const Saved = ({ products, dictionary }: { products: ProductsProps | null | unde
         <div className="products">
           <ShowProducts
             products={savedProducts}
+            dictionary={dictionary}
           />
         </div>
       </section>
