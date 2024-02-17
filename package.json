@@ -5,8 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate-sitemap": "next-sitemap --config=next-sitemap.config.js"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.4",
@@ -15,6 +17,7 @@
     "country-flag-icons": "^1.5.9",
     "negotiator": "^0.6.3",
     "next": "14.1.0",
+    "next-sitemap": "^4.2.3",
     "react": "^18",
     "react-dom": "^18",
     "uuid": "^9.0.1",

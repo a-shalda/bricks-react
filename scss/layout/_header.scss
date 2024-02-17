@@ -99,7 +99,7 @@
             align-items: center;
             gap: 1rem;
             border-top: 1px solid var(--gray-color);
-            color: hwb(0 0% 100%);
+            margin-inline: 3rem;
 
             @include breakpoint(small) {
               margin-inline: 2rem;
@@ -108,15 +108,15 @@
             @include breakpoint(medium) {
               margin-inline: 2.5rem;
             }
-
           }
+
 
           &__content {
             position: absolute;
             top: 1rem;
             left: -1rem;
             width: 100vw;
-            height: 91vh;
+            height: 100vh;
 
             padding-block: 0.5rem;
             background-color: rgb(66, 65, 65);

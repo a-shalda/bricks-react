@@ -87,7 +87,12 @@ const Header = ({ dictionary }: { dictionary: any }) => {
   }, [trigger])
 
   const [dropdownVisible, setDropdownVisible] = useState(false)
-  const handleDropdown = () => setDropdownVisible(!dropdownVisible)
+  const handleDropdown = () => {
+    setDropdownVisible(!dropdownVisible)
+
+    if (!dropdownVisible) document.body.classList.add("stop-scroll")
+    else if (dropdownVisible) document.body.classList.remove("stop-scroll")
+  }
 
   return (
     <header id="header" className="header">

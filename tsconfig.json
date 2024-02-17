@@ -39,7 +39,7 @@
     "app/[lang]/shop/quick_mix/page.tsx",
     "app/[lang]/saved/page.tsx",
     "app/[lang]/cart/page.tsx"
-  ],
+, "next-sitemap.config.js"  ],
   "exclude": [
     "node_modules"
   ]

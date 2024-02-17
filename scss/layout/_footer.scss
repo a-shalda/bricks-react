@@ -21,16 +21,17 @@
 
     padding-bottom: 0.5rem;
 
-    @include breakpoint(tiny) {
-      grid-template-columns: 1fr 1fr;
-    }
-  
     @include breakpoint(medium) {
-      grid-template-columns: 1fr 1fr 15% auto 1fr;
+      grid-template-columns: auto 1fr auto auto 1fr;
+      column-gap: 2rem;
+    }
+
+    @include breakpoint(large) {
+      column-gap: 4rem;
     }
   
     @include breakpoint(xlarge) {
-      grid-template-columns: 1fr 1fr 45% auto 1fr;
+      grid-template-columns: auto 1fr 25% auto 1fr;
     }
 
     &__column {
