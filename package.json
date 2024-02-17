@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.4",
+    "@next/third-parties": "^14.1.0",
     "@supabase/supabase-js": "^2.39.3",
     "@types/negotiator": "^0.6.3",
     "country-flag-icons": "^1.5.9",
