@@ -40,7 +40,7 @@ const ProductComponent = ({ product, products, dictionary }: { product: ProductP
         <ProductCardTitle product={product} dictionary={dictionary} />
 
         <div className="main__window">
-          <Gallery product={product} />
+          <Gallery product={product} dictionary={dictionary} />
 
           <div className="main__window__middle__top">
             <Prices product={product} dictionary={dictionary} />

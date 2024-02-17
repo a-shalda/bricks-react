@@ -268,5 +268,15 @@
         "rest": "has been formed. We will contact you shortly."
       }
     }
+  },
+  "product_meta": {
+    "details-one": ", buy in Moscow",
+    "details-two": ", samples in showroom",
+    "pages": {
+      "main": "Fasade klinker brick slips from Germany – buy in Moscow",
+      "search": "Search",
+      "saved": "Saved",
+      "cart": "Cart"
+    }
   }
 }

@@ -4,12 +4,24 @@ import { textKingKlinker } from "@/data/texts"
 import fetchAllProducts from "@/helpers/fetchAllProducts"
 import { type ProductsProps } from "@/lib/types"
 
-const title = "Thermopanels"
+import type { Metadata, ResolvingMetadata } from 'next'
+import { type MetadataProductProps } from '@/lib/types'
 
-export const metadata = {
-  title: `${title} - Bricks eCommerce Shop`,
-  description: "Bricks eCommerce Shop",
-};
+export async function generateMetadata(
+  { params }: MetadataProductProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+
+  const dictionary = await getDictionary(params.lang)
+
+  const categoryTitle = dictionary["Categories"]["thermopanels"]["title"] + " " + dictionary["Categories"]["one"]["title"]
+  const categoryDescription = dictionary["Categories"]["thermopanels"]["title"] + " " + dictionary["Categories"]["one"]["title"] + dictionary["product_meta"]["details-one"]
+
+  return {
+    title: categoryTitle,
+    description: categoryDescription
+  }
+}
 
 import { i18n, type Locale } from "@/i18n-config";
 import { getDictionary } from "@/get-dictionary";
@@ -28,7 +40,7 @@ const ShopPage = async ({ params: { lang } }: { params: { lang: Locale } }) => {
 
   return (
     <Shop
-      title={dictionary["Categories"]["thermopanels"]["title"]}
+      title={dictionary["Categories"]["thermopanels"]["title"] + " " + dictionary["Categories"]["one"]["title"]}
       products={fetchedProducts}
       type={type}
       text={text}

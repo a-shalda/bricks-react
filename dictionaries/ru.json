@@ -161,28 +161,28 @@
       "title": "Сухие смеси"
     },
     "one": {
-      "title": "Клинкерная плитка Feldhaus Klinker"
+      "title": "Feldhaus Klinker"
     },
     "two": {
-      "title": "Клинкерная плитка Stroeher"
+      "title": "Stroeher"
     },
     "three": {
-      "title": "Клинкерная плитка Roben"
+      "title": "Roben"
     },
     "four": {
-      "title": "Клинкерная плитка ABC-Klinkergruppe"
+      "title": "ABC-Klinkergruppe"
     },
     "five": {
-      "title": "Клинкерная плитка King Klinker"
+      "title": "King Klinker"
     },
     "six": {
       "title": "ZG Clinker"
     },
     "seven": {
-      "title": "Сухие смеси Quick-Mix"
+      "title": "Quick-Mix"
     },
     "eight": {
-      "title": "Сухие смеси Perel"
+      "title": "Perel"
     }
   },
   "Product_Card": {
@@ -267,6 +267,16 @@
         "your_order": "Ваш заказ",
         "rest": "был отправлен. Возможна скидка от объема. Оплата в рублях по курсу ЦБ РФ на день оплаты. Мы свяжемся с Вами в ближайшее время."
       }
+    }
+  },
+  "product_meta": {
+    "details-one": ", купить в Москве",
+    "details-two": ", образец в шоу-руме",
+    "pages": {
+      "main": "Клинкерная плитка для фасада и интерьера в Москве из Германии – купите по отличной цене за метр",
+      "search": "Поиск",
+      "saved": "Сохраненные товары",
+      "cart": "Корзина"
     }
   }
 }

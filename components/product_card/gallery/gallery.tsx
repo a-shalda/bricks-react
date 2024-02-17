@@ -6,7 +6,7 @@ import Thumbnails from "@/components/product_card/gallery/thumbnails"
 import { type ProductProps, ImageCompProps } from "@/lib/types"
 
 
-const ImageComp = ({ image, index, alt, current, handleModal }: ImageCompProps) => {
+const ImageComp = ({ image, index, alt, current, handleModal, dictionary }: ImageCompProps) => {
 
   const [imageBlurred, setImageBlurred] = useState("image_blurred")
   const [imgUnloaded, setImgUnloaded] = useState("img_unloaded")
@@ -44,7 +44,7 @@ const ImageComp = ({ image, index, alt, current, handleModal }: ImageCompProps) 
   )
 }
 
-const Gallery = ({ product }: { product: ProductProps}) => {
+const Gallery = ({ product, dictionary }: { product: ProductProps, dictionary: any}) => {
 
   const [imageModal, setImageModal] = useState(product.image_original[0])
   const [modalVisible, setModalVisible] = useState("")
@@ -68,10 +68,13 @@ const Gallery = ({ product }: { product: ProductProps}) => {
   const [current, setCurrent] = useState(0)
 
   let images: React.JSX.Element[] = []
-  let alt = product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format
+
+  let type = product.type_ru
+  if (dictionary["Language"] === "en") type = product.type
+  let alt = type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format
 
   product.image_original.forEach((image: string, index: number) => {
-    images.push(<ImageComp key={index} image={image} index={index} alt={alt} current={current} handleModal={handleModal} />)
+    images.push(<ImageComp key={index} image={image} index={index} alt={alt} current={current} handleModal={handleModal} dictionary={dictionary}/>)
   });
 
   const changeIndex = (e: number) => {

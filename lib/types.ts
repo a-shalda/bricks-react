@@ -1,3 +1,5 @@
+import { type Locale } from "@/i18n-config";
+
 // type PriceType = 1 | 2 | 3 | 4
 // type ProductType = "Klinker brick slip" | "Klinker brick" | "Klinker stair tile" | "Klinker floor tile" | "Thermopanel" | "Ceramic fence cap" | "Klinker clay paver" | "Ceramic window sill" | "Mortar"
 type PriceType = number
@@ -309,6 +311,7 @@ export type ImageCompProps = {
   alt: string,
   current: number,
   handleModal: (e: string) => void,
+  dictionary: any
 }
 
 type sliderItemsProps = {
@@ -368,4 +371,10 @@ export type ShopProps = {
   text: React.JSX.Element,
   products: ProductsProps | null | undefined,
   dictionary: any
+}
+
+export type MetadataProductProps = {
+  params: { 
+    lang: Locale
+  }
 }

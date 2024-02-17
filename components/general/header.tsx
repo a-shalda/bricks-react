@@ -5,29 +5,33 @@ import Link from 'next/link'
 import Image from "next/image"
 import { useTriggerUseEffect } from "@/app/[lang]/store"
 import { type countersCartType, countersWishType } from "@/lib/types"
+import LocaleSwitcher from "@/components/general/locale-switcher"
 
-const Dropdown = ({ dictionary }: { dictionary: any}) => {
+const Dropdown = ({ dictionary }: { dictionary: any }) => {
 
   return (
-    <div className="header__upper__left__hamburger__dropdown">
-      <div className="header__upper__left__hamburger__dropdown__content">
-        <ul className="header__upper__left__hamburger__dropdown__ul">
-          <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href={`/${dictionary["Language"]}/shop`}>{dictionary["Header"]["all_products"]}</Link></li>
-          <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href={`/${dictionary["Language"]}/shop/brick_slips`}>{dictionary["Header"]["brick_slips"]}</Link></li>
-          <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href={`/${dictionary["Language"]}/shop/bricks`}>{dictionary["Header"]["bricks"]}</Link></li>
-          <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href={`/${dictionary["Language"]}/shop/thermopanels`}>{dictionary["Header"]["thermopanels"]}</Link></li>
-          <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href={`/${dictionary["Language"]}/shop/fence_caps`}>{dictionary["Header"]["fence_caps"]}</Link></li>
-          <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href={`/${dictionary["Language"]}/shop/clay_pavers`}>{dictionary["Header"]["clay_pavers"]}</Link></li>
-          <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href={`/${dictionary["Language"]}/shop/stair_floor_tile`}>{dictionary["Header"]["stair_floor_tile"]}</Link></li>
-          <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href={`/${dictionary["Language"]}/shop/window_sills`}>{dictionary["Header"]["window_sills"]}</Link></li>
-          <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href={`/${dictionary["Language"]}/shop/mortar`}>{dictionary["Header"]["mortar"]}</Link></li>
-        </ul>
+    <>
+      <div className="header__upper__left__hamburger__dropdown">
+        <div className="header__upper__left__hamburger__dropdown__content">
+          <ul className="header__upper__left__hamburger__dropdown__ul">
+            <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href={`/${dictionary["Language"]}/shop`}>{dictionary["Header"]["all_products"]}</Link></li>
+            <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href={`/${dictionary["Language"]}/shop/brick_slips`}>{dictionary["Header"]["brick_slips"]}</Link></li>
+            <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href={`/${dictionary["Language"]}/shop/bricks`}>{dictionary["Header"]["bricks"]}</Link></li>
+            <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href={`/${dictionary["Language"]}/shop/thermopanels`}>{dictionary["Header"]["thermopanels"]}</Link></li>
+            <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href={`/${dictionary["Language"]}/shop/fence_caps`}>{dictionary["Header"]["fence_caps"]}</Link></li>
+            <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href={`/${dictionary["Language"]}/shop/clay_pavers`}>{dictionary["Header"]["clay_pavers"]}</Link></li>
+            <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href={`/${dictionary["Language"]}/shop/stair_floor_tile`}>{dictionary["Header"]["stair_floor_tile"]}</Link></li>
+            <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href={`/${dictionary["Language"]}/shop/window_sills`}>{dictionary["Header"]["window_sills"]}</Link></li>
+            <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href={`/${dictionary["Language"]}/shop/mortar`}>{dictionary["Header"]["mortar"]}</Link></li>
+          </ul>
+          <LocaleSwitcher />
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 
-const Header = ({ dictionary }: { dictionary: any}) => {
+const Header = ({ dictionary }: { dictionary: any }) => {
 
   const trigger = useTriggerUseEffect(state => state.triggerUseEffect)
 
@@ -87,7 +91,6 @@ const Header = ({ dictionary }: { dictionary: any}) => {
 
   return (
     <header id="header" className="header">
-
       <div className="header__upper cont">
 
         <div className="header__upper__left">
@@ -101,7 +104,7 @@ const Header = ({ dictionary }: { dictionary: any}) => {
           </div>
           <div className="header__upper__left__logo">
             <Link href={"/" + dictionary["Language"]} className="header__upper__left__logo__link">
-              <Image src="/images/log.webp" width="42" height="22" className="header__upper__left__logo__bricks" alt="logo"/>
+              <Image src="/images/log.webp" width="42" height="22" className="header__upper__left__logo__bricks" alt="logo" />
             </Link>
           </div>
         </div>

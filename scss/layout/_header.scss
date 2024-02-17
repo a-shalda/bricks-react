@@ -8,7 +8,8 @@
   box-shadow: 0 1px 6px 1px rgba(0, 0, 0, 0.207);
   background-color: rgba(255, 255, 255, 0.97);
 
-  &__upper, &__lower {
+  &__upper,
+  &__lower {
     width: 100%;
     margin: 0 auto;
   }
@@ -20,11 +21,12 @@
     // clip-path: inset(0px 0px -10px 0px);
     padding-block: 1rem;
 
-    &__left, &__right {
+    &__left,
+    &__right {
       display: flex;
       align-items: center;
     }
-  
+
     &__left {
       position: relative;
 
@@ -53,6 +55,7 @@
         }
 
       }
+
       &__hamburger {
         width: 2.5rem;
 
@@ -90,12 +93,31 @@
           //   opacity: 1;
           // }
 
+          &__flag {
+            line-height: 4rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-top: 1px solid var(--gray-color);
+            color: hwb(0 0% 100%);
+
+            @include breakpoint(small) {
+              margin-inline: 2rem;
+            }
+
+            @include breakpoint(medium) {
+              margin-inline: 2.5rem;
+            }
+
+          }
+
           &__content {
             position: absolute;
             top: 1rem;
             left: -1rem;
             width: 100vw;
             height: 91vh;
+
             padding-block: 0.5rem;
             background-color: rgb(66, 65, 65);
             border-bottom: 1px solid var(--gray-color);
@@ -109,6 +131,7 @@
               border-right: 1px solid var(--gray-color);
               height: auto;
             }
+
 
             &__link {
               display: block;
@@ -134,7 +157,7 @@
 
               &:hover {
                 color: var(--light-light-gray-color);
-                cursor: pointer;              
+                cursor: pointer;
               }
 
               &--active {
@@ -149,9 +172,9 @@
         }
       }
     }
-  
+
     &__right {
-      display: flex;  
+      display: flex;
       align-items: center;
       justify-content: space-between;
       width: 9rem;
@@ -169,7 +192,10 @@
         width: 12rem;
       }
 
-      &__search, &__saved, &__seen, &__basket {
+      &__search,
+      &__saved,
+      &__seen,
+      &__basket {
         display: flex;
         align-items: center;
         user-select: none;
@@ -191,7 +217,7 @@
         @include breakpoint(tiny) {
           right: 4.2rem;
         }
-  
+
         @include breakpoint(medium) {
           right: 5rem;
         }
@@ -202,7 +228,7 @@
           @include breakpoint(tiny) {
             right: 5rem;
           }
-    
+
           @include breakpoint(medium) {
             right: 5.8rem;
           }
@@ -213,7 +239,8 @@
         position: relative;
       }
 
-      &__saved, &__cart {
+      &__saved,
+      &__cart {
         font-size: 1.5rem;
 
         &__counter {

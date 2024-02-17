@@ -1,15 +1,26 @@
 import Shop from "@/components/general/shop"
-import { textKingKlinker } from "@/data/texts"
 
 import fetchAllProducts from "@/helpers/fetchAllProducts"
 import { type ProductsProps } from "@/lib/types"
 
-const title = "Klinker brick slips"
+import type { Metadata, ResolvingMetadata } from 'next'
+import { type MetadataProductProps } from '@/lib/types'
 
-export const metadata = {
-  title: `${title} - Bricks eCommerce Shop`,
-  description: "Bricks eCommerce Shop",
-};
+export async function generateMetadata(
+  { params }: MetadataProductProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+
+  const dictionary = await getDictionary(params.lang)
+
+  const categoryTitle = dictionary["Categories"]["brick_slips"]["title"]
+  const categoryDescription = dictionary["Categories"]["brick_slips"]["title"] + dictionary["product_meta"]["details-one"]
+
+  return {
+    title: categoryTitle,
+    description: categoryDescription
+  }
+}
 
 import { i18n, type Locale } from "@/i18n-config";
 import { getDictionary } from "@/get-dictionary";
