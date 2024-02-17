@@ -74,6 +74,7 @@ const ProductComponent = ({ product, products, dictionary }: { product: ProductP
           modal={modal}
           handleContinue={handleContinue}
           toCartMessage={toCartMessage}
+          dictionary={dictionary}
         />
       </section>
 

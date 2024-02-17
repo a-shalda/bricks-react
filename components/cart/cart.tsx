@@ -43,7 +43,7 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
   let totalWeightCart = 0
   let totalPalletsCart = 0
 
-  let subtotalValue = <>Cart is empty</>
+  let subtotalValue = <>{dictionary["Cart"]["buttons"]["empty"]}</>
   let productHTML: React.JSX.Element
 
   const [buttonProceed, setButtonProceed] = useState("button-hidden")
@@ -157,7 +157,7 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
     products && products.forEach(product => {
       if (product.id === item.id) {
 
-        const dataArr: (string | number)[] | React.JSX.Element[] | undefined = calculateOptions(product, item.quantity)
+        const dataArr: (string | number)[] | React.JSX.Element[] | undefined = calculateOptions(product, dictionary, item.quantity)
         if (!dataArr) return null
 
         //Updating total amounts (start)
@@ -184,14 +184,14 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
         let totalPiecesCartMofified = ''
         let totalPacksCartMofified = ''
 
-        if (cart.length === 1) totalItems = '1 item'
-        else totalItems = `${cart.length} items`
+        if (cart.length === 1) totalItems = `1 ${dictionary["Cart"]["total"]["item"]}`
+        else totalItems = `${cart.length} ${dictionary["Cart"]["total"]["items"]}`
 
-        if (totalPiecesCart === 1) totalPiecesCartMofified = totalPiecesCart + ' pc'
-        else totalPiecesCartMofified = totalPiecesCart + ' pcs'
+        if (totalPiecesCart === 1) totalPiecesCartMofified = totalPiecesCart + ` ${dictionary["Cart"]["total"]["pc"]}`
+        else totalPiecesCartMofified = totalPiecesCart + ` ${dictionary["Cart"]["total"]["pcs"]}`
 
-        if (totalPacksCart === 1) totalPacksCartMofified = totalPacksCart + ' pack'
-        else totalPacksCartMofified = totalPacksCart + ' packs'
+        if (totalPacksCart === 1) totalPacksCartMofified = totalPacksCart + ` ${dictionary["Cart"]["total"]["pack"]}`
+        else totalPacksCartMofified = totalPacksCart + ` ${dictionary["Cart"]["total"]["packs"]}`
 
         let totalCostCartLength = totalCostCart.toFixed(2).length
         let totalCostCartModified = totalCostCart.toFixed(2)
@@ -199,49 +199,51 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
 
         if (totalSquareMetersCart !== 0 && totalLinearMetersCart !== 0) {
           subtotalValue = (
-            <><span className="cart__checkout__subtotal__bold">Total: €{totalCostCartModified} ({totalItems})<br /></span> {totalSquareMetersCart} m<sup>2</sup>, {totalLinearMetersCart} lin.m, {totalPiecesCartMofified}, <br />{totalPacksCartMofified}, {totalWeightCart} kg, {Number(totalPalletsCart).toFixed(2)} pal</>
+            <><span className="cart__checkout__subtotal__bold">{dictionary["Cart"]["total"]["total"]}: {dictionary["Currency_symbol"]}{totalCostCartModified} ({totalItems})<br /></span> {totalSquareMetersCart} {dictionary["Cart"]["total"]["m"]}<sup>2</sup>, {totalLinearMetersCart} {dictionary["Cart"]["total"]["lin"]}, {totalPiecesCartMofified}, <br />{totalPacksCartMofified}, {totalWeightCart} {dictionary["Cart"]["total"]["kg"]}, {Number(totalPalletsCart).toFixed(2)} {dictionary["Cart"]["total"]["pal"]}</>
           )
-          orderSummary = `Total: €${totalCostCartModified} (${totalItems}) ${totalSquareMetersCart} m2, ${totalLinearMetersCart} lin.m, ${totalPiecesCartMofified}, ${totalPacksCartMofified}, ${totalWeightCart} kg, ${Number(totalPalletsCart).toFixed(2)} pal`
+          orderSummary = `${dictionary["Cart"]["total"]["total"]}: ${dictionary["Currency_symbol"]}${totalCostCartModified} (${totalItems}) ${totalSquareMetersCart} ${dictionary["Cart"]["total"]["m"]}2, ${totalLinearMetersCart} ${dictionary["Cart"]["total"]["lin"]}, ${totalPiecesCartMofified}, ${totalPacksCartMofified}, ${totalWeightCart} ${dictionary["Cart"]["total"]["kg"]}, ${Number(totalPalletsCart).toFixed(2)} ${dictionary["Cart"]["total"]["pal"]}`
         }
         else if (totalSquareMetersCart !== 0) {
           if (totalPacksCart === 0) {
-            subtotalValue = (<><span className="cart__checkout__subtotal__bold">Total: €{totalCostCartModified} ({totalItems})<br /></span> {totalSquareMetersCart} m<sup>2</sup>, {totalPiecesCartMofified}, <br />{totalWeightCart} kg, {Number(totalPalletsCart).toFixed(2)} pal</>)
-            orderSummary = `Total: €${totalCostCartModified} (${totalItems}) ${totalSquareMetersCart} m2, ${totalPiecesCartMofified}, ${totalWeightCart} kg, ${Number(totalPalletsCart).toFixed(2)} pal`
+            subtotalValue = (<><span className="cart__checkout__subtotal__bold">{dictionary["Cart"]["total"]["total"]}: {dictionary["Currency_symbol"]}{totalCostCartModified} ({totalItems})<br /></span> {totalSquareMetersCart} {dictionary["Cart"]["total"]["m"]}<sup>2</sup>, {totalPiecesCartMofified}, <br />{totalWeightCart} {dictionary["Cart"]["total"]["kg"]}, {Number(totalPalletsCart).toFixed(2)} {dictionary["Cart"]["total"]["pal"]}</>)
+            orderSummary = `${dictionary["Cart"]["total"]["total"]}: ${dictionary["Currency_symbol"]}${totalCostCartModified} (${totalItems}) ${totalSquareMetersCart} ${dictionary["Cart"]["total"]["m"]}2, ${totalPiecesCartMofified}, ${totalWeightCart} ${dictionary["Cart"]["total"]["kg"]}, ${Number(totalPalletsCart).toFixed(2)} ${dictionary["Cart"]["total"]["pal"]}`
           }
           else {
-            subtotalValue = (<><span className="cart__checkout__subtotal__bold">Total: €{totalCostCartModified} ({totalItems})<br /></span> {totalSquareMetersCart} m<sup>2</sup>, {totalPiecesCartMofified}, <br />{totalPacksCartMofified}, {totalWeightCart} kg, {Number(totalPalletsCart).toFixed(2)} pal</>)
-            orderSummary = `Total: €${totalCostCartModified} (${totalItems}) ${totalSquareMetersCart} m2, ${totalPiecesCartMofified}, ${totalPacksCartMofified}, ${totalWeightCart} kg, ${Number(totalPalletsCart).toFixed(2)} pal`
+            subtotalValue = (<><span className="cart__checkout__subtotal__bold">{dictionary["Cart"]["total"]["total"]}: {dictionary["Currency_symbol"]}{totalCostCartModified} ({totalItems})<br /></span> {totalSquareMetersCart} {dictionary["Cart"]["total"]["m"]}<sup>2</sup>, {totalPiecesCartMofified}, <br />{totalPacksCartMofified}, {totalWeightCart} {dictionary["Cart"]["total"]["kg"]}, {Number(totalPalletsCart).toFixed(2)} {dictionary["Cart"]["total"]["pal"]}</>)
+            orderSummary = `${dictionary["Cart"]["total"]["total"]}: ${dictionary["Currency_symbol"]}${totalCostCartModified} (${totalItems}) ${totalSquareMetersCart} ${dictionary["Cart"]["total"]["m"]}2, ${totalPiecesCartMofified}, ${totalPacksCartMofified}, ${totalWeightCart} ${dictionary["Cart"]["total"]["kg"]}, ${Number(totalPalletsCart).toFixed(2)} ${dictionary["Cart"]["total"]["pal"]}`
           }
         }
         else if (totalLinearMetersCart !== 0) {
-          subtotalValue = (<><span className="cart__checkout__subtotal__bold">Total: €{totalCostCartModified} ({totalItems})<br /></span> {totalLinearMetersCart} lin.m, {totalPiecesCartMofified}, <br />{totalPacksCartMofified}, {totalWeightCart} kg, {Number(totalPalletsCart).toFixed(2)} pal</>)
-          orderSummary = `Total: €${totalCostCartModified} (${totalItems}) ${totalLinearMetersCart} lin.m, ${totalPiecesCartMofified}, ${totalPacksCartMofified}, ${totalWeightCart} kg, ${Number(totalPalletsCart).toFixed(2)} pal`
+          subtotalValue = (<><span className="cart__checkout__subtotal__bold">{dictionary["Cart"]["total"]["total"]}: {dictionary["Currency_symbol"]}{totalCostCartModified} ({totalItems})<br /></span> {totalLinearMetersCart} {dictionary["Cart"]["total"]["lin"]}, {totalPiecesCartMofified}, <br />{totalPacksCartMofified}, {totalWeightCart} {dictionary["Cart"]["total"]["kg"]}, {Number(totalPalletsCart).toFixed(2)} {dictionary["Cart"]["total"]["pal"]}</>)
+          orderSummary = `${dictionary["Cart"]["total"]["total"]}: ${dictionary["Currency_symbol"]}${totalCostCartModified} (${totalItems}) ${totalLinearMetersCart} ${dictionary["Cart"]["total"]["lin"]}, ${totalPiecesCartMofified}, ${totalPacksCartMofified}, ${totalWeightCart} ${dictionary["Cart"]["total"]["kg"]}, ${Number(totalPalletsCart).toFixed(2)} ${dictionary["Cart"]["total"]["pal"]}`
         }
         else if (totalPacksCart !== 0) {
-          subtotalValue = (<><span className="cart__checkout__subtotal__bold">Total: €{totalCostCartModified} ({totalItems})<br /></span> {totalPiecesCartMofified}, <br />{totalPacksCartMofified}, {totalWeightCart} kg, {Number(totalPalletsCart).toFixed(2)} pal</>)
-          orderSummary = `Total: €${totalCostCartModified} (${totalItems}) ${totalPiecesCartMofified}, ${totalPacksCartMofified}, ${totalWeightCart} kg, ${Number(totalPalletsCart).toFixed(2)} pal`
+          subtotalValue = (<><span className="cart__checkout__subtotal__bold">{dictionary["Cart"]["total"]["total"]}: {dictionary["Currency_symbol"]}{totalCostCartModified} ({totalItems})<br /></span> {totalPiecesCartMofified}, <br />{totalPacksCartMofified}, {totalWeightCart} {dictionary["Cart"]["total"]["kg"]}, {Number(totalPalletsCart).toFixed(2)} {dictionary["Cart"]["total"]["pal"]}</>)
+          orderSummary = `${dictionary["Cart"]["total"]["total"]}: ${dictionary["Currency_symbol"]}${totalCostCartModified} (${totalItems}) ${totalPiecesCartMofified}, ${totalPacksCartMofified}, ${totalWeightCart} ${dictionary["Cart"]["total"]["kg"]}, ${Number(totalPalletsCart).toFixed(2)} ${dictionary["Cart"]["total"]["pal"]}`
         }
         //Updating subtotalValue and orderSummary (end)
 
         //Forming a product card for Cart or Checkout (start)
-        const productTitle = product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format;
-        orderProducts.push(`[${productTitle}]: ${dataArr[2]} packs (Quantity: ${(Number(dataArr[1])).toFixed(2)}), ${dataArr[5]} pallets, ${dataArr[4]} kg, ${dataArr[3]} pcs, €${dataArr[6]}`)
+        let productTitle = product.type_ru + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format;
+        if (dictionary["Language"] === "en") productTitle = product.type + ' ' + product.specs.manufacturer + ' ' + product.name + ' ' + product.specs.format;
+
+        orderProducts.push(`[${productTitle}]: ${dataArr[2]} packs (${dictionary["Cart"]["subtotal"]["quantity"]}: ${(Number(dataArr[1])).toFixed(2)}), ${dataArr[5]} ${dictionary["Cart"]["total"]["pallets"]}, ${dataArr[4]} ${dictionary["Cart"]["total"]["kg"]}, ${dataArr[3]} ${dictionary["Cart"]["total"]["pcs"]}, ${dictionary["Currency_symbol"]}${dataArr[6]}`)
 
         let BrickOrPaverOrNot: React.JSX.Element = <></>
         let NotBrickOrPaver: React.JSX.Element = <></>
 
         if (product.type !== 'Klinker brick' && product.type !== 'Klinker clay paver') {
-          BrickOrPaverOrNot = <p className="cart__cont__product__quantity__pallets">Pallets: {dataArr[5]}</p>
-          NotBrickOrPaver = <p className="cart__cont__product__quantity__packs">Packs: {dataArr[2]}</p>
+          BrickOrPaverOrNot = <p className="cart__cont__product__quantity__pallets">{dictionary["Cart"]["subtotal"]["pallets"]}: {dataArr[5]}</p>
+          NotBrickOrPaver = <p className="cart__cont__product__quantity__packs">{dictionary["Cart"]["subtotal"]["packs"]}: {dataArr[2]}</p>
         }
         else {
-          BrickOrPaverOrNot = <p className="cart__cont__product__quantity__pallets">Pallets: {dataArr[7]}</p>
+          BrickOrPaverOrNot = <p className="cart__cont__product__quantity__pallets">{dictionary["Cart"]["subtotal"]["pallets"]}: {dataArr[7]}</p>
         }
 
         let m2OrLinOrPcs
-        if (product.priceType === 3) m2OrLinOrPcs = <p className="cart__cont__product__quantity__qty">Quantity: {dataArr[1]} lin.m</p>
-        else if (product.priceType === 4) m2OrLinOrPcs = <p className="cart__cont__product__quantity__qty">Quantity: {dataArr[6]}</p>
-        else m2OrLinOrPcs = <p className="cart__cont__product__quantity__qty">Quantity: {dataArr[1]} m&sup2;</p>
+        if (product.priceType === 3) m2OrLinOrPcs = <p className="cart__cont__product__quantity__qty">{dictionary["Cart"]["subtotal"]["quantity"]}: {dataArr[1]} {dictionary["Cart"]["total"]["lin"]}</p>
+        else if (product.priceType === 4) m2OrLinOrPcs = <p className="cart__cont__product__quantity__qty">{dictionary["Cart"]["subtotal"]["quantity"]}: {dataArr[1]}</p>
+        else m2OrLinOrPcs = <p className="cart__cont__product__quantity__qty">{dictionary["Cart"]["subtotal"]["quantity"]}: {dataArr[1]} {dictionary["Cart"]["total"]["m"]}&sup2;</p>
 
         let isImageLink: React.JSX.Element, isTitleImageLink: React.JSX.Element, areButtons: React.JSX.Element, isDelete: React.JSX.Element
 
@@ -263,7 +265,7 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
             </div>
           )
           isDelete = (
-            <ButtonDelete handleButton={() => deleteButton(product.id!)} />
+            <ButtonDelete handleButton={() => deleteButton(product.id!)} dictionary={dictionary} />
           )
         }
         else {
@@ -305,12 +307,12 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
               </div>
 
               {NotBrickOrPaver}
-              <p className="cart__cont__product__quantity__pieces">Pieces: {dataArr[3]}</p>
-              <p className="cart__cont__product__quantity__weight">Weight (kg): {dataArr[4]}</p>
+              <p className="cart__cont__product__quantity__pieces">{dictionary["Cart"]["subtotal"]["pieces"]}: {dataArr[3]}</p>
+              <p className="cart__cont__product__quantity__weight">{dictionary["Cart"]["subtotal"]["weight"]}: {dataArr[4]}</p>
               {BrickOrPaverOrNot}
 
               <div className="cart__cont__product__quantity__sub-del">
-                <p className="cart__cont__product__quantity__subtotal">Subtotal: €{dataArr[6]}</p>
+                <p className="cart__cont__product__quantity__subtotal">{dictionary["Cart"]["subtotal"]["subtotal"]}: {dictionary["Currency_symbol"]}{dataArr[6]}</p>
                 {isDelete}
               </div>
 
@@ -379,7 +381,7 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
   if (!successMessageVisible) {
     modalContent = (
       <div className="cart__modal__box__content">
-        <p className="cart__modal__box__content__title">Checkout</p>
+        <p className="cart__modal__box__content__title">{dictionary["Cart"]["modal"]["checkout"]}</p>
         <span
           className="cart__modal__box__content__close"
           onClick={switchModal}
@@ -389,7 +391,7 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
           onSubmit={handleForm}
           className="cart__modal__box__content__form"
         >
-          <label htmlFor="name">Name
+          <label htmlFor="name">{dictionary["Cart"]["modal"]["name"]}
             <input
               onChange={(e) => handleFormName(e)}
               value={formName}
@@ -397,7 +399,7 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
               className="cart__modal__box__content__form__input" required
             />
           </label>
-          <label htmlFor="phone">Phone
+          <label htmlFor="phone">{dictionary["Cart"]["modal"]["phone"]}
             <input
               onChange={(e) => handleFormPhone(e)}
               value={formPhone}
@@ -409,14 +411,14 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
             </label> */}
           <input type="hidden" name="orderString" id="orderString" className="cart__modal__box__content__form__back" />
           <input type="hidden" name="cartString" id="cartString" className="cart__modal__box__content__order__back" />
-          <input type="submit" value="Place order" name="submit" id="submit"
+          <input type="submit" value={dictionary["Cart"]["modal"]["place_order"]} name="submit" id="submit"
             className="cart__modal__box__content__form__submit" />
         </form>
 
         <button
           className="cart__modal__box__content__continue"
           onClick={switchModal}
-        >Continue shopping</button>
+        >{dictionary["Cart"]["buttons"]["continue"]}</button>
         <p className="cart__modal__box__content__subtotal">
           {subtotalValue}
         </p>
@@ -431,13 +433,13 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
       <div className="cart__modal__box__content">
         <div className="cart__modal__box__content__placed">
           <p className="cart__modal__box__content__placed__message">
-            Thank you, {formName}, your order #{orderRandom} has been formed. We will contact you shortly.
+            {dictionary["Cart"]["modal"]["success_message"]["thank_you"]}, {formName}, {dictionary["Cart"]["modal"]["success_message"]["your_order"]} #{orderRandom} {dictionary["Cart"]["modal"]["success_message"]["rest"]}
           </p>
           <Link
             href="/"
             className="cart__modal__box__content__placed__button"
             onClick={removeStopScroll}
-          >Go to home page</Link>
+          >{dictionary["Cart"]["modal"]["go_to_home_page"]}</Link>
         </div>
       </div>
     )
@@ -455,8 +457,8 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
           <button
             className={`cart__checkout__proceed ${buttonProceed}`}
             onClick={switchModal}
-          >Proceed to checkout</button>
-          <Link href="/" className={`cart__checkout__continue ${buttonContinue}`}>Continue shopping</Link>
+          >{dictionary["Cart"]["buttons"]["proceed"]}</button>
+          <Link href="/" className={`cart__checkout__continue ${buttonContinue}`}>{dictionary["Cart"]["buttons"]["continue"]}</Link>
         </div>
         <div className="cart__cont cont">
           {cartProducts.map(product => product)}

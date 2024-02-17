@@ -276,7 +276,8 @@ export type PricesOptionsProps = {
 export type ModalProps = {
   modal: string,
   handleContinue: () => void,
-  toCartMessage: string
+  toCartMessage: string,
+  dictionary: any
 }
 
 export type ButtonsProps = {

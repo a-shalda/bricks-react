@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { type ModalProps } from "@/lib/types"
 
-const Modal = ({ modal, handleContinue, toCartMessage }: ModalProps) => {
+const Modal = ({ modal, handleContinue, toCartMessage, dictionary }: ModalProps) => {
 
   const removeStopScroll = () => document.body.classList.remove("stop-scroll")
 
@@ -15,7 +15,7 @@ const Modal = ({ modal, handleContinue, toCartMessage }: ModalProps) => {
           >
             &times;</span>
           <p className="modal__cart__box__content__message">
-            <span className="modal__cart__box__content__message--title">Added to Cart:</span>
+            <span className="modal__cart__box__content__message--title">{dictionary["Product_Card"]["added_to_cart"]}:</span>
             <br></br>
             {toCartMessage}
           </p>
@@ -24,11 +24,11 @@ const Modal = ({ modal, handleContinue, toCartMessage }: ModalProps) => {
             className="modal__cart__box__content__cart"
             onClick={removeStopScroll}
           >
-            Go to cart</Link>
+            {dictionary["Product_Card"]["go_to_cart"]}</Link>
           <button
             onClick={handleContinue}
             className="modal__cart__box__content__continue"
-          >Continue shopping
+          >{dictionary["Product_Card"]["continue_shopping"]}
           </button>
         </div>
       </div>

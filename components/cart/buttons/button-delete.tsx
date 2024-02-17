@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-const ButtonDelete = ({ handleButton }: { handleButton: () => void}) => {
+const ButtonDelete = ({ handleButton, dictionary }: { handleButton: () => void, dictionary: any }) => {
 
   const [buttonTouched, setButtonTouched] = useState("")
 
@@ -20,7 +20,7 @@ const ButtonDelete = ({ handleButton }: { handleButton: () => void}) => {
     <button
       className={`cart__cont__product__quantity__delete ${buttonTouched}`}
       onClick={handleTouch}
-    >Delete</button>
+    >{dictionary["Cart"]["subtotal"]["delete"]}</button>
   )
 }
 

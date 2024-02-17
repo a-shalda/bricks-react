@@ -197,7 +197,10 @@
       "save": "Save",
       "unsave": "Unsave",
       "add": "Add"
-    }
+    },
+    "added_to_cart": "Added to cart",
+    "go_to_cart": "Go to cart",
+    "continue_shopping": "Continue shopping"
   },
   "calculate_options": {
     "packs": " packs",
@@ -222,6 +225,48 @@
       "manufacturer": "Manufacturer",
       "country": "Country",
       "size": "Size (mm)"
+    }
+  },
+  "Cart": {
+    "total": {
+      "item": "item",
+      "items": "items",
+      "pc": "pc",
+      "pcs": "pcs",
+      "pack": "pack",
+      "packs": "packs",
+      "pallets": "pallets",
+      "m": "m",
+      "lin": "lin.m",
+      "kg": "kg",
+      "pal": "pal",
+      "total": "Total"
+    },
+    "subtotal": {
+      "quantity": "Quantity",
+      "pallets": "Pallets",
+      "packs": "Packs",
+      "pieces": "Pieces",
+      "weight": "Weight (kg)",
+      "subtotal": "Subtotal",
+      "delete": "Delete"
+    },
+    "buttons": {
+      "proceed": "Proceed to checkout",
+      "continue": "Continue shopping",
+      "empty": "Cart is empty"
+    },
+    "modal": {
+      "checkout": "Checkout",
+      "name": "Name",
+      "phone": "Phone",
+      "place_order": "Place order",
+      "go_to_home_page": "Go to home page",
+      "success_message": {
+        "thank_you": "Thank you",
+        "your_order": "your order",
+        "rest": "has been formed. We will contact you shortly."
+      }
     }
   }
 }
