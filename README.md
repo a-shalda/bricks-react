@@ -2,7 +2,7 @@ Design and styles are based on my website https://github.com/a-shalda/bricks
 
 # Buy bricks in Moscow
 
-https://bricks-moscow.ru
+https://www.klinkernaya-plitka.ru
 
 Choose from a variety of fasade brick slips, effortlessly calculate packaging, send a pre-order for the chosen items. 
 
