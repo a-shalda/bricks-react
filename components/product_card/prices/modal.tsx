@@ -20,7 +20,7 @@ const Modal = ({ modal, handleContinue, toCartMessage, dictionary }: ModalProps)
             {toCartMessage}
           </p>
           <Link
-            href="/cart"
+            href={'/' + dictionary["Language"] + '/cart'}
             className="modal__cart__box__content__cart"
             onClick={removeStopScroll}
           >

@@ -9,17 +9,57 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      clients: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          is_active: boolean
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          is_active?: boolean
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          is_active?: boolean
+        }
+        Relationships: []
+      }
+      orders: {
+        Row: {
+          client_id: string | null
+          created_at: string
+          id: string
+          order_details: string
+        }
+        Insert: {
+          client_id?: string | null
+          created_at?: string
+          id?: string
+          order_details: string
+        }
+        Update: {
+          client_id?: string | null
+          created_at?: string
+          id?: string
+          order_details?: string
+        }
+        Relationships: []
+      }
       products: {
         Row: {
-          productTypeNumber: number | null
-          availability: string | null
-          availability_en: string | null
+          availability: string
+          availability_en: string
           description: string | null
           description_en: string | null
-          filepath: string | null
-          type_ru: string
+          filepath: string
           id: string
-          image_original__001: string | null
+          image_original__001: string
           image_original__002: string | null
           image_original__003: string | null
           image_original__004: string | null
@@ -39,22 +79,23 @@ export type Database = {
           image_original__018: string | null
           image_original__019: string | null
           image_original__020: string | null
-          image_thumbnail__001: string | null
-          image_thumbnail__002: string | null
-          isLinearMeter: boolean | null
-          isM2: boolean | null
-          name: string | null
+          image_thumbnail__001: string
+          image_thumbnail__002: string
+          isLinearMeter: boolean
+          isM2: boolean
+          name: string
           priceCentsM2: number | null
           priceCentsPc: number | null
           priceType: number | null
+          productTypeNumber: number
           specs__color: string | null
-          specs__countryOfOrigin: string | null
-          specs__countryOfOrigin_en: string | null
+          specs__countryOfOrigin: string
+          specs__countryOfOrigin_en: string
           specs__format: string | null
-          specs__manufacturer: string | null
+          specs__manufacturer: string
           specs__piecesInLinearMeterCm: number | null
           specs__piecesInPack: number | null
-          specs__piecesInPallet: string | null
+          specs__piecesInPallet: number | null
           specs__piecesInSquareMeterCm: number | null
           specs__recommendedDryMortarVolume: string | null
           specs__recommendedJointSpacing: string | null
@@ -63,19 +104,18 @@ export type Database = {
           specs__weightOf1PackGramm: number | null
           specs__weightOf1PieceGramm: number | null
           specs__weightOf1SquareMeter: number | null
-          supplierPriceType: string | null
-          type: string | null
+          supplierPriceType: string
+          type: string
+          type_ru: string
         }
         Insert: {
-          productTypeNumber: number | null
-          availability?: string | null
-          availability_en?: string | null
+          availability: string
+          availability_en: string
           description?: string | null
           description_en?: string | null
-          filepath?: string | null
+          filepath: string
           id: string
-          type_ru: string
-          image_original__001?: string | null
+          image_original__001: string
           image_original__002?: string | null
           image_original__003?: string | null
           image_original__004?: string | null
@@ -95,21 +135,23 @@ export type Database = {
           image_original__018?: string | null
           image_original__019?: string | null
           image_original__020?: string | null
-          image_thumbnail__001?: string | null
-          image_thumbnail__002?: string | null
-          isLinearMeter?: boolean | null
-          isM2?: boolean | null
-          name?: string | null
+          image_thumbnail__001: string
+          image_thumbnail__002: string
+          isLinearMeter: boolean
+          isM2: boolean
+          name: string
           priceCentsM2?: number | null
           priceCentsPc?: number | null
           priceType?: number | null
+          productTypeNumber: number
           specs__color?: string | null
-          specs__countryOfOrigin?: string | null
+          specs__countryOfOrigin: string
+          specs__countryOfOrigin_en: string
           specs__format?: string | null
-          specs__manufacturer?: string | null
+          specs__manufacturer: string
           specs__piecesInLinearMeterCm?: number | null
           specs__piecesInPack?: number | null
-          specs__piecesInPallet?: string | null
+          specs__piecesInPallet?: number | null
           specs__piecesInSquareMeterCm?: number | null
           specs__recommendedDryMortarVolume?: string | null
           specs__recommendedJointSpacing?: string | null
@@ -118,20 +160,18 @@ export type Database = {
           specs__weightOf1PackGramm?: number | null
           specs__weightOf1PieceGramm?: number | null
           specs__weightOf1SquareMeter?: number | null
-          supplierPriceType?: string | null
-          type?: string | null
-          specs__countryOfOrigin_en: string | null
+          supplierPriceType: string
+          type: string
+          type_ru: string
         }
         Update: {
-          productTypeNumber: number | null
-          availability?: string | null
-          availability_en?: string | null
+          availability?: string
+          availability_en?: string
           description?: string | null
           description_en?: string | null
-          filepath?: string | null
+          filepath?: string
           id?: string
-          type_ru: string
-          image_original__001?: string | null
+          image_original__001?: string
           image_original__002?: string | null
           image_original__003?: string | null
           image_original__004?: string | null
@@ -151,21 +191,23 @@ export type Database = {
           image_original__018?: string | null
           image_original__019?: string | null
           image_original__020?: string | null
-          image_thumbnail__001?: string | null
-          image_thumbnail__002?: string | null
-          isLinearMeter?: boolean | null
-          isM2?: boolean | null
-          name?: string | null
+          image_thumbnail__001?: string
+          image_thumbnail__002?: string
+          isLinearMeter?: boolean
+          isM2?: boolean
+          name?: string
           priceCentsM2?: number | null
           priceCentsPc?: number | null
           priceType?: number | null
+          productTypeNumber?: number
           specs__color?: string | null
-          specs__countryOfOrigin?: string | null
+          specs__countryOfOrigin?: string
+          specs__countryOfOrigin_en?: string
           specs__format?: string | null
-          specs__manufacturer?: string | null
+          specs__manufacturer?: string
           specs__piecesInLinearMeterCm?: number | null
           specs__piecesInPack?: number | null
-          specs__piecesInPallet?: string | null
+          specs__piecesInPallet?: number | null
           specs__piecesInSquareMeterCm?: number | null
           specs__recommendedDryMortarVolume?: string | null
           specs__recommendedJointSpacing?: string | null
@@ -174,9 +216,9 @@ export type Database = {
           specs__weightOf1PackGramm?: number | null
           specs__weightOf1PieceGramm?: number | null
           specs__weightOf1SquareMeter?: number | null
-          supplierPriceType?: string | null
-          type?: string | null
-          specs__countryOfOrigin_en: string | null
+          supplierPriceType?: string
+          type?: string
+          type_ru?: string
         }
         Relationships: []
       }

@@ -16,6 +16,9 @@ import { useTriggerUseEffect } from "@/app/[lang]/store"
 
 import { type ProductsProps } from "@/lib/types"
 
+import { sendOrderDb } from "@/helpers/sendOrder"
+import { sendEmail } from "@/helpers/sendEmail"
+
 
 const Cart = ({ products, dictionary }: { products: ProductsProps | null | undefined, dictionary: any }) => {
 
@@ -346,9 +349,7 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
 
   const orderRandom = (Math.random() * 1000).toFixed(0)
 
-  const handleForm = () => {
-
-    setSuccessMessageVisible(true)
+  const handleForm = (e: any) => {
 
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     const d = new Date()
@@ -356,23 +357,30 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
     const day = d.getDay()
     const date = month + ', ' + day
 
-    const sendOrder = fetch('https://bricks-backend-d8hx.onrender.com/api/orders/', {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        orderNumber: 'Order #' + orderRandom + ', ',
-        name: formName + ', ',
-        total: orderSummary + ', ',
-        date: date + ', ',
-        phone: formPhone,
-        order: orderProducts.join(" ")
-      })
-    })
+    const order = {
+      orderNumber: 'Order #' + orderRandom + ', ',
+      name: formName + ', ',
+      total: orderSummary + ', ',
+      date: date + ', ',
+      phone: formPhone,
+      order: orderProducts.join(" ")
+    }
 
-    localStorage.removeItem('cart')
-    updateCounters()
+    async function send() {
+      e.preventDefault()
+      const res = await sendOrderDb(order)
+      if (!res!) {
+
+      }
+      else if (res!) {
+        sendEmail(order)
+        localStorage.removeItem('cart')
+        updateCounters()
+        setSuccessMessageVisible(true)
+      }
+    }
+
+    send()
   }
 
   const removeStopScroll = () => document.body.classList.remove("stop-scroll")
@@ -388,7 +396,7 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
         >&times;</span>
 
         <form
-          onSubmit={handleForm}
+          onSubmit={e => handleForm(e)}
           className="cart__modal__box__content__form"
         >
           <label htmlFor="name">{dictionary["Cart"]["modal"]["name"]}
@@ -436,7 +444,7 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
             {dictionary["Cart"]["modal"]["success_message"]["thank_you"]}, {formName}, {dictionary["Cart"]["modal"]["success_message"]["your_order"]} #{orderRandom} {dictionary["Cart"]["modal"]["success_message"]["rest"]}
           </p>
           <Link
-            href="/"
+            href={'/' + dictionary["Language"]}
             className="cart__modal__box__content__placed__button"
             onClick={removeStopScroll}
           >{dictionary["Cart"]["modal"]["go_to_home_page"]}</Link>
@@ -445,7 +453,6 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
     )
   }
   //Handling modal and form (end)
-
 
   return (
     <main>
@@ -458,7 +465,7 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
             className={`cart__checkout__proceed ${buttonProceed}`}
             onClick={switchModal}
           >{dictionary["Cart"]["buttons"]["proceed"]}</button>
-          <Link href="/" className={`cart__checkout__continue ${buttonContinue}`}>{dictionary["Cart"]["buttons"]["continue"]}</Link>
+          <Link href={'/' + dictionary["Language"]} className={`cart__checkout__continue ${buttonContinue}`}>{dictionary["Cart"]["buttons"]["continue"]}</Link>
         </div>
         <div className="cart__cont cont">
           {cartProducts.map(product => product)}
