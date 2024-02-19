@@ -90,8 +90,8 @@ const Header = ({ dictionary }: { dictionary: any }) => {
   const handleDropdown = () => {
     setDropdownVisible(!dropdownVisible)
 
-    if (!dropdownVisible) document.body.classList.add("stop-scroll")
-    else if (dropdownVisible) document.body.classList.remove("stop-scroll")
+    // if (!dropdownVisible) document.body.classList.add("stop-scroll")
+    // else if (dropdownVisible) document.body.classList.remove("stop-scroll")
   }
 
   return (

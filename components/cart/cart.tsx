@@ -17,8 +17,7 @@ import { useTriggerUseEffect } from "@/app/[lang]/store"
 import { type ProductsProps } from "@/lib/types"
 
 import { sendOrderDb } from "@/helpers/sendOrder"
-import { sendEmail } from "@/helpers/sendEmail"
-
+import { sendEmail } from "@/app/api/send/route"
 
 const Cart = ({ products, dictionary }: { products: ProductsProps | null | undefined, dictionary: any }) => {
 
@@ -368,12 +367,17 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
 
     async function send() {
       e.preventDefault()
+
       const res = await sendOrderDb(order)
+
       if (!res!) {
 
       }
       else if (res!) {
+
         sendEmail(order)
+        // sendOrderNodemailer(order)
+
         localStorage.removeItem('cart')
         updateCounters()
         setSuccessMessageVisible(true)
@@ -381,6 +385,12 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
     }
 
     send()
+
+
+
+
+
+
   }
 
   const removeStopScroll = () => document.body.classList.remove("stop-scroll")
