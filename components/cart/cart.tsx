@@ -17,7 +17,7 @@ import { useTriggerUseEffect } from "@/app/[lang]/store"
 import { type ProductsProps } from "@/lib/types"
 
 import { sendOrderDb } from "@/helpers/sendOrder"
-import { sendEmail } from "@/app/api/send/route"
+import { sendEmail } from "@/helpers/sendEmail"
 
 const Cart = ({ products, dictionary }: { products: ProductsProps | null | undefined, dictionary: any }) => {
 
