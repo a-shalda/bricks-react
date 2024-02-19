@@ -367,17 +367,13 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
 
     async function send() {
       e.preventDefault()
-
       const res = await sendOrderDb(order)
 
       if (!res!) {
 
       }
       else if (res!) {
-
-        sendEmail(order)
-        // sendOrderNodemailer(order)
-
+        // sendEmail(order)
         localStorage.removeItem('cart')
         updateCounters()
         setSuccessMessageVisible(true)
@@ -385,12 +381,6 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
     }
 
     send()
-
-
-
-
-
-
   }
 
   const removeStopScroll = () => document.body.classList.remove("stop-scroll")
