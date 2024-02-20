@@ -5,7 +5,8 @@ import Link from 'next/link'
 import Image from "next/image"
 import { useTriggerUseEffect } from "@/app/[lang]/store"
 import { type countersCartType, countersWishType } from "@/lib/types"
-import LocaleSwitcher from "@/components/general/locale-switcher"
+import LocaleSwitcher from "@/components/general/header/locale-switcher"
+import AccessButtons from "@/components/general/header/access-buttons"
 
 const Dropdown = ({ dictionary }: { dictionary: any }) => {
 
@@ -24,6 +25,7 @@ const Dropdown = ({ dictionary }: { dictionary: any }) => {
             <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href={`/${dictionary["Language"]}/shop/window_sills`}>{dictionary["Header"]["window_sills"]}</Link></li>
             <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href={`/${dictionary["Language"]}/shop/mortar`}>{dictionary["Header"]["mortar"]}</Link></li>
           </ul>
+          {/* <AccessButtons dictionary={dictionary} /> */}
           <LocaleSwitcher />
         </div>
       </div>

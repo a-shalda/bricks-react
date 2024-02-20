@@ -10,7 +10,11 @@
     "clay_pavers": "Клинкерная брусчатка",
     "stair_floor_tile": "Клинкерные ступени",
     "window_sills": "Керамические подоконники",
-    "mortar": "Сухие смеси"
+    "mortar": "Сухие смеси",
+    "dropdown": {
+      "sign_in": "Вход",
+      "sign_up": "Регистрация"
+    }
   },
   "Footer": {
     "one": {

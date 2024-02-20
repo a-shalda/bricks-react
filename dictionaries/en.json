@@ -10,7 +10,11 @@
     "clay_pavers": "Clay pavers",
     "stair_floor_tile": "Stair and floor tile",
     "window_sills": "Ceramic window sills",
-    "mortar": "Mortar"
+    "mortar": "Mortar",
+    "dropdown": {
+      "sign_in": "Sign in",
+      "sign_up": "Sign up"
+    }
   },
   "Footer": {
     "one": {

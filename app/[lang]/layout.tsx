@@ -1,5 +1,5 @@
 import "@/scss/styles.scss";
-import Header from "@/components/general/header";
+import Header from "@/components/general/header/header";
 import Footer from "@/components/general/footer";
 import { getDictionary } from "@/get-dictionary";
 import { GoogleAnalytics } from '@next/third-parties/google'

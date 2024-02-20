@@ -83,23 +83,16 @@
         }
 
         &__dropdown {
-          // visibility: hidden;
-          // opacity: 0;
-          // transition: opacity 50ms, visibility 50ms;
           position: relative;
 
-          // &__visible {
-          //   visibility: visible;
-          //   opacity: 1;
-          // }
-
-          &__flag {
-            line-height: 4rem;
+          &__access-buttons {
             display: flex;
-            align-items: center;
             gap: 1rem;
-            border-top: 1px solid var(--gray-color);
             margin-inline: 3rem;
+            border-bottom: 1px solid var(--gray-color);
+            padding-block: 0.2rem;
+            padding-bottom: 0.5rem;
+            font-size: 0.9rem;
 
             @include breakpoint(small) {
               margin-inline: 2rem;
@@ -108,8 +101,77 @@
             @include breakpoint(medium) {
               margin-inline: 2.5rem;
             }
+
+            &__button {
+
+              display: flex;
+              gap: 0.5rem;
+              align-items: center;
+              color: rgb(184, 184, 184);
+              margin-bottom: 0.5rem;
+
+              border: 1px solid var(--gray-color);
+              border-radius: 0.3rem;
+              padding: 0.35rem 0.5rem;
+
+              &__language {
+                display: inline-block;
+              }
+
+              &:hover {
+                color: var(--light-light-gray-color);
+                cursor: pointer;
+              }
+            }
           }
 
+          &__switcher {
+            display: flex;
+            gap: 1rem;
+            margin-inline: 3rem;
+            padding-block: 1rem;
+            font-size: 0.9rem;
+
+            @include breakpoint(small) {
+              margin-inline: 2rem;
+            }
+
+            @include breakpoint(medium) {
+              margin-inline: 2.5rem;
+            }
+
+            &__item {
+              display: flex;
+              gap: 0.5rem;
+              align-items: center;
+              color: #b8b8b8;
+              margin-bottom: 0.5rem;
+
+              border: 1px solid var(--gray-color);
+              border-radius: 0.3rem;
+              padding: 0.35rem 0.5rem;
+
+              &__language {
+                display: inline-block;
+              }
+
+              &__flag {
+                border-radius: 0.4rem;
+                filter: contrast(50%);
+                transition: filter 100ms;
+              }
+
+              &__contrast {
+                filter: none;
+                border-radius: 0.4rem;
+              }
+
+              &:hover {
+                color: var(--light-light-gray-color);
+                cursor: pointer;
+              }
+            }
+          }
 
           &__content {
             position: absolute;
@@ -131,7 +193,6 @@
               border-right: 1px solid var(--gray-color);
               height: auto;
             }
-
 
             &__link {
               display: block;
@@ -166,6 +227,11 @@
 
               &:first-child {
                 border-top: none;
+              }
+
+              &:last-child {
+                border-bottom: 1px solid var(--gray-color);
+                margin-bottom: 1rem;
               }
             }
           }
