@@ -16,8 +16,6 @@ import { useTriggerUseEffect } from "@/app/[lang]/store"
 
 import { type ProductsProps } from "@/lib/types"
 
-import { sendOrderDb } from "@/helpers/sendOrder"
-import { sendEmail } from "@/helpers/sendEmail"
 
 const Cart = ({ products, dictionary }: { products: ProductsProps | null | undefined, dictionary: any }) => {
 
@@ -367,13 +365,21 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
 
     async function send() {
       e.preventDefault()
-      const res = await sendOrderDb(order)
+
+      const res = await fetch('/api/create-order-db', {
+        method: 'post',
+        body: JSON.stringify(order),
+      });
+
+      const sendEmail = await fetch('/api/order-email', {
+        method: 'post',
+        body: JSON.stringify(order),
+      })
 
       if (!res!) {
 
       }
       else if (res!) {
-        // sendEmail(order)
         localStorage.removeItem('cart')
         updateCounters()
         setSuccessMessageVisible(true)
