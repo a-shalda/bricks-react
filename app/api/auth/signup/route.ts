@@ -1,13 +1,13 @@
-import { NextResponse } from "next/server"
 import { hash } from "bcryptjs"
 import { supabase } from "@/lib/db"
-import { sendVerificationEmail } from "@/lib/verification-mail"
-import { generateVerificationToken } from "@/lib/tokens"
+import { sendVerificationEmail } from "@/lib/auth/send-verification-email"
+import { generateVerificationToken } from "@/lib/auth/generate-verification-token"
+
 
 export async function POST(request: Request) {
   
   try {
-    const { email, password } = await request.json()
+    const { email, password, dictionary } = await request.json()
     //validate
 
     const hashedPassword = await hash(password, 10)
@@ -17,18 +17,30 @@ export async function POST(request: Request) {
     .insert([
       { email: email, password: hashedPassword },
     ])
+    .select('id')
 
-    const verificationToken = await generateVerificationToken(email)
+    //Checking if emails exists and connection available
+    if (data === null && error?.code === "23505") {
+      return Response.json({ error: "User exists" }, { status: 401 });
+    } 
+    else if (data === null) return Response.json({ error: "Service unavailable" }, { status: 500 });
 
-    console.log(`verificationToken: ${verificationToken}`)
+    if (data) {
+      const verificationToken = await generateVerificationToken(email)
 
-    await sendVerificationEmail(verificationToken.email, verificationToken.token)
+      // verificationToken has been generated and inserted into db?
+      if (!verificationToken) return Response.json({ error: "Service unavailable (Failed to generate confirmation email token)" }, { status: 500 });
 
-    // console.log({ email, password })
+      // sendTokenEmail has been sent to user?
+      const sendTokenEmail = await sendVerificationEmail(verificationToken.email, verificationToken.token, dictionary)
+
+      // if sendTokenEmail was successful, return a success message
+      if (sendTokenEmail) return Response.json({ message: "Email verification sent!" }, { status: 200 });
+    }
+
+    return Response.json({ error: 'Failed to send verification email, try again!' }, { status: 500 })
+    
   } catch(error) {
-    console.log({ error })
-    return Response.json({ error });
+    return Response.json({ error: 'Internal Server Error' }, { status: 500 })
   }
-
-  // return NextResponse.json({ message: "success"})
 }

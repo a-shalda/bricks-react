@@ -1,21 +1,13 @@
 import { Resend } from 'resend';
 import { VerificationEmail } from '@/components/email/verification-email';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 
-import { i18n, type Locale } from "@/i18n-config";
-import { getDictionary } from "@/get-dictionary";
+export const sendVerificationEmail = async (email: string, token: string, dictionary: any ) => {
 
-export async function generateStaticParams() {
-  return i18n.locales.map((locale) => ({ lang: locale }));
-}
+  const resend = new Resend(process.env.RESEND_API_KEY);
+  const confirmLink = `${process.env.NEXTAUTH_URL}/${dictionary["Language"]}/auth/new-verification?token=${token}`
 
-export const sendVerificationEmail = async (email: string, token: string ) => {
-
-  // const dictionary = await getDictionary(params!.lang);
-  const confirmLink = `${process.env.NEXTAUTH_URL}/new-verification?token=${token}`
-
-  console.log(`verificationToken: ${confirmLink}`)
+  // console.log(`verificationToken: ${confirmLink}`)
 
   try {
     const data = await resend.emails.send({
@@ -29,7 +21,7 @@ export const sendVerificationEmail = async (email: string, token: string ) => {
 
     });
 
-    console.log(data)
+    // console.log(data)
 
     return Response.json(data);
   } catch (error) {

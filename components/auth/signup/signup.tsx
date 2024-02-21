@@ -16,14 +16,25 @@ export default function Signup({ dictionary }: { dictionary: any }) {
     e.preventDefault()
 
     const formData = new FormData(e.currentTarget)
+
     const response = await fetch(`/api/auth/signup`, {
       method: "POST",
       body: JSON.stringify({
         email: formData.get("email"),
         password: formData.get("password"),
+        dictionary: dictionary
       })
     })
-    
+
+    response.json().then(data => {
+
+      if (data.message) {
+        console.log(data.message)
+      }
+      else if (data.status) {
+        console.log(data.status)
+      }
+    })
   }
 
   return (
