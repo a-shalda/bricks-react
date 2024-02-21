@@ -29,13 +29,13 @@ export default function LocaleSwitcher() {
     <div className="header__upper__left__hamburger__dropdown__switcher">
 
       <Link onPointerEnter={handlePointerOneEnter} onPointerLeave={handlePointerOneLeave} href={redirectedPathName("ru")} className="header__upper__left__hamburger__dropdown__switcher__item">
-        <span className="header__upper__left__hamburger__dropdown__switcher__item__language">ru</span>
-        <RU title="Russian" width="18" height="18" className={pointerOne} />
+        <span className="header__upper__left__hamburger__dropdown__switcher__item__language"></span>
+        <RU title="Russian" width="20" height="20" className={pointerOne} />
       </Link>
 
 
       <Link onPointerEnter={handlePointerTwoEnter} onPointerLeave={handlePointerTwoLeave} href={redirectedPathName("en")} className="header__upper__left__hamburger__dropdown__switcher__item">
-        <span className="header__upper__left__hamburger__dropdown__switcher__item__language">en</span>
+        <span className="header__upper__left__hamburger__dropdown__switcher__item__language"></span>
         <GB title="English" width="20" height="20" className={pointerTwo} />
       </Link>
 

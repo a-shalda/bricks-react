@@ -13,7 +13,9 @@
     "mortar": "Mortar",
     "dropdown": {
       "sign_in": "Sign in",
-      "sign_up": "Sign up"
+      "sign_up": "Sign up",
+      "logout": "Log out",
+      "account": "Account"
     }
   },
   "Footer": {
@@ -282,5 +284,26 @@
       "saved": "Saved",
       "cart": "Cart"
     }
+  },
+  "Auth": {
+    "signup": {
+      "title": "Signup",
+      "email": "Email",
+      "password": "Password",
+      "button": "Sign up"
+    },
+    "login": {
+      "title": "Login",
+      "email": "Email",
+      "password": "Password",
+      "button": "Log in"
+    },
+    "email": {
+      "subject": "Verification code",
+      "text": "Email confirmation link: "
+    }
+  },
+  "Account": {
+    "title": "Account"
   }
 }

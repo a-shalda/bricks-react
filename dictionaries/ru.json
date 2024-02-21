@@ -13,7 +13,9 @@
     "mortar": "Сухие смеси",
     "dropdown": {
       "sign_in": "Вход",
-      "sign_up": "Регистрация"
+      "sign_up": "Регистрация",
+      "logout": "Выйти",
+      "account": "Аккаунт"
     }
   },
   "Footer": {
@@ -282,5 +284,26 @@
       "saved": "Сохраненные товары",
       "cart": "Корзина"
     }
+  },
+  "Auth": {
+    "signup": {
+      "title": "Регистрация",
+      "email": "Email",
+      "password": "Пароль",
+      "button": "Зарегистрироваться"
+    },
+    "login": {
+      "title": "Вход",
+      "email": "Email",
+      "password": "Пароль",
+      "button": "Войти"
+    },
+    "email": {
+      "subject": "Код подтверждения",
+      "text": "Ссылка для подтверждения email: "
+    }
+  },
+  "Account": {
+    "title": "Аккаунт"
   }
 }

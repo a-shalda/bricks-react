@@ -1,4 +1,4 @@
-import { EmailTemplate } from '@/components/email/email-template';
+import { OrderNotification } from '@/components/email/order-notification';
 import { Resend } from 'resend';
 
 
@@ -12,7 +12,7 @@ export async function POST(request: Request) {
       from: `orders@${process.env.RESEND_DOMAIN}`,
       to: process.env.RESEND_EMAIL!,
       subject: `${order.orderNumber + order.name + order.total + order.date + order.phone}`,
-      react: EmailTemplate({ order: order }) as React.ReactElement,
+      react: OrderNotification({ order: order }) as React.ReactElement,
     });
 
     return Response.json(data);

@@ -8,7 +8,7 @@ import { type countersCartType, countersWishType } from "@/lib/types"
 import LocaleSwitcher from "@/components/general/header/locale-switcher"
 import AccessButtons from "@/components/general/header/access-buttons"
 
-const Dropdown = ({ dictionary }: { dictionary: any }) => {
+const Dropdown = ({ dictionary, isLoggedIn }: { dictionary: any, isLoggedIn: boolean }) => {
 
   return (
     <>
@@ -25,7 +25,7 @@ const Dropdown = ({ dictionary }: { dictionary: any }) => {
             <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href={`/${dictionary["Language"]}/shop/window_sills`}>{dictionary["Header"]["window_sills"]}</Link></li>
             <li className="header__upper__left__hamburger__dropdown__content__link"><Link className="header__upper__left__hamburger__dropdown__content__link__a" href={`/${dictionary["Language"]}/shop/mortar`}>{dictionary["Header"]["mortar"]}</Link></li>
           </ul>
-          {/* <AccessButtons dictionary={dictionary} /> */}
+          {/* <AccessButtons dictionary={dictionary} isLoggedIn={isLoggedIn} /> */}
           <LocaleSwitcher />
         </div>
       </div>
@@ -33,7 +33,7 @@ const Dropdown = ({ dictionary }: { dictionary: any }) => {
   )
 }
 
-const Header = ({ dictionary }: { dictionary: any }) => {
+const Header = ({ dictionary, isLoggedIn }: { dictionary: any, isLoggedIn: boolean }) => {
 
   const trigger = useTriggerUseEffect(state => state.triggerUseEffect)
 
@@ -106,7 +106,7 @@ const Header = ({ dictionary }: { dictionary: any }) => {
               <Image src="/images/icons/menu.svg" className="icon-style header__upper__left__hamburger__nav-toggle__icon" width="24" height="24" alt="menu" />
             </button>
 
-            {dropdownVisible && <Dropdown dictionary={dictionary} />}
+            {dropdownVisible && <Dropdown dictionary={dictionary} isLoggedIn={isLoggedIn} />}
 
           </div>
           <div className="header__upper__left__logo">

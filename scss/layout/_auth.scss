@@ -1,0 +1,93 @@
+@use '../util/breakpoints' as *;
+@use '../globals/typography' as *;
+
+.auth {
+
+  display: flex;
+  // justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  padding-inline: 1rem;
+  margin-top: 10%;
+
+
+  &__box {
+    display: flex;
+    align-items: center;
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 80em;
+      position: relative;
+
+      height: auto;
+      border-radius: 0.5rem;
+      margin: auto;
+      background-color: white;
+      padding: 1rem;
+
+      &__title {
+        font-weight: 700;
+        letter-spacing: 0.09rem;
+        color: var(--gray-color);
+        font-size: 1.1rem;
+        padding-top: 1rem;
+      }
+
+      &__form {
+        display: flex;
+        flex-direction: column;
+        // justify-content: center;
+        padding-top: 1rem;
+        gap: 1rem;
+        width: 100%;
+        max-width: 23rem;
+        color: gray;
+
+        &__input {
+          font-size: 1rem;
+          border-radius: 0.5rem;
+          border: 1px solid var(--light-gray-color);
+          padding-left: 1rem;
+          color: var(--gray-color);
+          width: 100%;
+          min-height: 2.875rem;
+
+          &:focus {
+            outline: 1px solid var(--medium-gray-color);
+          }
+        }
+
+        &__submit {
+          letter-spacing: 0.05rem;
+          width: 100%;
+
+          background-color: rgb(95, 95, 95);
+          border: none;
+          color: white;
+          padding-block: 0.3rem;
+          padding-inline: 1rem;
+          font-size: 1.2rem;
+          border-radius: 0.4rem;
+          transition: background-color 0.3s;
+          min-height: 2.875rem; //Height of the price box
+          font-weight: 400;
+
+          @include breakpoint (tiny) {
+            margin-inline: auto;
+          }
+
+          &:hover {
+            background-color: gray;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

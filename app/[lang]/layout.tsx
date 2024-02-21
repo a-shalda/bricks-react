@@ -3,6 +3,7 @@ import Header from "@/components/general/header/header";
 import Footer from "@/components/general/footer";
 import { getDictionary } from "@/get-dictionary";
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { getServerSession } from "next-auth";
 
 
 export const metadata = {
@@ -19,12 +20,15 @@ export async function generateStaticParams() {
 export default async function RootLayout({ children, params }: { children: React.ReactNode, params: { lang: Locale } }) {
 
   const dictionary = await getDictionary(params.lang);
+  const session = await getServerSession()
+
+  const isLoggedIn = !!session
 
   return (
     <html lang={params.lang}>
       <body className="body">
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_MEASUREMENT_ID!} />
-        <Header dictionary={dictionary} />
+        <Header dictionary={dictionary} isLoggedIn={isLoggedIn} />
         {children}
         <Footer dictionary={dictionary} />
       </body>

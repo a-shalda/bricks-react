@@ -423,8 +423,6 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
           {/* <label htmlFor="email">Email
             <input type="email" name="email" id="email" className="cart__modal__box__content__form__input" required />
             </label> */}
-          <input type="hidden" name="orderString" id="orderString" className="cart__modal__box__content__form__back" />
-          <input type="hidden" name="cartString" id="cartString" className="cart__modal__box__content__order__back" />
           <input type="submit" value={dictionary["Cart"]["modal"]["place_order"]} name="submit" id="submit"
             className="cart__modal__box__content__form__submit" />
         </form>
