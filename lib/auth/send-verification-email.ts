@@ -4,6 +4,9 @@ import { VerificationEmail } from '@/components/email/verification-email';
 
 export const sendVerificationEmail = async (email: string, token: string, dictionary: any ) => {
 
+  console.log(dictionary["Language"])
+
+
   const resend = new Resend(process.env.RESEND_API_KEY);
   const confirmLink = `${process.env.NEXTAUTH_URL}/${dictionary["Language"]}/auth/new-verification?token=${token}`
 
@@ -21,7 +24,6 @@ export const sendVerificationEmail = async (email: string, token: string, dictio
 
     });
 
-    // console.log(data)
 
     return Response.json(data);
   } catch (error) {

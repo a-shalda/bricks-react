@@ -1,52 +1,57 @@
 import { supabase } from "@/lib/db";
+import { generateVerificationToken } from "@/lib/auth/generate-verification-token";
+import { sendVerificationEmail } from "@/lib/auth/send-verification-email";
 
 
 export async function POST(request: Request) {
 
-  const req = await request.json()
+  const { token, dictionary } = await request.json()
 
   try {
 
     const { data, error } = await supabase
     .from('users')
     .select()
-    .eq('verification_token', req.token)
-  
-    if (!data) {
-      // return Response.json(data);
-      return Response.json({ error });
+    .eq('verification_token', token)
+
+    if (!data && error.code === "22P02") {
+      return Response.json({ error: "Invalid token" }, { status: 401 });
     }
+    else if (!data) return Response.json({ error: "Service unavailable, try again" }, { status: 500 });
 
     const hasExpired = new Date(data[0]["token_expires"]) < new Date()
 
-    console.log(new Date())
-    console.log(new Date(data[0]["token_expires"]))
-
-  
+    //token expired, send a new verification email
     if (hasExpired) {
-      // return Response.json(data);
-      return Response.json({ error });
+
+      const verificationToken = await generateVerificationToken(data[0].email)
+
+      // verificationToken has been generated and inserted into db?
+      if (!verificationToken) return Response.json({ error: "Service unavailable (Failed to generate confirmation email token)" }, { status: 500 });
+
+      // sendTokenEmail has been sent to user?
+      const sendTokenEmail = await sendVerificationEmail(data[0].email, verificationToken.token, dictionary)
+
+      // if sendTokenEmail was successful, return a success message
+      if (sendTokenEmail) return Response.json({ message: "Token has expired, a new email verification sent" }, { status: 200 });
     }
   
     const existingUserEmail = data[0]["email"]
   
+    //changing is_confirmed to true and deleting the token
     if (data && !hasExpired) {
   
       const { data, error } = await supabase
       .from('users')
-      .update({ is_verified: true })
+      .update({ is_verified: true, verification_token: null })
       .eq("email", existingUserEmail)
-  
-      //and then we can delete the token
 
-  
-      // return NextResponse.json({ message: "email verified"})
-      // return { success: "Email verified"}
+      if (!error) {
+        return Response.json({ message: "Email verified, now you can log in" }, { status: 200 });
+      }
+      else return Response.json({ error: "Service unavailable, try again" }, { status: 500 });
     }
   
-    console.log(data)
-  
-
     return Response.json(data);
 
   } catch (error) {

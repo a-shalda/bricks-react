@@ -2,26 +2,36 @@
 import { PulseLoader } from "react-spinners"
 import { useSearchParams } from "next/navigation"
 import { useCallback, useEffect } from "react"
-import { getVerificationTokenByToken } from "@/data/verification-token"
 
-export const NewVerificationForm = (dictionary: any) => {
+export const NewVerificationForm = ({ dictionary }: { dictionary: any }) => {
   const searchParams = useSearchParams()
 
   const token = searchParams.get("token")
 
-  async function getVerificationTokenByToken(token: string) {
+  async function checkVerificationToken(token: string, dictionary: any) {
     const response = await fetch(`/api/auth/check-verification-token`, {
       method: "POST",
       body: JSON.stringify({
-        token: token
+        token: token,
+        dictionary: dictionary
       })
     })
+
+    // response.json().then(data => {
+
+    //   if (data.message) {
+    //     console.log(data.message)
+    //   }
+    //   else if (data.error) {
+    //     console.log(data.error)
+    //   }
+    // })
   }
 
   //check if token expired
 
   if (token) {
-    const verifiedEmail = getVerificationTokenByToken(token)
+    const verifiedEmail = checkVerificationToken(token, dictionary)
   }
 
 

@@ -31,8 +31,8 @@ export default function Signup({ dictionary }: { dictionary: any }) {
       if (data.message) {
         console.log(data.message)
       }
-      else if (data.status) {
-        console.log(data.status)
+      else if (data.error) {
+        console.log(data.error)
       }
     })
   }
