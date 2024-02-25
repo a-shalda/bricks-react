@@ -299,8 +299,13 @@
       "button": "Войти"
     },
     "email": {
-      "subject": "Код подтверждения",
-      "text": "Ссылка для подтверждения email: "
+      "subject": "Регистрация на сайте klinkernaya-plitka.ru",
+      "text": "Для подтверждения вашей электронной почты перейдите по ",
+      "textLink": "ссылке.",
+      "website_name": "Klinkernaya-plitka.ru"
+    },
+    "confirmation": {
+      "login": "Войти"
     }
   },
   "Account": {

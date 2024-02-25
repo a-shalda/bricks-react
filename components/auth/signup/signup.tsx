@@ -1,16 +1,6 @@
 "use client"
 
-import { useState } from "react"
-
 export default function Signup({ dictionary }: { dictionary: any }) {
-
-  const [formName, setFormName] = useState("")
-  const [formPhone, setFormPhone] = useState("")
-  const [formEmail, setFormEmail] = useState("")
-
-  const handleFormName = (e: React.ChangeEvent<HTMLInputElement>) => setFormName(e.target.value)
-  const handleFormPhone = (e: React.ChangeEvent<HTMLInputElement>) => setFormPhone(e.target.value)
-  const handleFormEmail = (e: React.ChangeEvent<HTMLInputElement>) => setFormEmail(e.target.value)
 
   const handleForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()

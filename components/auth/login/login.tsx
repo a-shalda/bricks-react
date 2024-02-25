@@ -28,7 +28,7 @@ export default function Login({ dictionary }: { dictionary: any }) {
     // console.log({ response })
 
     if(!response?.error) {
-      router.push(`/${dictionary["Language"]}/account`)
+      router.push(`/${dictionary["Language"]}/`)
       router.refresh()
     }
 
