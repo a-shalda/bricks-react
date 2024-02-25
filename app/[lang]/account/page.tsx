@@ -1,4 +1,4 @@
-import Account from "@/components/account/account";
+import Account from "@/components/auth/account/account";
 
 import fetchAllProducts from "@/helpers/fetchAllProducts"
 import { type ProductsProps } from "@/lib/types"

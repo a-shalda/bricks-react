@@ -328,6 +328,7 @@
     }
   },
   "Account": {
-    "title": "Account"
+    "title": "Account",
+    "message": "You logged in as: "
   }
 }
