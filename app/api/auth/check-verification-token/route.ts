@@ -43,7 +43,8 @@ export async function POST(request: Request) {
   
       const { data, error } = await supabase
       .from('users')
-      .update({ is_verified: true, verification_token: null })
+      // .update({ is_verified: true, verification_token: null })
+      .update({ is_verified: true })
       .eq("email", existingUserEmail)
 
       if (!error) {
@@ -52,9 +53,8 @@ export async function POST(request: Request) {
       else return Response.json({ error: dictionary["Auth"]["check_token_api"]["error"]["service_unavailable"] }, { status: 500 });
     }
   
-    return Response.json(data);
 
   } catch (error) {
-    return Response.json({ error });
+    return Response.json({ error: dictionary["Auth"]["check_token_api"]["error"]["service_unavailable"] }, { status: 500 })
   }
 }
