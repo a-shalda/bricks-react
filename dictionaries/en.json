@@ -306,6 +306,25 @@
     },
     "confirmation": {
       "login": "Log in"
+    },
+    "signup_api": {
+      "error": {
+        "user_exists": "User exists",
+        "service_unavailable": "Service unavailable",
+        "service_unavailable_token": "Service unavailable (Failed to generate confirmation email token)",
+        "failed_to_send": "Failed to send verification email, try again!",
+        "internal_error": "Internal Server Error"
+      },
+      "success": "Email verification sent! Please follow the link in the email"
+    },
+    "check_token_api": {
+      "error": {
+        "invalid_token": "Invalid token",
+        "service_unavailable": "Service unavailable, try again",
+        "service_unavailable_token": "Service unavailable (Failed to generate confirmation email token)",
+        "token_expired": "Token has expired, a new email verification sent"
+      },
+      "success": "Email verified, now you can log in"
     }
   },
   "Account": {

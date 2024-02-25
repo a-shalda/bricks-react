@@ -26,10 +26,12 @@ export const NewVerificationForm = ({ dictionary }: { dictionary: any }) => {
     response.json().then(data => {
 
       if (data.message) {
+        console.log(data.message)
         setMessage(data.message)
         setSuccess(true)
       }
       else if (data.error) {
+        console.log(data.error)
         setMessage(data.error)
       }
     })

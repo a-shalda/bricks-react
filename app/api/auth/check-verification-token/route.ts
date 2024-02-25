@@ -15,9 +15,9 @@ export async function POST(request: Request) {
     .eq('verification_token', token)
 
     if (!data && error.code === "22P02") {
-      return Response.json({ error: "Invalid token" }, { status: 401 });
+      return Response.json({ error: dictionary["Auth"]["check_token_api"]["error"]["invalid_token"] }, { status: 401 });
     }
-    else if (!data) return Response.json({ error: "Service unavailable, try again" }, { status: 500 });
+    else if (!data) return Response.json({ error: dictionary["Auth"]["check_token_api"]["error"]["service_unavailable"] }, { status: 500 });
 
     const hasExpired = new Date(data[0]["token_expires"]) < new Date()
 
@@ -27,13 +27,13 @@ export async function POST(request: Request) {
       const verificationToken = await generateVerificationToken(data[0].email)
 
       // verificationToken has been generated and inserted into db?
-      if (!verificationToken) return Response.json({ error: "Service unavailable (Failed to generate confirmation email token)" }, { status: 500 });
+      if (!verificationToken) return Response.json({ error: dictionary["Auth"]["check_token_api"]["error"]["service_unavailable_token"] }, { status: 500 });
 
       // sendTokenEmail has been sent to user?
       const sendTokenEmail = await sendVerificationEmail(data[0].email, verificationToken.token, dictionary)
 
       // if sendTokenEmail was successful, return a success message
-      if (sendTokenEmail) return Response.json({ message: "Token has expired, a new email verification sent" }, { status: 200 });
+      if (sendTokenEmail) return Response.json({ error:dictionary["Auth"]["check_token_api"]["error"]["token_expired"] }, { status: 200 });
     }
   
     const existingUserEmail = data[0]["email"]
@@ -47,9 +47,9 @@ export async function POST(request: Request) {
       .eq("email", existingUserEmail)
 
       if (!error) {
-        return Response.json({ message: "Email verified, now you can log in" }, { status: 200 });
+        return Response.json({ message: dictionary["Auth"]["check_token_api"]["success"] }, { status: 200 });
       }
-      else return Response.json({ error: "Service unavailable, try again" }, { status: 500 });
+      else return Response.json({ error: dictionary["Auth"]["check_token_api"]["error"]["service_unavailable"] }, { status: 500 });
     }
   
     return Response.json(data);
