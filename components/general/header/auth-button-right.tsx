@@ -15,10 +15,10 @@ const AuthButtonRight = ({ dictionary, isLoggedIn }: { dictionary: any, isLogged
   }
   else if (isLoggedIn) {
     button = (
-      <div className="header__upper__left__hamburger__dropdown__access-buttons__button">
+      <Link href={"/" + dictionary["Language"] + "/account"} className="header__upper__left__hamburger__dropdown__access-buttons__button">
         <p>{dictionary["Header"]["dropdown"]["account"]}</p>
         <FaUser />
-      </div>
+      </Link>
     )
   }
 

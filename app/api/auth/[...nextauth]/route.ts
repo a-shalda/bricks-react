@@ -5,7 +5,8 @@ import { compare } from "bcryptjs";
 
 const handler = NextAuth({
   session: {
-    strategy: "jwt"
+    strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60 // 30 days
   },
   pages: {
     signIn: "/auth/login"
@@ -23,9 +24,20 @@ const handler = NextAuth({
           return false
         }
       }
-
       return true
-     }
+     },
+
+    async session({ session, token }) {
+      if (token.sub && session.user) {
+        console.log(session)
+        session.user.id = token.sub
+      } // not working
+      return session
+    },
+    async jwt({ token }) {
+      // console.log(token.sub)
+      return token
+    },
   },
   providers: [CredentialsProvider({
   credentials: {
@@ -62,7 +74,6 @@ const handler = NextAuth({
         email: user![0].email,
       }
     }
-
 
 
     // const res = await fetch("/your/endpoint", {

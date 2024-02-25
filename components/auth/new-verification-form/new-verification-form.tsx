@@ -2,7 +2,7 @@
 
 import { PulseLoader } from "react-spinners"
 import { useSearchParams } from "next/navigation"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
 
 export const NewVerificationForm = ({ dictionary }: { dictionary: any }) => {
@@ -26,27 +26,33 @@ export const NewVerificationForm = ({ dictionary }: { dictionary: any }) => {
     response.json().then(data => {
 
       if (data.message) {
-        // console.log(data.message)
+        console.log(data.message)
         setMessage(data.message)
         setSuccess(true)
       }
       else if (data.error) {
-        // console.log(data.error)
+        console.log(data.error)
         setMessage(data.error)
       }
     })
   }
 
-  if (token) {
-    const verifiedEmail = checkVerificationToken(token, dictionary)
-  }
+  const onSubmit = useCallback(() => {
+    if (token) {
+      checkVerificationToken(token, dictionary)
+    }
+  }, [token])
+
+  useEffect(() => {
+    onSubmit()
+  }, [onSubmit])
 
 
   return (
     <main className="auth">
       {/* <h1 className="section__title">{dictionary["Auth"]["signup"]["title"]}</h1> */}
 
-      {!message && <PulseLoader color={"gray"} aria-label="Loading Spinner"/>}
+      {!message && <PulseLoader color={"gray"} aria-label="Loading Spinner" />}
 
       {message}
       {success && <Link href={`/${dictionary["Language"]}/auth/login`}>{dictionary["Auth"]["confirmation"]["login"]}</Link>}
