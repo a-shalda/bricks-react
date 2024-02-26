@@ -299,10 +299,10 @@
       "button": "Войти"
     },
     "email": {
-      "subject": "Регистрация на сайте klinkernaya-plitka.ru",
+      "subject": "Регистрация на сайте bricks-moscow.ru",
       "text": "Для подтверждения вашей электронной почты перейдите по ",
       "textLink": "ссылке.",
-      "website_name": "Klinkernaya-plitka.ru"
+      "website_name": "Bricks-moscow.ru"
     },
     "confirmation": {
       "login": "Войти"

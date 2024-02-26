@@ -27,7 +27,6 @@ export default async function RootLayout({ children, params }: { children: React
   return (
     <html lang={params.lang}>
       <body className="body">
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_MEASUREMENT_ID!} />
         <Header dictionary={dictionary} isLoggedIn={isLoggedIn} />
         {children}
         <Footer dictionary={dictionary} />

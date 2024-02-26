@@ -1,9 +1,1 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://www.klinkernaya-plitka.ru
-
-# Sitemaps
-Sitemap: https://www.klinkernaya-plitka.ru/sitemap.xml
+User-agent: * Disallow: /
