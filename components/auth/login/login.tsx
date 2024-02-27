@@ -1,85 +1,91 @@
 "use client"
 
+import { useState } from 'react'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import { PulseLoader } from "react-spinners"
+
+import * as z from 'zod'
+import { LoginSchema } from '@/lib/schemas'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { zodResolver } from "@hookform/resolvers/zod"
+
+type FormFields = z.infer<typeof LoginSchema>
 
 export default function Login({ dictionary }: { dictionary: any }) {
 
+  const [message, setMessage] = useState("")
+  const [success, setSuccess] = useState(false)
+
   const router = useRouter()
 
-  const handleForm = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    setError
+  } = useForm<FormFields>({
+    resolver: zodResolver(LoginSchema)
+  })
 
-    const formData = new FormData(e.currentTarget)
-    // const response = await fetch(`/api/auth/signup`, {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     email: formData.get("email"),
-    //     password: formData.get("password"),
-    //   })
-    // })
+  const onSubmit: SubmitHandler<FormFields> = async (data) => {
 
     const response = await signIn('credentials', {
-      email: formData.get("email"),
-      password: formData.get("password"),
+      email: data.email,
+      password: data.password,
       redirect: false
     })
 
-    // console.log({ response })
+    if (response) {
+      console.log(response)
+    }
 
-    if(!response?.error) {
+    if (!response?.error) {
       router.push(`/${dictionary["Language"]}/`)
       router.refresh()
     }
-
-
   }
+
+  errors.email && console.log(errors.email)
+  errors.password && console.log(errors.password)
+
 
   return (
     <main className="auth">
       <h1 className="section__title">{dictionary["Auth"]["login"]["title"]}</h1>
       <form
-        onSubmit={e => handleForm(e)}
+        onSubmit={handleSubmit(onSubmit)}
         className="auth__box__content__form"
       >
-        {/* <label htmlFor="name">{dictionary["Cart"]["modal"]["name"]}
-          <input
-            // onChange={(e) => handleFormName(e)}
-            // value={formName}
-            type="text" name="name" id="name"
-            className="auth__box__content__form__input" required
-          />
-        </label> */}
 
         <label htmlFor="email">{dictionary["Auth"]["login"]["email"]}
           <input
-            // onChange={(e) => handleFormEmail(e)}
-            // value={formEmail}
-            type="email" name="email" id="email"
-            className="auth__box__content__form__input" required />
+            type="email" id="email"
+            className="auth__box__content__form__input" required
+            {...register("email")}
+          />
         </label>
+
 
         <label htmlFor="name">{dictionary["Auth"]["login"]["password"]}
           <input
-            // onChange={(e) => handleFormName(e)}
-            // value={formName}
-            type="password" name="password" id="password"
+            type="password" id="password"
             className="auth__box__content__form__input" required
+            {...register("password")}
           />
         </label>
-        {/* <label htmlFor="phone">{dictionary["Cart"]["modal"]["phone"]}
-          <input
-            onChange={(e) => handleFormPhone(e)}
-            // value={formPhone}
-            type="tel" name="phone" id="phone"
-            className="auth__box__content__form__input" required />
-        </label> */}
 
 
-        <input type="submit"
-          value={dictionary["Auth"]["login"]["button"]}
+        <button type="submit"
           name="submit" id="submit"
-          className="auth__box__content__form__submit" />
+          className="auth__box__content__form__submit"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ?
+            <PulseLoader color={"white"} aria-label="Loading Spinner" size={10}
+            />
+            : dictionary["Auth"]["login"]["button"]}
+        </button>
       </form>
     </main>
   )
