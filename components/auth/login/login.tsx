@@ -10,9 +10,10 @@ import { LoginSchema } from '@/lib/schemas'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from "@hookform/resolvers/zod"
 
-type FormFields = z.infer<typeof LoginSchema>
 
 export default function Login({ dictionary }: { dictionary: any }) {
+
+  type FormFields = z.infer<typeof LoginSchema>
 
   const [error, setError] = useState("")
   const [removeError, setRemoveError] = useState("block")

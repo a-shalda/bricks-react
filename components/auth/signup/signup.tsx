@@ -8,9 +8,10 @@ import { SignupSchema } from '@/lib/schemas'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from "@hookform/resolvers/zod"
 
-type FormFields = z.infer<typeof SignupSchema>
 
 export default function Signup({ dictionary }: { dictionary: any }) {
+
+  type FormFields = z.infer<typeof SignupSchema>
 
   const [error, setError] = useState("")
   const [removeMessage, setRemoveMessage] = useState("block")

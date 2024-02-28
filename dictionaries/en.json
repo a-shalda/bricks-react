@@ -272,6 +272,10 @@
         "thank_you": "Thank you",
         "your_order": "your order",
         "rest": "has been formed. We will contact you shortly."
+      },
+      "errors": {
+        "name": "Name must contain only letters",
+        "phone": "Phone number must be like 81111111111"
       }
     }
   },

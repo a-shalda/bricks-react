@@ -39,7 +39,7 @@
       width: 91%;
       max-width: 23rem;
       margin-bottom: 1rem;
-  
+
       background-color: #a43434;
       border: none;
       color: white;
@@ -49,11 +49,11 @@
       border-radius: 0.4rem;
       transition: background-color 0.3s;
       min-height: 2.875rem; //Height of the price box
-  
+
       @include breakpoint (tiny) {
         margin-inline: auto;
       }
-  
+
       &:hover {
         background-color: hsla(0, 68%, 42%, 0.885);
         color: white;
@@ -78,11 +78,11 @@
       border-radius: 0.4rem;
       transition: background-color 0.3s;
       min-height: 2.875rem; //Height of the price box
-  
+
       @include breakpoint (tiny) {
         margin-inline: auto;
       }
-  
+
       &:hover {
         background-color: gray;
         color: white;
@@ -111,7 +111,7 @@
       grid-template-columns: 1fr 1fr 1fr;
       padding-inline: 8rem;
     }
-    
+
     &__product {
       position: relative;
       margin-inline: auto;
@@ -156,7 +156,7 @@
 
         margin-left: -1rem;
         margin-right: -1rem;
-      
+
         &__left {
           display: flex;
           width: 50%;
@@ -181,7 +181,7 @@
           width: 50%;
           justify-content: center;
           align-items: center;
-          
+
           &__box {
             line-height: 2.5rem;
             font-size: 1.2rem;
@@ -206,7 +206,7 @@
           padding-inline: 0.5rem;
           letter-spacing: 0.04rem;
           font-weight: 500;
-    
+
           &:hover {
             cursor: pointer;
             text-decoration: underline;
@@ -218,13 +218,13 @@
           padding-inline: 0.5rem;
           letter-spacing: 0.04rem;
           font-weight: 500;
-    
+
           &:hover {
-            cursor:auto;
+            cursor: auto;
             text-decoration: none;
           }
         }
-    
+
       }
 
       &__quantity {
@@ -268,7 +268,7 @@
           border: 1px solid var(--light-gray-color);
           color: gray;
           align-self: center;
-        
+
           border-radius: 0.4rem;
           font-size: 1rem;
           transition: background-color 0.1s, color 0.1s, border 0.1s;
@@ -304,7 +304,7 @@
             background-color: white;
             border: 1px solid var(--light-gray-color);
             color: gray;
-          
+
             border-top-left-radius: 0.4rem;
             border-bottom-left-radius: 0.4rem;
             font-size: 1rem;
@@ -315,7 +315,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-          
+
             @media(hover: hover) {
               &:hover {
                 cursor: pointer;
@@ -331,8 +331,8 @@
               }
             }
           }
-  
-          &__plus{
+
+          &__plus {
             margin-left: -1px;
             width: 3rem;
             height: 2rem;
@@ -349,7 +349,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-          
+
             @media(hover: hover) {
               &:hover {
                 cursor: pointer;
@@ -387,16 +387,16 @@
     visibility: hidden;
     transition: opacity 200ms, visibility 200ms;
 
-    position: fixed; 
+    position: fixed;
     z-index: -1;
     padding: 1rem;
     left: 0;
     top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.9); 
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.9);
 
     &__box {
       display: flex;
@@ -437,11 +437,11 @@
           font-weight: bold;
           transition: 0.3s;
           user-select: none;
-  
+
           @include breakpoint(tiny) {
             display: block;
           }
-  
+
           @media (hover: hover) {
             &:hover {
               cursor: pointer;
@@ -466,6 +466,13 @@
           max-width: 23rem;
           color: gray;
 
+          &__error {
+            font-size: 0.85rem;
+            color: hsla(0, 68%, 42%, 0.885);
+            margin-block: -1.1rem;
+            text-align: center;
+          }
+
           &__input {
             font-size: 1rem;
             border-radius: 0.5rem;
@@ -474,7 +481,7 @@
             color: var(--gray-color);
             width: 100%;
             min-height: 2.875rem;
-          
+
             &:focus {
               outline: 1px solid var(--medium-gray-color);
             }
@@ -483,7 +490,7 @@
           &__submit {
             letter-spacing: 0.05rem;
             width: 100%;
-        
+
             background-color: #a43434;
             border: none;
             color: white;
@@ -494,11 +501,11 @@
             transition: background-color 0.3s;
             min-height: 2.875rem; //Height of the price box
             font-weight: 400;
-        
+
             @include breakpoint (tiny) {
               margin-inline: auto;
             }
-        
+
             &:hover {
               background-color: hsla(0, 68%, 42%, 0.885);
               cursor: pointer;
@@ -534,7 +541,7 @@
             border-radius: 0.4rem;
             transition: background-color 0.3s;
             min-height: 2.875rem; //Height of the price box
-        
+
             &:hover {
               background-color: gray;
               color: white;
@@ -548,16 +555,16 @@
           display: grid;
           justify-content: center;
           gap: 1rem;
-      
+
           @include breakpoint (medium) {
             grid-template-columns: 1fr 1fr;
             column-gap: 0.5rem;
           }
-      
+
           @include breakpoint (large) {
             gap: 1rem;
           }
-      
+
           @include breakpoint (xlarge) {
             gap: 1rem;
             grid-template-columns: 1fr 1fr 1fr;
@@ -595,13 +602,13 @@
           margin-bottom: 1rem;
           max-width: 23rem;
           margin-top: 1rem;
-      
+
           padding-block: 0.3rem;
           padding-inline: 1rem;
           font-size: 1.2rem;
           transition: background-color 0.3s;
           min-height: 2.875rem; //Height of the price box
-      
+
           @include breakpoint (tiny) {
             margin-inline: auto;
           }
@@ -610,10 +617,12 @@
           border: 1px solid rgb(95, 95, 95);
           color: white;
           align-self: center;
-        
+
           border-radius: 0.4rem;
-          transition: background-color 0.1s, color 0.1s, border 0.1s;
-        
+          transition: background-color 0.1s,
+          color 0.1s,
+          border 0.1s;
+
           &:hover {
             cursor: pointer;
             background-color: gray;

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { PulseLoader } from "react-spinners"
 
 import calculateOptions from "@/helpers/calculateOptions"
 
@@ -16,8 +17,37 @@ import { useTriggerUseEffect } from "@/app/[lang]/store"
 
 import { type ProductsProps } from "@/lib/types"
 
+import * as z from 'zod'
+import { OrderSchema } from '@/lib/schemas'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { zodResolver } from "@hookform/resolvers/zod"
+
 
 const Cart = ({ products, dictionary }: { products: ProductsProps | null | undefined, dictionary: any }) => {
+
+  type FormFields = z.infer<typeof OrderSchema>
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<FormFields>({
+    resolver: zodResolver(OrderSchema)
+  })
+
+  const [nameError, setNameError] = useState("")
+  const [phoneError, setPhoneError] = useState("")
+  const [removeNameError, setRemoveNameError] = useState("block")
+  const [removePhoneError, setRemovePhoneError] = useState("block")
+
+  useEffect(() => {
+    if (errors.name) {
+      handleNameError(dictionary["Cart"]["modal"]["errors"]["name"])
+    }
+    if (errors.phone) {
+      handlePhoneError(dictionary["Cart"]["modal"]["errors"]["phone"])
+    }
+  }, [errors])
 
   const updateCounters = useTriggerUseEffect(state => state.change)
 
@@ -337,16 +367,25 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
 
   //Handling modal and form (start)
   const [formName, setFormName] = useState("")
-  const [formPhone, setFormPhone] = useState("")
-
-  const handleFormName = (e: React.ChangeEvent<HTMLInputElement>) => setFormName(e.target.value)
-  const handleFormPhone = (e: React.ChangeEvent<HTMLInputElement>) => setFormPhone(e.target.value)
-
   const [successMessageVisible, setSuccessMessageVisible] = useState(false)
 
   const orderRandom = (Math.random() * 1000).toFixed(0)
 
-  const handleForm = (e: any) => {
+  const handleNameError = (error: string) => {
+    setRemoveNameError("block")
+    setNameError(error)
+    setTimeout(() => { setRemoveNameError("none") }, 5000)
+  }
+
+  const handlePhoneError = (error: string) => {
+    setRemovePhoneError("block")
+    setPhoneError(error)
+    setTimeout(() => { setRemovePhoneError("none") }, 5000)
+  }
+
+  const onSubmit: SubmitHandler<FormFields> = (data) => {
+
+    setFormName(data.name)
 
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     const d = new Date()
@@ -356,15 +395,14 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
 
     const order = {
       orderNumber: 'Order #' + orderRandom + ', ',
-      name: formName + ', ',
+      name: data.name + ', ',
       total: orderSummary + ', ',
       date: date + ', ',
-      phone: formPhone,
+      phone: data.phone,
       order: orderProducts.join(" ")
     }
 
     async function send() {
-      e.preventDefault()
 
       const res = await fetch('/api/create-order-db', {
         method: 'post',
@@ -387,9 +425,11 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
     }
 
     send()
+    reset()
   }
 
   const removeStopScroll = () => document.body.classList.remove("stop-scroll")
+
 
   let modalContent: React.JSX.Element
   if (!successMessageVisible) {
@@ -402,29 +442,39 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
         >&times;</span>
 
         <form
-          onSubmit={e => handleForm(e)}
+          onSubmit={handleSubmit(onSubmit)}
           className="cart__modal__box__content__form"
         >
           <label htmlFor="name">{dictionary["Cart"]["modal"]["name"]}
             <input
-              onChange={(e) => handleFormName(e)}
-              value={formName}
-              type="text" name="name" id="name"
+              type="text" id="name"
               className="cart__modal__box__content__form__input" required
+              placeholder="..."
+              {...register("name")}
             />
           </label>
+          {nameError ? <p className="cart__modal__box__content__form__error" style={{ display: removeNameError }}>{nameError}</p> : null}
+
           <label htmlFor="phone">{dictionary["Cart"]["modal"]["phone"]}
             <input
-              onChange={(e) => handleFormPhone(e)}
-              value={formPhone}
-              type="tel" name="phone" id="phone"
-              className="cart__modal__box__content__form__input" required />
+              type="tel" id="phone"
+              className="cart__modal__box__content__form__input" required
+              placeholder="81111111111"
+              {...register("phone")}
+            />
           </label>
-          {/* <label htmlFor="email">Email
-            <input type="email" name="email" id="email" className="cart__modal__box__content__form__input" required />
-            </label> */}
-          <input type="submit" value={dictionary["Cart"]["modal"]["place_order"]} name="submit" id="submit"
-            className="cart__modal__box__content__form__submit" />
+          {phoneError ? <p className="cart__modal__box__content__form__error" style={{ display: removePhoneError }}>{phoneError}</p> : null}
+
+          <button
+            type="submit" name="submit" id="submit"
+            className="cart__modal__box__content__form__submit"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ?
+              <PulseLoader color={"white"} aria-label="Loading Spinner" size={10} />
+              : dictionary["Cart"]["modal"]["place_order"]
+            }
+          </button>
         </form>
 
         <button

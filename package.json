@@ -5,10 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "next-sitemap",
     "start": "next start",
-    "lint": "next lint",
-    "generate-sitemap": "next-sitemap --config=next-sitemap.config.js"
+    "lint": "next lint"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.4",
