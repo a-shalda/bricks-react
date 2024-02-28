@@ -2,8 +2,9 @@ import "@/scss/styles.scss";
 import Header from "@/components/general/header/header";
 import Footer from "@/components/general/footer";
 import { getDictionary } from "@/get-dictionary";
-import { GoogleAnalytics } from '@next/third-parties/google'
 import { getServerSession } from "next-auth";
+import { Providers } from "@/app/GlobalRedux/provider";
+
 
 
 export const metadata = {
@@ -27,9 +28,11 @@ export default async function RootLayout({ children, params }: { children: React
   return (
     <html lang={params.lang}>
       <body className="body">
-        <Header dictionary={dictionary} isLoggedIn={isLoggedIn} />
-        {children}
-        <Footer dictionary={dictionary} />
+        <Providers>
+          <Header dictionary={dictionary} isLoggedIn={isLoggedIn} />
+          {children}
+          <Footer dictionary={dictionary} />
+        </Providers>
       </body>
     </html>
   );

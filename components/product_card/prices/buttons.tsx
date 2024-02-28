@@ -1,8 +1,10 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useTriggerUseEffect } from "@/app/[lang]/store"
 import { type ButtonsProps, countersCartType, countersWishType } from "@/lib/types"
+
+import { useDispatch } from "react-redux";
+import { increment } from "@/app/GlobalRedux/Features/triggerCounters/triggerSlice"
 
 
 const Buttons = ({ product, quantity, setQuantity, setErrorAdding, handleModal, dictionary }: ButtonsProps) => {
@@ -34,7 +36,7 @@ const Buttons = ({ product, quantity, setQuantity, setErrorAdding, handleModal, 
     })
   })
 
-  const updateCounters = useTriggerUseEffect(state => state.change)
+  const updateCounters = useDispatch()
 
   const modifyWishlist = () => {
 
@@ -60,7 +62,7 @@ const Buttons = ({ product, quantity, setQuantity, setErrorAdding, handleModal, 
       localStorage.setItem('wishlist', JSON.stringify(wishlist))
       setWishButton(dictionary["Product_Card"]["buttons"]["save"])
     }
-    updateCounters()
+    updateCounters(increment())
   }
 
   let userQuantity: number
@@ -96,7 +98,8 @@ const Buttons = ({ product, quantity, setQuantity, setErrorAdding, handleModal, 
       handleModal()
       setQuantity(0)
 
-      updateCounters()
+      // updateCounters()
+      updateCounters(increment())
     }
     else {
       setErrorAdding("main__window__middle__top__stock__subtotal__value__select__focus")

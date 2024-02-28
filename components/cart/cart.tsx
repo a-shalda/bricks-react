@@ -13,7 +13,8 @@ import ButtonPlus from "@/components/cart/buttons/button-plus"
 import ButtonMinus from "@/components/cart/buttons/button-minus"
 import ButtonDelete from "@/components/cart/buttons/button-delete"
 
-import { useTriggerUseEffect } from "@/app/[lang]/store"
+import { useDispatch } from "react-redux";
+import { increment } from "@/app/GlobalRedux/Features/triggerCounters/triggerSlice"
 
 import { type ProductsProps } from "@/lib/types"
 
@@ -49,7 +50,7 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
     }
   }, [errors])
 
-  const updateCounters = useTriggerUseEffect(state => state.change)
+  const updateCounters = useDispatch()
 
   type parsedCartType = {
     id: string,
@@ -126,13 +127,13 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
           updatedCart[index].quantity--
           localStorage.setItem('cart', JSON.stringify(updatedCart))
           setCart(updatedCart)
-          updateCounters()
+          updateCounters(increment())
 
           if (updatedCart[index].quantity === 0) {
             updatedCart.splice(index, 1)
             localStorage.setItem('cart', JSON.stringify(updatedCart))
             setCart(updatedCart)
-            updateCounters()
+            updateCounters(increment())
             setTrigger(!trigger)
           }
         }
@@ -167,7 +168,7 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
         updatedCart.splice(index, 1)
         localStorage.setItem('cart', JSON.stringify(updatedCart))
         setCart(updatedCart)
-        updateCounters()
+        updateCounters(increment())
         setTrigger(!trigger)
       }
     })
@@ -419,7 +420,7 @@ const Cart = ({ products, dictionary }: { products: ProductsProps | null | undef
       }
       else if (res!) {
         localStorage.removeItem('cart')
-        updateCounters()
+        updateCounters(increment())
         setSuccessMessageVisible(true)
       }
     }

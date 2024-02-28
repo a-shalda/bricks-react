@@ -3,10 +3,13 @@
 import { useState, useEffect } from "react"
 import Link from 'next/link'
 import Image from "next/image"
-import { useTriggerUseEffect } from "@/app/[lang]/store"
 import { type countersCartType, countersWishType } from "@/lib/types"
 import LocaleSwitcher from "@/components/general/header/locale-switcher"
 import AccessButtons from "@/components/general/header/access-buttons"
+
+import { useSelector } from "react-redux";
+import { type RootState } from "@/app/GlobalRedux/store"
+
 
 const Dropdown = ({ dictionary, isLoggedIn }: { dictionary: any, isLoggedIn: boolean }) => {
 
@@ -35,7 +38,7 @@ const Dropdown = ({ dictionary, isLoggedIn }: { dictionary: any, isLoggedIn: boo
 
 const Header = ({ dictionary, isLoggedIn }: { dictionary: any, isLoggedIn: boolean }) => {
 
-  const trigger = useTriggerUseEffect(state => state.triggerUseEffect)
+  const trigger = useSelector((state: RootState) => state.counter.value)
 
   // localStorage.removeItem('cart')
   // localStorage.removeItem('wishlist')
