@@ -9,7 +9,6 @@ export async function POST(request: Request) {
   const { email, password, dictionary } = await request.json()
 
   try {
-    //validate
 
     const hashedPassword = await hash(password, 10)
 

@@ -39,6 +39,7 @@
         padding-top: 1rem;
       }
 
+
       &__form {
         display: flex;
         flex-direction: column;
@@ -48,6 +49,16 @@
         width: 100%;
         max-width: 23rem;
         color: gray;
+
+        &__error {
+          color: hsla(0, 68%, 42%, 0.885);
+          text-align: center;
+        }
+
+        &__message {
+          color: gray;
+          text-align: center;
+        }
 
         &__input {
           font-size: 1rem;

@@ -1,22 +1,51 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
+
+import { PulseLoader } from "react-spinners"
+import * as z from 'zod'
+import { SignupSchema } from '@/lib/schemas'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { zodResolver } from "@hookform/resolvers/zod"
+
+type FormFields = z.infer<typeof SignupSchema>
 
 export default function Signup({ dictionary }: { dictionary: any }) {
 
-  const [message, setMessage] = useState("")
+  const [error, setError] = useState("")
+  const [removeMessage, setRemoveMessage] = useState("block")
   const [success, setSuccess] = useState(false)
+  const [formSusmitted, setFormSubmitted] = useState(<></>)
 
-  const handleForm = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<FormFields>({
+    resolver: zodResolver(SignupSchema)
+  })
 
-    const formData = new FormData(e.currentTarget)
+  useEffect(() => {
+    if (errors.email) {
+      handleError(dictionary["Auth"]["login"]["errors"]["else"])
+    }
+    else if (errors.password?.type === "too_small") {
+      handleError(dictionary["Auth"]["signup"]["errors"]["too_small"])
+    }
+    else if (errors.password) {
+      handleError(dictionary["Auth"]["login"]["errors"]["else"])
+    }
+
+  }, [errors])
+
+  const onSubmit: SubmitHandler<FormFields> = async (formData) => {
 
     const response = await fetch(`/api/auth/signup`, {
       method: "POST",
       body: JSON.stringify({
-        email: formData.get("email"),
-        password: formData.get("password"),
+        email: formData.email,
+        password: formData.password,
         dictionary: dictionary
       })
     })
@@ -24,15 +53,25 @@ export default function Signup({ dictionary }: { dictionary: any }) {
     response.json().then(data => {
 
       if (data.message) {
-        // console.log(data.message)
-        setMessage(data.message)
+        setFormSubmitted(
+          <main className="auth">
+            <h1 className="section__title">{dictionary["Auth"]["signup"]["title"]}</h1>
+            {data.message}
+          </main>
+        )
         setSuccess(true)
       }
       else if (data.error) {
-        // console.log(data.error)
-        setMessage(data.error)
+        handleError(data.error)
       }
     })
+    reset()
+  }
+
+  const handleError = (error: string) => {
+    setRemoveMessage("block")
+    setError(error)
+    setTimeout(() => { setRemoveMessage("none") }, 3000)
   }
 
 
@@ -40,60 +79,41 @@ export default function Signup({ dictionary }: { dictionary: any }) {
     <main className="auth">
       <h1 className="section__title">{dictionary["Auth"]["signup"]["title"]}</h1>
       <form
-        onSubmit={e => handleForm(e)}
+        onSubmit={handleSubmit(onSubmit)}
         className="auth__box__content__form"
       >
-        {/* <label htmlFor="name">{dictionary["Cart"]["modal"]["name"]}
-        <input
-          // onChange={(e) => handleFormName(e)}
-          // value={formName}
-          type="text" name="name" id="name"
-          className="auth__box__content__form__input" required
-        />
-      </label> */}
 
         <label htmlFor="email">{dictionary["Auth"]["signup"]["email"]}
           <input
-            // onChange={(e) => handleFormEmail(e)}
-            // value={formEmail}
-            type="email" name="email" id="email"
-            className="auth__box__content__form__input" required />
+            type="email" id="email"
+            className="auth__box__content__form__input" required
+            {...register("email")}
+          />
         </label>
 
         <label htmlFor="name">{dictionary["Auth"]["signup"]["password"]}
           <input
-            // onChange={(e) => handleFormName(e)}
-            // value={formName}
-            type="password" name="password" id="password"
+            type="password" id="password"
             className="auth__box__content__form__input" required
+            {...register("password")}
           />
         </label>
-        {/* <label htmlFor="phone">{dictionary["Cart"]["modal"]["phone"]}
-        <input
-          onChange={(e) => handleFormPhone(e)}
-          // value={formPhone}
-          type="tel" name="phone" id="phone"
-          className="auth__box__content__form__input" required />
-      </label> */}
 
-
-        <input type="submit"
-          value={dictionary["Auth"]["signup"]["button"]}
+        <button type="submit"
           name="submit" id="submit"
-          className="auth__box__content__form__submit" />
+          className="auth__box__content__form__submit"
+        >
+          {isSubmitting ?
+            <PulseLoader color={"white"} aria-label="Loading Spinner" size={10}
+            />
+            : dictionary["Auth"]["signup"]["button"]}
+        </button>
+
+        <p className="auth__box__content__form__error" style={{ display: removeMessage }}>{error}</p>
+
       </form>
     </main>
   )
 
-  const action = (
-    <main className="auth">
-      <h1 className="section__title">{dictionary["Auth"]["signup"]["title"]}</h1>
-      {message}
-
-    </main>
-  )
-
-
-  return !message ? form : action
-
+  return success ? formSusmitted : form
 }

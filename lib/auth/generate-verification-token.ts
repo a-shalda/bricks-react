@@ -7,7 +7,6 @@ export const generateVerificationToken = async (email: string) => {
   // const expires = new Date(new Date().getTime())
   const expires = new Date(new Date().getTime() + 3600 * 1000)
 
-
   try {
 
     const { data, error } = await supabase

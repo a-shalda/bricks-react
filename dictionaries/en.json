@@ -12,7 +12,7 @@
     "window_sills": "Ceramic window sills",
     "mortar": "Mortar",
     "dropdown": {
-      "sign_in": "Sign in",
+      "sign_in": "Log in",
       "sign_up": "Sign up",
       "logout": "Log out",
       "account": "Account"
@@ -290,13 +290,21 @@
       "title": "Signup",
       "email": "Email",
       "password": "Password",
-      "button": "Sign up"
+      "button": "Sign up",
+      "errors": {
+        "too_small": "Password must contain at least 6 characters"
+      }
     },
     "login": {
       "title": "Login",
       "email": "Email",
       "password": "Password",
-      "button": "Log in"
+      "button": "Log in",
+      "errors": {
+        "login": "Login or password is invalid",
+        "else": "Error, try again",
+        "email": "Please enter a correct email"
+      }
     },
     "email": {
       "subject": "Bricks-moscow.ru signup",

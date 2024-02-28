@@ -14,16 +14,16 @@ type FormFields = z.infer<typeof LoginSchema>
 
 export default function Login({ dictionary }: { dictionary: any }) {
 
-  const [message, setMessage] = useState("")
-  const [success, setSuccess] = useState(false)
+  const [error, setError] = useState("")
+  const [removeError, setRemoveError] = useState("block")
 
   const router = useRouter()
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
-    setError
   } = useForm<FormFields>({
     resolver: zodResolver(LoginSchema)
   })
@@ -36,8 +36,18 @@ export default function Login({ dictionary }: { dictionary: any }) {
       redirect: false
     })
 
+    reset()
+
     if (response) {
-      console.log(response)
+      if (response.error) {
+        handleError(dictionary["Auth"]["login"]["errors"]["login"])
+      }
+      else if (errors.email) {
+        handleError(dictionary["Auth"]["login"]["errors"]["email"])
+      }
+      else if (errors.password) {
+        handleError(dictionary["Auth"]["login"]["errors"]["else"])
+      }
     }
 
     if (!response?.error) {
@@ -46,8 +56,11 @@ export default function Login({ dictionary }: { dictionary: any }) {
     }
   }
 
-  errors.email && console.log(errors.email)
-  errors.password && console.log(errors.password)
+  const handleError = (error: string) => {
+    setRemoveError("block")
+    setError(error)
+    setTimeout(() => { setRemoveError("none") }, 3000)
+  }
 
 
   return (
@@ -86,6 +99,8 @@ export default function Login({ dictionary }: { dictionary: any }) {
             />
             : dictionary["Auth"]["login"]["button"]}
         </button>
+
+        <p className="auth__box__content__form__error" style={{ display: removeError }}>{error}</p>
       </form>
     </main>
   )

@@ -29,7 +29,7 @@ const handler = NextAuth({
 
     async session({ session, token }) {
       if (token.sub && session.user) {
-        console.log(session)
+        // console.log(session)
         session.user.id = token.sub
       } // not working
       return session
