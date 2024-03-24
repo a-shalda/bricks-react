@@ -8,6 +8,7 @@ import { Providers } from "@/app/GlobalRedux/provider";
 
 
 export const metadata = {
+  metadataBase: new URL('https://www.klinkernaya-plitka.ru'),
   title: "Bricks eCommerce Shop",
   description: "Bricks eCommerce Shop",
 };

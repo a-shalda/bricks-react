@@ -19,7 +19,10 @@ export async function generateMetadata(
 
   return {
     title: categoryTitle,
-    description: categoryDescription
+    description: categoryDescription,
+    alternates: {
+      canonical: '/',
+    },
   }
 }
 
